@@ -1,6 +1,6 @@
 function isUpperCase(str, character) {
     if (character > str.length - 1) {
-        return false
+        return false;
     }
 
     let letter = str.charAt(character);
