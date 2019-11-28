@@ -1,9 +1,9 @@
 function sumOfNumeral(number) {
-    let array = [];
+    let array = [],
+        stringOfNumber = number + ' ';
 
-    while (number){
-        array.unshift(number % 10);
-        number = (number - number % 10) / 10
+    for (let i = 0; i < stringOfNumber.length - 1; i++){
+        array.push(parseInt(stringOfNumber[i]));
     }
 
     return array.reduce((sum, current) => {
