@@ -1,11 +1,9 @@
 function isUpperCase(str, character) {
     if (character > str.length - 1) {
         return false
-    };
+    }
 
-    let letter = str.charAt(character),
-        capitalLetter = letter.trim().toUpperCase();
-    return letter === capitalLetter;
+    let letter = str.charAt(character);
+
+    return letter === letter.trim().toUpperCase();
 }
-
-// isUpperCase('I neeD a brake', 5);
