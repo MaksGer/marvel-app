@@ -3,7 +3,5 @@ function isUpperCase(str, character) {
         return false;
     }
 
-    let letter = str.charAt(character);
-
-    return letter === letter.trim().toUpperCase();
+    return str.charAt(character) === str.charAt(character).toUpperCase();
 }
