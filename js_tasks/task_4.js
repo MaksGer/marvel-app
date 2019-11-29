@@ -1,24 +1,7 @@
-function chess() {
-    let string = ' ',
-        evenLine = false;
-
+function drawChess() {
     for (let i = 0; i <= 8; i++) {
-        if (evenLine) {
-            for (let i = 0; i <= 8; i++) {
-                string = i % 2 === 0 ? string += 'X' : string += ' ';
-            }
-
-            console.log(string);
-            evenLine = false;
-            string = " "
-        } else {
-            for (let i = 0; i <= 8; i++) {
-                string = i % 2 === 1 ? string += 'X' : string += ' ';
-            }
-
-            console.log(string);
-            evenLine = true;
-            string = ' '
-        }
+        console.log((i % 2 ? ' X' : 'X ').repeat(4));
     }
 }
+
+drawChess();

@@ -1,13 +1,10 @@
 function sumOfNumeral(number) {
-    let array = [],
-        stringOfNumber = number.toString();
+    let stringOfNumber = number.toString();
+    let result = 0;
 
     for (let i = 0; i < stringOfNumber.length; i++){
-        array.push(parseInt(stringOfNumber[i]));
-        console.log(array);
+        result += parseInt(stringOfNumber[i]);
     }
 
-    return array.reduce((sum, current) => {
-        return sum + current;
-    }, 0);
+    return result;
 }
