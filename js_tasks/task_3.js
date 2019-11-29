@@ -1,4 +1,4 @@
-function sumOfNumeral(number) {
+function gerSumOfNumeral(number) {
     let stringOfNumber = number.toString();
     let result = 0;
 
