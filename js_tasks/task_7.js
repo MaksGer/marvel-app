@@ -1,11 +1,11 @@
 function countExcessSpaces(str) {
     let counter = 0;
 
-    if (str[0] === ' '){
+    if (str[0] === ' ') {
         counter++;
     }
 
-    if (str[str.length - 1] === ' '){
+    if (str[str.length - 1] === ' ') {
         counter++;
     }
 

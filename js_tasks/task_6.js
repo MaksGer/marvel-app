@@ -42,13 +42,11 @@ function countFigureParam() {
 
         default:
             alert('Try again');
-
-            break;
-
     }
+
     alert(
-        'Area of your circle: ' + area + '\n' +
-        'Perimeter of your circle: ' + perimeter
+        'Area of your figure: ' + area + '\n' +
+        'Perimeter of your figure: ' + perimeter
     );
 
 }
