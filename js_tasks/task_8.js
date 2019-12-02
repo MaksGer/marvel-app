@@ -1,9 +1,5 @@
 function createArrayOfObjectFromArray (array) {
-    let newArray = [];
-
-    array.map((item) => {
-        newArray.push({value: item});
+     return array.map((item) => {
+        return {value: item};
     });
-
-    return newArray;
 }
