@@ -1,21 +1,10 @@
-let curry = function (fn) {
-    let arity = fn.length;
-
-    return function f1(...args) {
-        if (args.length >= arity) {
-            return fn(...args);
+function sumArguments (arg1, arg2) {
+        if (arguments[1]) {
+            return arg1 + arg2;
 
         } else {
-            return function f2(...moreArgs) {
-                let newArgs = args.concat(moreArgs);
-                return f1(...newArgs);
-            }
+            return function f2(argument) {
+                return sumArguments(arg1, argument);
+            };
         }
-    }
-};
-let add = function (a, b) {
-    return a + b
-};
-let curriedAdd = curry(add);
-curriedAdd(2)(3); //=5
-curriedAdd(2,3); //=5
+}
