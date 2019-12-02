@@ -1,15 +1,15 @@
-function range (min, max) {
-    let array = [];
+function range(min, max) {
+	let array = [];
 
-    for (let i = min; i <= max; i++) {
-        array.push(i);
-    }
+	for (let i = min; i <= max; i++) {
+		array.push(i);
+	}
 
-    return array;
+	return array;
 }
 
 function sum(array) {
-    return array.reduce((sum, current) => {
-        return sum + current;
-    }, 0);
+	return array.reduce((sum, current) => {
+		return sum + current;
+	}, 0);
 }
