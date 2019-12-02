@@ -1,5 +1,5 @@
-function createArrayOfObjectFromArray (array) {
-     return array.map((item) => {
-        return {value: item};
-    });
+function createArrayOfObjectFromArray(array) {
+	return array.map((item) => {
+		return {value: item};
+	});
 }
