@@ -1,10 +1,10 @@
 function sumArguments (arg1, arg2) {
-        if (arguments[1]) {
+        if (arg2) {
             return arg1 + arg2;
 
         } else {
-            return function addArgument(argument) {
-                return sumArguments(arg1, argument);
+            return function (nextArgument) {
+                return arg1 + nextArgument;
             };
         }
 }
