@@ -1,19 +1,20 @@
 function createArr(n) {
-	let array = [];
-
 	for (let i = 1; i <= n; i++) {
-		if (i % 3 === 0 && i % 5 === 0) {
-			array.push('fizzbuzz');
-			continue;
-		}
+		switch (true) {
+			case i % 3 === 0 && i % 5 === 0:
+				console.log('fizzbuzz');
+				break;
 
-		if (i % 3 === 0 && !i % 5 === 0) {
-			array.push('fizz');
-			continue;
-		}
+			case i % 3 === 0:
+				console.log("fizz");
+				break;
 
-		(!i % 3 === 0 && i % 5 === 0) ? array.push('buzz') : array.push(i);
+			case i % 5 === 0:
+				console.log("buzz");
+				break;
+
+			default :
+				console.log(i);
+		}
 	}
-
-	console.log(array);
 }
