@@ -1,11 +1,15 @@
-let sum = 0;
-
 function sumAllValues(obj) {
-	sum += obj.valueNode;
-	if (obj.next != null) {
-		for (let i = 0; i < obj.next.length; i++) {
-			sumAllValues(obj.next[i]);
+	let result = 0;
+
+	function nextStage(obj) {
+		result += obj.valueNode;
+		if (obj.next != null) {
+			for (let i = 0; i < obj.next.length; i++) {
+				nextStage(obj.next[i]);
+			}
 		}
+		return result;
 	}
-	return sum;
+
+	return nextStage(obj);
 }
