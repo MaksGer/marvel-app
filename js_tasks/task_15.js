@@ -3,11 +3,13 @@ function sumAllValues(obj) {
 
 	function nextStage(obj) {
 		result += obj.valueNode;
+
 		if (obj.next != null) {
 			for (let i = 0; i < obj.next.length; i++) {
 				nextStage(obj.next[i]);
 			}
 		}
+
 		return result;
 	}
 
