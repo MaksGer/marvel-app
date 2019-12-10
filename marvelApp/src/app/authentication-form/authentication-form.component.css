@@ -1,63 +1,78 @@
 .background {
-  height: 100vh;
-  background: url("../../assets/images/form_background.jpg") no-repeat top right;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	height: 100vh;
+	background: url("../../assets/images/form_background.jpg") no-repeat top right;
+	background-size: cover;
+	position: relative;
 }
 
 .container {
-  width: 445px;
-  padding: 35px;
-  border: 5px solid gray;
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  color: white;
-  position: relative;
+	height: 25%;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	color: white;
+	position: absolute;
+	top: 20%;
+	left: 25%;
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,.7);
+.logo {
+	width: 100%;
+	background: url("../../assets/images/logo.png") no-repeat center;
+	background-size: cover;
+	height: 160px;
+	z-index: 2;
 }
 
-.container input{
-  height: 35px;
-  padding: 5px;
+.form {
+	position: relative;
+	padding: 35px;
+	border: 2px solid rgb(5, 3, 186);
+	border-top: none;
+	z-index: 1;
+	display: flex;
 }
 
-.container input::placeholder {
-  font-size: 17px;
+.login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .7);
+	z-index: -5;
 }
 
 .container button {
-  color: white;
-  font-size: 25px;
-  height: 55px;
-  margin-top: 10px;
+	color: white;
+	background-color: rgb(5, 3, 186);
+	font-size: 25px;
+	height: 55px;
+	margin-top: 10px;
 }
 
 .subtitle {
-  display: flex;
-  margin: 0 auto;
+	display: flex;
+	margin: 0 auto;
 }
 
 .subtitle button {
-  color: blueviolet;
-  font-size: 20px;
+	background: transparent;
+	color: rgb(5, 3, 186);
+	font-size: 20px;
+	margin: -12px 0 0;
+	padding: 0;
 }
 
 .error {
-  color: #f44336;
-  font-weight: 700;
-  font-size: 15px;
-  z-index: 20;
+	color: #f44336;
+	font-size: 15px;
 }
