@@ -1,0 +1,83 @@
+<div class="background">
+  <div class="logo">
+    <img src="../../assets/images/logo.png" alt="logo-marvel">
+  </div>
+  <div class="form" [ngSwitch]="isLoginExist">
+    <!--   =============== Form to log in ========================-->
+    <form *ngSwitchCase="true" class="login" [formGroup]="formToLogIn" (ngSubmit)="submitLogIn()">
+      <div class="container">
+        <mat-form-field>
+          <label>
+            <input matInput
+                   placeholder="Login"
+                   formControlName="login"
+            >
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password"
+            >
+          </label>
+        </mat-form-field>
+        <div class="error" *ngIf="!isLoginAndPassValid"
+        >Please check your User Name and Password and try again
+        </div>
+        <button mat-raised-button
+                type="submit"
+                [disabled]="formToLogIn.invalid"
+        >Log In
+        </button>
+        <div class="subtitle">
+          <p>Not registered?
+            <button mat-button
+                    type="button"
+                    (click)="isLoginExist = !isLoginExist"
+            >Create an account
+            </button>
+          </p>
+        </div>
+      </div>
+    </form>
+    <!-- =============== Form to sign up ======================== -->
+    <form *ngSwitchCase="false" class="login" [formGroup]="formToSignUp" (ngSubmit)="submitSignUp()">
+      <div class="container">
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Name" formControlName="name">
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Password" type="password" formControlName="password">
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Email address" formControlName="email">
+          </label>
+          <mat-error
+            *ngIf="formToSignUp.get('email').hasError('email')
+            && !formToSignUp.get('email').hasError('required')
+          ">Email should must be a valid email address
+          </mat-error>
+          <mat-error *ngIf="formToSignUp.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="formToSignUp.invalid">Create</button>
+        <div class="subtitle">
+          <p>Already registered?
+            <button mat-button
+                    (click)="isLoginExist = !isLoginExist"
+            >Sign in
+            </button>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
