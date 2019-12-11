@@ -19,7 +19,7 @@
 .logo {
 	background: url("../../assets/images/logo.png") no-repeat center;
 	background-size: cover;
-	height: 180px;
+	max-height: 180px;
 	z-index: 2;
 }
 
