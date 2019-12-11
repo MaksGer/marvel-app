@@ -7,12 +7,14 @@ import { AuthenticationFormComponent } from './authentication-form/authenticatio
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MainPageComponent } from './main-page/main-page.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		AuthenticationFormComponent
+		AuthenticationFormComponent,
+		MainPageComponent
 	],
 	imports: [
 		BrowserModule,
