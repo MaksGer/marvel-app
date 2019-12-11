@@ -10,25 +10,28 @@
 	width: 300px;
 	display: flex;
 	flex-direction: column;
-	font-size: 20px;
+	/*font-size: 16px;*/
 	color: white;
 	position: absolute;
 	top: 20%;
 	left: 25%;
 }
 
+/*.fullwidth {*/
+/*	width: 100%;*/
+/*}*/
+
 .logo {
-	width: 100%;
 	background: url("../../assets/images/logo.png") no-repeat center;
 	background-size: cover;
-	height: 160px;
+	height: 180px;
 	z-index: 2;
 }
 
 .form {
 	position: relative;
-	padding: 35px;
-	border: 2px solid rgb(5, 3, 186);
+	padding: 20px;
+	border: 2px solid #f44336;
 	border-top: none;
 	z-index: 1;
 	display: flex;
@@ -51,10 +54,10 @@
 	z-index: -5;
 }
 
-.container button {
+.button button:first-of-type {
 	color: white;
 	background-color: rgb(5, 3, 186);
-	font-size: 25px;
+	font-size: 20px;
 	height: 55px;
 	margin-top: 10px;
 }
@@ -67,12 +70,10 @@
 .subtitle button {
 	background: transparent;
 	color: rgb(5, 3, 186);
-	font-size: 20px;
-	margin: -12px 0 0;
 	padding: 0;
+	font-size: inherit;
 }
 
 .error {
 	color: #f44336;
-	font-size: 15px;
 }
