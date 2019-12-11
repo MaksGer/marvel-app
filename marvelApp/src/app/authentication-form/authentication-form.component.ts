@@ -65,4 +65,9 @@ export class AuthenticationFormComponent implements OnInit {
 
 		this.formToLogIn.reset();
 	};
+
+	changeForm(form: FormGroup) {
+		this.isLoginExist = !this.isLoginExist;
+		form.reset();
+	}
 }
