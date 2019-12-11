@@ -6,7 +6,6 @@
 }
 
 .container {
-	height: 25%;
 	width: 350px;
 	display: flex;
 	flex-direction: column;
@@ -17,17 +16,12 @@
 }
 
 .logo {
-	background: url("../../assets/images/logo.png") no-repeat center;
-	background-size: cover;
 	max-height: 180px;
-	z-index: 2;
 }
 
 .form {
 	position: relative;
-	padding: 20px;
-	border: 2px solid #f44336;
-	border-top: none;
+	padding: 20px 0;
 	z-index: 1;
 	display: flex;
 }
@@ -51,7 +45,7 @@
 
 .button button:first-of-type {
 	color: white;
-	background-color: #f44336;
+	background-color: #070fd7;
 	font-size: 20px;
 	height: 55px;
 	margin-top: 10px;
@@ -64,7 +58,7 @@
 
 .subtitle button {
 	background: transparent;
-	color: #f44336;
+	color: #070fd7;
 	padding: 0;
 	font-size: inherit;
 }
