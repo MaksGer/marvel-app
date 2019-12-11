@@ -30,3 +30,8 @@ body {
 .mat-focused .mat-input-element {
 	caret-color: white !important;
 }
+
+.error-snack-bar {
+	background-color: #8B0000;
+	color: white;
+}
