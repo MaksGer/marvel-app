@@ -17,3 +17,16 @@ body {
 .fullwidth {
 	width: 100%;
 }
+
+.mat-focused .mat-form-field-ripple {
+	/*change color of underline when focused*/
+	background-color: white !important;
+}
+.mat-focused .mat-form-field-label {
+	/*change color of label when focused*/
+	color: white !important;
+}
+
+.mat-focused .mat-input-element {
+	caret-color: white !important;
+}
