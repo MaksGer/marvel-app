@@ -1,11 +1,18 @@
 <div class="login-page">
-	<div class="container" [ngSwitch]="isLoginExist">
+	<div class="container"
+	     [ngSwitch]="isLoginExist">
 		<div class="logo">
-			<img class="full-width" src="../../assets/images/logo.png" alt="logo-marvel">
+			<img class="full-width"
+			     src="../../assets/images/logo.png"
+			     alt="logo-marvel">
 		</div>
-		<div class="form" [ngSwitch]="isLoginExist">
+		<div class="form"
+		     [ngSwitch]="isLoginExist">
 			<!--   =============== Form to log in ========================-->
-			<form *ngSwitchCase="true" class="login full-width" [formGroup]="formToLogIn" (ngSubmit)="submitLogIn()">
+			<form *ngSwitchCase="true"
+			      class="login full-width"
+			      [formGroup]="formToLogIn"
+			      (ngSubmit)="submitLogIn()">
 				<mat-form-field>
 					<input matInput
 					       placeholder="Login"
@@ -41,22 +48,29 @@
 				</div>
 			</form>
 			<!-- =============== Form to sign up ======================== -->
-			<form *ngSwitchCase="false" class="login full-width" [formGroup]="formToSignUp" (ngSubmit)="submitSignUp()">
+			<form *ngSwitchCase="false"
+			      class="login full-width"
+			      [formGroup]="formToSignUp"
+			      (ngSubmit)="submitSignUp()">
 				<mat-form-field>
 					<input matInput
 					       placeholder="Email address"
 					       formControlName="email"
 					       class="full-width">
-					<mat-error
-						*ngIf="formToSignUp.get('email').hasError('pattern')">
+					<mat-error *ngIf="formToSignUp.get('email').hasError('pattern')">
 						<span class="error">Email should must be a valid email address</span>
 					</mat-error>
 				</mat-form-field>
 				<mat-form-field>
-					<input matInput placeholder="Name" formControlName="name">
+					<input matInput
+					       placeholder="Name"
+					       formControlName="name">
 				</mat-form-field>
 				<mat-form-field>
-					<input matInput placeholder="Password" type="password" formControlName="password">
+					<input matInput
+					       placeholder="Password"
+					       type="password"
+					       formControlName="password">
 				</mat-form-field>
 				<div class="button">
 					<button mat-raised-button
