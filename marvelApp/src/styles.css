@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.mat-focused .mat-form-field-ripple {
+	/*change color of underline when focused*/
+	background-color: white !important;
+}
+.mat-focused .mat-form-field-label {
+	/*change color of label when focused*/
+	color: white !important;
+}
+
+.mat-focused .mat-input-element {
+	caret-color: white !important;
+}
+
+.error-snack-bar {
+	background-color: #8B0000;
+	color: white;
+}
