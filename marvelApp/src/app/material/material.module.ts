@@ -5,7 +5,6 @@ const MaterialComponents = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-
 ];
 
 @NgModule({

@@ -1,32 +1,28 @@
 <div class="background">
 	<div class="container" [ngSwitch]="isLoginExist">
-		<div class="logo">
-			<img class="fullwidth" src="../../assets/images/logo.png" alt="logo-marvel">
-		</div>
+<!--		<div class="logo">-->
+<!--			<img class="full-width" src="../../assets/images/logo.png" alt="logo-marvel">-->
+<!--		</div>-->
 		<div class="form" [ngSwitch]="isLoginExist">
 			<!--   =============== Form to log in ========================-->
-			<form *ngSwitchCase="true" class="login fullwidth" [formGroup]="formToLogIn" (ngSubmit)="submitLogIn()">
+			<form *ngSwitchCase="true" class="login full-width" [formGroup]="formToLogIn" (ngSubmit)="submitLogIn()">
 				<mat-form-field>
-					<label>
-						<input matInput
-						       placeholder="Login"
-						       formControlName="login">
-					</label>
+					<input matInput
+					       placeholder="Login"
+					       formControlName="login">
 				</mat-form-field>
 				<mat-form-field>
-					<label>
-						<input matInput
-						       placeholder="Password"
-						       type="password"
-						       formControlName="password">
-					</label>
+					<input matInput
+					       placeholder="Password"
+					       type="password"
+					       formControlName="password">
 				</mat-form-field>
 				<div class="error" *ngIf="!isLoginAndPassValid">
 					Please check your User Name and Password and try again
 				</div>
 				<div class="button">
 					<button mat-raised-button
-					        class="fullwidth"
+					        class="full-width"
 					        type="submit"
 					        [disabled]="formToLogIn.invalid">
 						Log In
@@ -36,40 +32,33 @@
 					<p>Not registered?
 						<button mat-button
 						        type="button"
-						        (click)="isLoginExist = !isLoginExist;
-								formToLogIn.reset();">
+						        (click)="changeForm(formToLogIn)">
 							Create an account
 						</button>
 					</p>
 				</div>
 			</form>
 			<!-- =============== Form to sign up ======================== -->
-			<form *ngSwitchCase="false" class="login fullwidth" [formGroup]="formToSignUp" (ngSubmit)="submitSignUp()">
+			<form *ngSwitchCase="false" class="login full-width" [formGroup]="formToSignUp" (ngSubmit)="submitSignUp()">
 				<mat-form-field>
-					<label>
-						<input matInput placeholder="Email address"
-						       formControlName="email"
-						       class="fullwidth"
-						       pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
-					</label>
+					<input matInput placeholder="Email address"
+					       formControlName="email"
+					       class="full-width"
+					       pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
 					<mat-error
 						*ngIf="formToSignUp.get('email').hasError('pattern')">
 						<span class="error">Email should must be a valid email address</span>
 					</mat-error>
 				</mat-form-field>
 				<mat-form-field>
-					<label>
-						<input matInput placeholder="Name" formControlName="name">
-					</label>
+					<input matInput placeholder="Name" formControlName="name">
 				</mat-form-field>
 				<mat-form-field>
-					<label>
-						<input matInput placeholder="Password" type="password" formControlName="password">
-					</label>
+					<input matInput placeholder="Password" type="password" formControlName="password">
 				</mat-form-field>
 				<div class="button">
 					<button mat-raised-button
-							class="fullwidth"
+					        class="full-width"
 					        type="submit"
 					        [disabled]="formToSignUp.invalid">
 						Create
@@ -78,8 +67,7 @@
 				<div class="subtitle">
 					<p>Already registered?
 						<button mat-button
-						        (click)="isLoginExist = !isLoginExist;
-									formToSignUp.reset()">
+						        (click)="changeForm(formToSignUp)">
 							Sign in
 						</button>
 					</p>

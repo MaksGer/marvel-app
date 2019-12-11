@@ -17,7 +17,7 @@ export class AuthenticationFormComponent implements OnInit {
 		this.formToSignUp = new FormGroup({
 			name: new FormControl('', [
 				Validators.required,
-				Validators.minLength(2)
+				Validators.minLength(2),
 			]),
 			password: new FormControl(null, [
 				Validators.required,
@@ -36,8 +36,7 @@ export class AuthenticationFormComponent implements OnInit {
 				Validators.minLength(5)
 			])
 		});
-	}
-
+	};
 
 	submitSignUp() {
 		localStorage.setItem(this.formToSignUp.value.email, JSON.stringify({
@@ -64,4 +63,10 @@ export class AuthenticationFormComponent implements OnInit {
 
 		this.formToLogIn.reset();
 	};
+
+	changeForm(form) {
+		this.isLoginExist = !this.isLoginExist;
+		form.reset();
+
+	}
 }
