@@ -6,13 +6,12 @@ import {AuthService} from "./services/auth.service";
 @Injectable({
 	providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
 
+export class AuthGuard implements CanActivate {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-	) {
-	}
+	) {}
 
 	canActivate(
 		next: ActivatedRouteSnapshot,
@@ -21,12 +20,7 @@ export class AuthGuard implements CanActivate {
 			return true;
 
 		} else {
-			this.router.navigate(['/login'], {
-				queryParams: {
-					auth: false,
-				}
-			})
+			this.router.navigate(['/login'])
 		}
 	}
-
 }

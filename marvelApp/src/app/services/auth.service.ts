@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
 })
 
 export class AuthService {
-
 	activeUser: object;
 
 	getData(key: string) {
