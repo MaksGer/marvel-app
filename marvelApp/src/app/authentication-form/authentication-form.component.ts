@@ -9,10 +9,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 
 export class AuthenticationFormComponent implements OnInit {
-	isLoginExist = true;
+	isLoginExist: boolean = true;
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
-	emailPattern = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
+	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
 	constructor(private _snackBar: MatSnackBar) {}
 
 	ngOnInit() {

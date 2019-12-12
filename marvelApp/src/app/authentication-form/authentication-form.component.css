@@ -1,6 +1,6 @@
 .login-page {
 	height: 100vh;
-	background: url("../../assets/images/form_background.jpg") no-repeat top right;
+	background: url("../../assets/images/background_1.jpg") no-repeat top right;
 	background-size: cover;
 	position: relative;
 }
@@ -22,7 +22,6 @@
 .form {
 	position: relative;
 	padding: 20px 0;
-	z-index: 1;
 	display: flex;
 }
 
