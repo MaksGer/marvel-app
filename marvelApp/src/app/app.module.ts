@@ -13,7 +13,7 @@ import {MatSnackBarModule} from "@angular/material";
 	declarations: [
 		AppComponent,
 		AuthenticationFormComponent,
-		MainPageComponent
+		MainPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -25,7 +25,6 @@ import {MatSnackBarModule} from "@angular/material";
 		MatSnackBarModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule { }

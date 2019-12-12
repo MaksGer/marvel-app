@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {AuthService} from "./services/auth.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 
 export class AuthGuard implements CanActivate {
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 			return true;
 
 		} else {
-			this.router.navigate(['/login'])
+			this.router.navigate(['/login']);
 		}
 	}
 }
