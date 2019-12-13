@@ -1,0 +1,43 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	height: 100px;
+}
+
+.header_logo {
+	flex-basis: 200px;
+	flex-grow: 0;
+}
+
+.header_logo-img {
+	width: 200px;
+	height: 50px;
+}
+
+.header_user {
+	display: flex;
+	align-items: center;
+	flex-basis: 100px;
+	flex-grow: 0;
+}
+
+.header-user_name {
+	margin-left: 10px;
+}
+
+.header_menu {
+	flex-basis: 700px;
+	flex-grow: 1;
+	display: flex;
+	justify-content: end;
+}
+
+.header-menu_item {
+	display: block;
+	margin-right: 20px;
+	color: white;
+}
+
+ .header-menu.mat-tab-nav-bar.mat-tab-header.mat-primary .mat-ink-bar {
+	background-color: white !important;
+}

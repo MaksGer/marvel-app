@@ -7,8 +7,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MainPageComponent} from './main-page/main-page.component';
-import {MatSnackBarModule} from "@angular/material";
+import {MatSnackBarModule, MatTabsModule} from "@angular/material";
 import { HeaderComponent } from './header/header.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { ComicsComponent } from './comics/comics.component';
+import { CreatorsComponent } from './creators/creators.component';
+import { EventsComponent } from './events/events.component';
+import { SeriesComponent } from './series/series.component';
+import { StoriesComponent } from './stories/stories.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
 	declarations: [
@@ -16,6 +23,13 @@ import { HeaderComponent } from './header/header.component';
 		AuthenticationFormComponent,
 		MainPageComponent,
 		HeaderComponent,
+		HeroesComponent,
+		ComicsComponent,
+		CreatorsComponent,
+		EventsComponent,
+		SeriesComponent,
+		StoriesComponent,
+		FavoritesComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -25,6 +39,7 @@ import { HeaderComponent } from './header/header.component';
 		ReactiveFormsModule,
 		FormsModule,
 		MatSnackBarModule,
+		MatTabsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
