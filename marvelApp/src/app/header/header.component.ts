@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 	constructor(private authService: AuthService) {}
 
 	links = ['heroes', 'comics', 'creators', 'events', 'series', 'stories', 'favorites'];
-	activeLink;
+	activeLink = this.links[0];
 
 	setActiveLink(e): void {
 		console.log(e);

@@ -14,7 +14,7 @@
 		   class="header-menu_item"
 		   *ngFor="let link of links; let i = index"
 		   routerLink="/{{link}}"
-		   (click)="setActiveLink(i);"
+		   (click)="activeLink = link;"
 		   [active]="activeLink == link">
 			{{link| titlecase}}
 		</a>
