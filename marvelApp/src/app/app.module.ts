@@ -8,12 +8,14 @@ import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MainPageComponent} from './main-page/main-page.component';
 import {MatSnackBarModule} from "@angular/material";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		AuthenticationFormComponent,
 		MainPageComponent,
+		HeaderComponent,
 	],
 	imports: [
 		BrowserModule,
