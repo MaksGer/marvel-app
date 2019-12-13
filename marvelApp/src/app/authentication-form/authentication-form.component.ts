@@ -17,7 +17,7 @@ export class AuthenticationFormComponent implements OnInit {
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
-				private router: Router,) {}
+				private router: Router) {}
 
 	ngOnInit() {
 		this.formToSignUp = new FormGroup({
@@ -55,6 +55,7 @@ export class AuthenticationFormComponent implements OnInit {
 	submitLogIn() {
 		if(this.authService.getData(this.formToLogIn.value.login)) {
 			this.router.navigate(['/main']);
+			this.authService.setAuthFlag();
 		} else {
 			this._snackBar.open('Please check your Login and Password and try again', 'Close', {
 				duration: 4000,
