@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-authentication-form',
@@ -13,7 +15,9 @@ export class AuthenticationFormComponent implements OnInit {
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
-	constructor(private _snackBar: MatSnackBar) {}
+	constructor(private _snackBar: MatSnackBar,
+				private authService: AuthService,
+				private router: Router) {}
 
 	ngOnInit() {
 		this.formToSignUp = new FormGroup({
@@ -39,20 +43,19 @@ export class AuthenticationFormComponent implements OnInit {
 	}
 
 	submitSignUp() {
-		localStorage.setItem(this.formToSignUp.value.email, JSON.stringify({
-			password: this.formToSignUp.value.password,
-			name: this.formToSignUp.value.name,
-		}));
-
+		this.authService.setData(
+			this.formToSignUp.value.email,
+			this.formToSignUp.value.password,
+			this.formToSignUp.value.name
+		);
 		this.isLoginExist = true;
 		this.formToSignUp.reset();
 	}
 
 	submitLogIn() {
-		const returnObj = JSON.parse(localStorage.getItem(this.formToLogIn.value.login));
-
-		if(returnObj && returnObj.password === this.formToLogIn.value.password) {
-			this.formToLogIn.reset();
+		if(this.authService.getData(this.formToLogIn.value.login)) {
+			this.router.navigate(['/main']);
+			this.authService.setAuthFlag();
 		} else {
 			this._snackBar.open('Please check your Login and Password and try again', 'Close', {
 				duration: 4000,
