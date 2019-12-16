@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {RandomBackgroundService} from "../services/random-background.service";
 
 @Component({
 	selector: 'app-authentication-form',
@@ -15,11 +16,17 @@ export class AuthenticationFormComponent implements OnInit {
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
+
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
-				private router: Router) {}
+				private router: Router,
+				private random: RandomBackgroundService,
+	) {
+	}
 
 	ngOnInit() {
+		this.random.getRandom();
+
 		this.formToSignUp = new FormGroup({
 			email: new FormControl(null, [
 				Validators.pattern(this.emailPattern),
@@ -53,7 +60,7 @@ export class AuthenticationFormComponent implements OnInit {
 	}
 
 	submitLogIn() {
-		if(this.authService.getData(this.formToLogIn.value.login)) {
+		if (this.authService.getData(this.formToLogIn.value.login)) {
 			this.router.navigate(['/main']);
 			this.authService.setAuthFlag();
 		} else {
@@ -70,4 +77,32 @@ export class AuthenticationFormComponent implements OnInit {
 		this.isLoginExist = !this.isLoginExist;
 		form.reset();
 	}
+
+	configurateObjectOfClasses() {
+		return {
+			'button_colour_blue': this.random.resultOfRandom == 1,
+			'button_colour_purple': this.random.resultOfRandom == 2,
+			'button_colour_brown': this.random.resultOfRandom == 3,
+			'button_colour_red': this.random.resultOfRandom == 4,
+		}
+	}
+
+	randomBg() {
+		return {
+			'bg1': this.random.resultOfRandom == 1,
+			'bg2': this.random.resultOfRandom == 2,
+			'bg3': this.random.resultOfRandom == 3,
+			'bg4': this.random.resultOfRandom == 4,
+		}
+	}
+
+	setTextColor() {
+		return {
+			'blue': this.random.resultOfRandom == 1,
+			'purple': this.random.resultOfRandom == 2,
+			'brown': this.random.resultOfRandom == 3,
+			'red': this.random.resultOfRandom == 4,
+		}
+	}
+
 }

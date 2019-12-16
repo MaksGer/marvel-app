@@ -1,8 +1,25 @@
 .login-page {
 	height: 100vh;
+	position: relative;
+}
+.bg1 {
 	background: url("../../assets/images/background_1.jpg") no-repeat top right;
 	background-size: cover;
-	position: relative;
+}
+
+.bg2 {
+	background: url("../../assets/images/background_2.jpg") no-repeat top right;
+	background-size: cover;
+}
+
+.bg3 {
+	background: url("../../assets/images/background_3.jpg") no-repeat top right;
+	background-size: cover;
+}
+
+.bg4 {
+	background: url("../../assets/images/background_4.jpg") no-repeat top right;
+	background-size: cover;
 }
 
 .container {
@@ -44,7 +61,6 @@
 
 .button button:first-of-type {
 	color: white;
-	background-color: #070fd7;
 	font-size: 20px;
 	height: 55px;
 	margin-top: 10px;
@@ -57,11 +73,42 @@
 
 .subtitle button {
 	background: transparent;
-	color: #070fd7;
 	padding: 0;
 	font-size: inherit;
 }
 
 .error {
 	color: #f44336;
+}
+
+.blue {
+	color: #070fd7;
+}
+
+.purple {
+	color: #5e2396;
+}
+
+.brown {
+	color: #bf6d1b;
+}
+
+.red {
+	color: #d42e1b;
+}
+
+.mat-raised-button.mat-button-base.button_colour_blue {
+	background-color: #070fd7;
+}
+
+.mat-raised-button.mat-button-base.button_color_purple {
+	background-color: #5e2396 !important;
+}
+
+.mat-raised-button.mat-button-base.button_colour_brown {
+	background-color: #bf6d1b;
+}
+
+.mat-raised-button.mat-button-base.button_color_red {
+	background-color: #d42e1b !important;
 }

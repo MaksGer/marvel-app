@@ -1,4 +1,5 @@
-<div class="login-page">
+<div class="login-page"
+     [ngClass]="randomBg()">
 	<div class="container"
 	     [ngSwitch]="isLoginExist">
 		<div class="logo">
@@ -41,6 +42,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
+					        [ngClass]="configurateObjectOfClasses()"
 					        type="submit"
 					        [disabled]="formToLogIn.invalid">
 						Log In
@@ -52,6 +54,7 @@
 						Not registered?
 						<button mat-button
 						        type="button"
+						        [ngClass]="setTextColor()"
 						        (click)="changeForm(formToLogIn)">
 							Create an account
 						</button>
@@ -107,6 +110,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
+					        [ngClass]="configurateObjectOfClasses()"
 					        type="submit"
 					        [disabled]="formToSignUp.invalid">
 						Create
@@ -117,6 +121,7 @@
 					<p>
 						Already registered?
 						<button mat-button
+						        [ngClass]="setTextColor()"
 						        (click)="changeForm(formToSignUp)">
 							Sign in
 						</button>
