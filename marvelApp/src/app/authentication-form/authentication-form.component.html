@@ -42,7 +42,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
-					        [ngClass]="configurateObjectOfClasses()"
+					        [ngClass]="createObjectOfClasses()"
 					        type="submit"
 					        [disabled]="formToLogIn.invalid">
 						Log In
@@ -54,7 +54,7 @@
 						Not registered?
 						<button mat-button
 						        type="button"
-						        [ngClass]="setTextColor()"
+						        [ngClass]="'color' + random.resultOfRandom"
 						        (click)="changeForm(formToLogIn)">
 							Create an account
 						</button>
@@ -110,7 +110,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
-					        [ngClass]="configurateObjectOfClasses()"
+					        [ngClass]="createObjectOfClasses()"
 					        type="submit"
 					        [disabled]="formToSignUp.invalid">
 						Create
@@ -121,7 +121,7 @@
 					<p>
 						Already registered?
 						<button mat-button
-						        [ngClass]="setTextColor()"
+						        [ngClass]="'color' + random.resultOfRandom"
 						        (click)="changeForm(formToSignUp)">
 							Sign in
 						</button>

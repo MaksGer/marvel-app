@@ -16,7 +16,9 @@ export class AuthenticationFormComponent implements OnInit {
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
-
+	bgClassName = 'bg';
+	buttonColor = 'button-colour-';
+	textColor = 'color';
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
 				private router: Router,
@@ -78,31 +80,31 @@ export class AuthenticationFormComponent implements OnInit {
 		form.reset();
 	}
 
-	configurateObjectOfClasses() {
-		return {
-			'button_colour_blue': this.random.resultOfRandom == 1,
-			'button_colour_purple': this.random.resultOfRandom == 2,
-			'button_colour_brown': this.random.resultOfRandom == 3,
-			'button_colour_red': this.random.resultOfRandom == 4,
-		}
+	createObjectOfClasses() {
+		return this.buttonColor + this.random.resultOfRandom;
+
+		// {
+		// 	'button-colour-1': this.random.resultOfRandom == 1,
+		// 	'button-colour-2': this.random.resultOfRandom == 2,
+		// 	'button-colour-3': this.random.resultOfRandom == 3,
+		// 	'button-colour-4': this.random.resultOfRandom == 4,
+		// };
 	}
 
 	randomBg() {
-		return {
-			'bg1': this.random.resultOfRandom == 1,
-			'bg2': this.random.resultOfRandom == 2,
-			'bg3': this.random.resultOfRandom == 3,
-			'bg4': this.random.resultOfRandom == 4,
-		}
+		return this.bgClassName + this.random.resultOfRandom;
 	}
 
 	setTextColor() {
-		return {
-			'blue': this.random.resultOfRandom == 1,
-			'purple': this.random.resultOfRandom == 2,
-			'brown': this.random.resultOfRandom == 3,
-			'red': this.random.resultOfRandom == 4,
-		}
+		return this.textColor + this.random.resultOfRandom;
+
+
+		// {
+		// 	'blue': this.random.resultOfRandom == 1,
+		// 	'purple': this.random.resultOfRandom == 2,
+		// 	'brown': this.random.resultOfRandom == 3,
+		// 	'red': this.random.resultOfRandom == 4,
+		// };
 	}
 
 }

@@ -81,34 +81,34 @@
 	color: #f44336;
 }
 
-.blue {
+.color1 {
 	color: #070fd7;
 }
 
-.purple {
+.color2 {
 	color: #5e2396;
 }
 
-.brown {
+.color3 {
 	color: #bf6d1b;
 }
 
-.red {
+.color4 {
 	color: #d42e1b;
 }
 
-.mat-raised-button.mat-button-base.button_colour_blue {
+.mat-raised-button.mat-button-base.button-colour-1 {
 	background-color: #070fd7;
 }
 
-.mat-raised-button.mat-button-base.button_color_purple {
-	background-color: #5e2396 !important;
+.mat-raised-button.mat-button-base.button-colour-2 {
+	background-color: #5e2396;
 }
 
-.mat-raised-button.mat-button-base.button_colour_brown {
+.mat-raised-button.mat-button-base.button-colour-3 {
 	background-color: #bf6d1b;
 }
 
-.mat-raised-button.mat-button-base.button_color_red {
-	background-color: #d42e1b !important;
+.mat-raised-button.mat-button-base.button-colour-4 {
+	background-color: #d42e1b;
 }
