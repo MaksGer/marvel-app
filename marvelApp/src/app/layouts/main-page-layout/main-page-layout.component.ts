@@ -5,5 +5,4 @@ import {Component} from '@angular/core';
 	templateUrl: './main-page-layout.component.html',
 	styleUrls: ['./main-page-layout.component.css']
 })
-export class MainPageLayoutComponent {
-}
+export class MainPageLayoutComponent { }

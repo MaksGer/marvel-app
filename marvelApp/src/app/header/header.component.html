@@ -1,18 +1,18 @@
 <mat-toolbar class="header">
 
-	<div class="header_logo">
-		<img class="header_logo-img" src="../../assets/images/logo.png" alt="Logo">
+	<div class="header__logo">
+		<img class="header__logo-img" src="../../assets/images/logo.png" alt="Logo">
 	</div>
 
-	<div class="header_user">
+	<div class="header__user">
 		<mat-icon>account_circle</mat-icon>
-		<span class="header-user_name">{{authService.activeUser.name}}</span>
+		<span class="header__user-name">{{authService.activeUser.name}}</span>
 	</div>
 
-	<nav mat-tab-nav-bar class="header-menu">
+	<nav mat-tab-nav-bar class="header__menu">
 		<a mat-tab-link
-		   class="header-menu_item"
-		   *ngFor="let link of links; let i = index"
+		   class="header__menu-item"
+		   *ngFor="let link of links;"
 		   routerLink="/{{link}}"
 		   (click)="activeLink = link;"
 		   [active]="activeLink == link">

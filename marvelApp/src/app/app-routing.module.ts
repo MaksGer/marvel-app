@@ -14,7 +14,8 @@ import {MainPageLayoutComponent} from "./layouts/main-page-layout/main-page-layo
 import {LoginPageComponent} from "./layouts/login-page/login-page.component";
 
 const routes: Routes = [
-	{path: '', component: MainPageLayoutComponent, canActivate: [AuthGuard], children: [
+	{
+		path: '', component: MainPageLayoutComponent, canActivate: [AuthGuard], children: [
 			{path: 'main', component: MainPageComponent},
 			{path: 'heroes', component: HeroesComponent},
 			{path: 'comics', component: ComicsComponent},
@@ -23,11 +24,14 @@ const routes: Routes = [
 			{path: 'series', component: SeriesComponent},
 			{path: 'stories', component: StoriesComponent},
 			{path: 'favorites', component: FavoritesComponent},
-		]},
-	{path: '', component: LoginPageComponent, children: [
+		]
+	},
+	{
+		path: '', component: LoginPageComponent, children: [
 			{path: 'login', component: AuthenticationFormComponent}
-		]},
-	{ path: '**', redirectTo: 'main' }
+		]
+	},
+	{path: '**', redirectTo: 'main'}
 ];
 
 @NgModule({

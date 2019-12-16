@@ -35,3 +35,11 @@ body {
 	background-color: #8B0000;
 	color: white;
 }
+
+.mat-tab-links {
+	justify-content: space-between;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+	background-color: white !important;
+}
