@@ -16,6 +16,8 @@ import { EventsComponent } from './events/events.component';
 import { SeriesComponent } from './series/series.component';
 import { StoriesComponent } from './stories/stories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { LoginPageComponent } from './layouts/login-page/login-page.component';
+import { MainPageLayoutComponent } from './layouts/main-page-layout/main-page-layout.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +32,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
 		SeriesComponent,
 		StoriesComponent,
 		FavoritesComponent,
+		LoginPageComponent,
+		MainPageLayoutComponent,
 	],
 	imports: [
 		BrowserModule,

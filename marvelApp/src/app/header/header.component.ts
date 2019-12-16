@@ -7,18 +7,11 @@ import {AuthService} from "../services/auth.service";
 	styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-	constructor(private authService: AuthService) {}
+	constructor(private authService: AuthService) { }
 
 	links = ['heroes', 'comics', 'creators', 'events', 'series', 'stories', 'favorites'];
 	activeLink = this.links[0];
 
-	setActiveLink(e): void {
-		console.log(e);
-		this.activeLink = this.links[e];
-	}
-
-	ngOnInit() {
-		console.log(this.activeLink);
-	}
+	ngOnInit() { }
 
 }
