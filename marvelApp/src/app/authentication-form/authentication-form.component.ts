@@ -8,7 +8,7 @@ import {RandomBackgroundService} from "../services/random-background.service";
 @Component({
 	selector: 'app-authentication-form',
 	templateUrl: './authentication-form.component.html',
-	styleUrls: ['./authentication-form.component.css'],
+	styleUrls: ['./authentication-form.component.css', 'authentication-form-backgrounds.component.css'],
 })
 
 export class AuthenticationFormComponent implements OnInit {
@@ -16,15 +16,16 @@ export class AuthenticationFormComponent implements OnInit {
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
+	styleObject: object;
+
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
 				private router: Router,
-				private random: RandomBackgroundService,
-	) { }
+	) {
+		this.styleObject = new RandomBackgroundService();
+	}
 
 	ngOnInit() {
-		this.random.getRandom();
-
 		this.formToSignUp = new FormGroup({
 			email: new FormControl(null, [
 				Validators.pattern(this.emailPattern),

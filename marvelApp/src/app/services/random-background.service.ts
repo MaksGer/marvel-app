@@ -4,35 +4,37 @@ import {Injectable} from '@angular/core';
 	providedIn: 'root'
 })
 export class RandomBackgroundService {
-	resultOfRandom: number;
-	themes = {
+	bgColor: string;
+	bgClass: string;
+	private resultOfRandom: number;
+	private themes = {
 		1: {
-			'backgroundColor': '#070fd7',
-			'color': '#070fd7',
-			'background': 'bg1',
+			backgroundColor: '#070fd7',
+			backgroundClass: 'bg1',
 		},
 		2: {
-			'backgroundColor': '#5e2396',
-			'color': '#5e2396',
-			'background': 'bg2',
+			backgroundColor: '#5e2396',
+			backgroundClass: 'bg2',
 		},
 		3: {
-			'backgroundColor': '#bf6d1b',
-			'color': '#bf6d1b',
-			'background': 'bg3',
+			backgroundColor: '#bf6d1b',
+			backgroundClass: 'bg3',
 		},
 		4: {
-			'backgroundColor': '#d42e1b',
-			'color': '#d42e1b',
-			'background': 'bg4',
+			backgroundColor: '#d42e1b',
+			backgroundClass: 'bg4',
 		},
 	};
 
-	getRandom(): void {
-		this.resultOfRandom = Math.ceil(Math.random() * 4);
+	constructor () {
+		let arrayOfArgs = this.getRandom();
+		this.bgColor = arrayOfArgs[0];
+		this.bgClass = arrayOfArgs[1];
 	}
 
-	getStyleTheme() {
-		return this.themes[this.resultOfRandom];
+	getRandom(): any {
+		this.resultOfRandom = Math.ceil(Math.random() * 4);
+		return [this.themes[this.resultOfRandom].backgroundColor,
+			this.themes[this.resultOfRandom].backgroundClass];
 	}
 }
