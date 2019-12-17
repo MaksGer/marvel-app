@@ -1,4 +1,5 @@
-<div class="login-page">
+<div class="login-page"
+     [ngClass]="styleObject.bgClass">
 	<div class="container"
 	     [ngSwitch]="isLoginExist">
 		<div class="logo">
@@ -42,9 +43,11 @@
 					<button mat-raised-button
 					        class="full-width"
 					        type="submit"
-					        [disabled]="formToLogIn.invalid">
+					        [ngStyle]="{'backgroundColor': styleObject.bgColor}"
+					[disabled]="formToLogIn.invalid">
 						Log In
 					</button>
+
 				</div>
 
 				<div class="subtitle">
@@ -108,6 +111,7 @@
 					<button mat-raised-button
 					        class="full-width"
 					        type="submit"
+					        [ngStyle]="{'backgroundColor': styleObject.bgColor}"
 					        [disabled]="formToSignUp.invalid">
 						Create
 					</button>
