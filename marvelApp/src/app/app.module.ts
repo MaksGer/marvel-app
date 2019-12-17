@@ -8,16 +8,17 @@ import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MainPageComponent} from './main-page/main-page.component';
 import {MatSnackBarModule, MatTabsModule} from "@angular/material";
-import { HeaderComponent } from './header/header.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { ComicsComponent } from './comics/comics.component';
-import { CreatorsComponent } from './creators/creators.component';
-import { EventsComponent } from './events/events.component';
-import { SeriesComponent } from './series/series.component';
-import { StoriesComponent } from './stories/stories.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-import { LoginPageComponent } from './layouts/login-page/login-page.component';
-import { MainPageLayoutComponent } from './layouts/main-page-layout/main-page-layout.component';
+import {HeaderComponent} from './header/header.component';
+import {HeroesComponent} from './heroes/heroes.component';
+import {ComicsComponent} from './comics/comics.component';
+import {CreatorsComponent} from './creators/creators.component';
+import {EventsComponent} from './events/events.component';
+import {SeriesComponent} from './series/series.component';
+import {StoriesComponent} from './stories/stories.component';
+import {FavoritesComponent} from './favorites/favorites.component';
+import {LoginPageComponent} from './layouts/login-page/login-page.component';
+import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
+import {NgxSpinnersModule} from "ngx-spinners";
 
 @NgModule({
 	declarations: [
@@ -44,6 +45,7 @@ import { MainPageLayoutComponent } from './layouts/main-page-layout/main-page-la
 		FormsModule,
 		MatSnackBarModule,
 		MatTabsModule,
+		NgxSpinnersModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],

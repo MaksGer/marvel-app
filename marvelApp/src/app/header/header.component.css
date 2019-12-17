@@ -29,7 +29,6 @@
 }
 
 .header-menu {
-	flex-basis: 50%;
 	display: flex;
 	justify-content: space-between;
 }
@@ -39,4 +38,11 @@
 	margin-right: 20px;
 	color: white;
 	min-width: 100px;
+}
+
+.marvel-font {
+	font-family: 'Marvel', sans-serif;
+	letter-spacing: 2px;
+	font-size: 25px;
+	text-transform: uppercase;
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import {Event, NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {RandomBackgroundService} from "../services/random-background.service";
 
 @Component({
@@ -17,12 +17,27 @@ export class AuthenticationFormComponent implements OnInit {
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
 	styleObject: object;
+	timeout;
+	routerChanged = true;
 
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
 				private router: Router,
 	) {
 		this.styleObject = new RandomBackgroundService();
+
+		router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationStart) {
+				this.routerChanged = true;
+			}
+
+			if (event instanceof NavigationEnd) {
+				this.timeout = setTimeout(() => {
+					clearTimeout(this.timeout);
+					this.routerChanged = false;
+				}, 700);
+			}
+		});
 	}
 
 	ngOnInit() {

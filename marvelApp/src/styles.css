@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: marvel;
+	src: url(assets/fonts/Marvel-regular.ttf) format("opentype");
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
