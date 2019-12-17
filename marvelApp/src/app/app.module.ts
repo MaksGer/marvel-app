@@ -18,6 +18,7 @@ import { StoriesComponent } from './stories/stories.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { LoginPageComponent } from './layouts/login-page/login-page.component';
 import { MainPageLayoutComponent } from './layouts/main-page-layout/main-page-layout.component';
+import {NgxSpinnersModule} from "ngx-spinners";
 
 @NgModule({
 	declarations: [
@@ -44,6 +45,7 @@ import { MainPageLayoutComponent } from './layouts/main-page-layout/main-page-la
 		FormsModule,
 		MatSnackBarModule,
 		MatTabsModule,
+		NgxSpinnersModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],

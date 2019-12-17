@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<div class="spinner"
+     *ngIf="routerChanged; else app">
+
+	<ngx-ring-loader class="item"
+	                 color="white"
+	                 size="200"
+	                 >
+	</ngx-ring-loader>
+</div>
+<ng-template #app>
+	<router-outlet></router-outlet>
+</ng-template>
