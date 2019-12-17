@@ -50,5 +50,4 @@ import {NgxSpinnersModule} from "ngx-spinners";
 	providers: [],
 	bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule { }
