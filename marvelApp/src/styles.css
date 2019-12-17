@@ -44,7 +44,3 @@ body {
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
 	background-color: white !important;
 }
-
-.header-menu-item {
-	font-family: 'Marvel', sans-serif;
-}
