@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 export class RandomBackgroundService {
 	bgColor: string;
 	bgClass: string;
-	private resultOfRandom: number;
+
 	private themes = {
 		1: {
 			backgroundColor: '#070fd7',
@@ -26,15 +26,10 @@ export class RandomBackgroundService {
 		},
 	};
 
-	constructor () {
-		let arrayOfArgs = this.getRandom();
-		this.bgColor = arrayOfArgs[0];
-		this.bgClass = arrayOfArgs[1];
-	}
+	constructor() {
+		let resultOfRandom: number = Math.ceil(Math.random() * 4);
 
-	getRandom(): any {
-		this.resultOfRandom = Math.ceil(Math.random() * 4);
-		return [this.themes[this.resultOfRandom].backgroundColor,
-			this.themes[this.resultOfRandom].backgroundClass];
+		this.bgColor = this.themes[resultOfRandom].backgroundColor;
+		this.bgClass = this.themes[resultOfRandom].backgroundClass;
 	}
 }
