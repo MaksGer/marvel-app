@@ -2,6 +2,7 @@
 	height: 100vh;
 	position: relative;
 }
+
 .bg1 {
 	background: url("../../assets/images/background_1.jpg") no-repeat top right;
 	background-size: cover;
@@ -79,36 +80,4 @@
 
 .error {
 	color: #f44336;
-}
-
-.color1 {
-	color: #070fd7;
-}
-
-.color2 {
-	color: #5e2396;
-}
-
-.color3 {
-	color: #bf6d1b;
-}
-
-.color4 {
-	color: #d42e1b;
-}
-
-.mat-raised-button.mat-button-base.button-colour-1 {
-	background-color: #070fd7;
-}
-
-.mat-raised-button.mat-button-base.button-colour-2 {
-	background-color: #5e2396;
-}
-
-.mat-raised-button.mat-button-base.button-colour-3 {
-	background-color: #bf6d1b;
-}
-
-.mat-raised-button.mat-button-base.button-colour-4 {
-	background-color: #d42e1b;
 }

@@ -16,15 +16,11 @@ export class AuthenticationFormComponent implements OnInit {
 	formToSignUp: FormGroup;
 	formToLogIn: FormGroup;
 	emailPattern: string = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$';
-	bgClassName = 'bg';
-	buttonColor = 'button-colour-';
-	textColor = 'color';
 	constructor(private _snackBar: MatSnackBar,
 				private authService: AuthService,
 				private router: Router,
 				private random: RandomBackgroundService,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.random.getRandom();
@@ -79,32 +75,4 @@ export class AuthenticationFormComponent implements OnInit {
 		this.isLoginExist = !this.isLoginExist;
 		form.reset();
 	}
-
-	createObjectOfClasses() {
-		return this.buttonColor + this.random.resultOfRandom;
-
-		// {
-		// 	'button-colour-1': this.random.resultOfRandom == 1,
-		// 	'button-colour-2': this.random.resultOfRandom == 2,
-		// 	'button-colour-3': this.random.resultOfRandom == 3,
-		// 	'button-colour-4': this.random.resultOfRandom == 4,
-		// };
-	}
-
-	randomBg() {
-		return this.bgClassName + this.random.resultOfRandom;
-	}
-
-	setTextColor() {
-		return this.textColor + this.random.resultOfRandom;
-
-
-		// {
-		// 	'blue': this.random.resultOfRandom == 1,
-		// 	'purple': this.random.resultOfRandom == 2,
-		// 	'brown': this.random.resultOfRandom == 3,
-		// 	'red': this.random.resultOfRandom == 4,
-		// };
-	}
-
 }

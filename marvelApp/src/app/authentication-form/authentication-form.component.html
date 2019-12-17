@@ -1,5 +1,5 @@
 <div class="login-page"
-     [ngClass]="randomBg()">
+     [ngClass]="random.getStyleTheme().background">
 	<div class="container"
 	     [ngSwitch]="isLoginExist">
 		<div class="logo">
@@ -42,7 +42,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
-					        [ngClass]="createObjectOfClasses()"
+					        [ngStyle]="{'backgroundColor': random.getStyleTheme().backGroundColor}"
 					        type="submit"
 					        [disabled]="formToLogIn.invalid">
 						Log In
@@ -54,7 +54,7 @@
 						Not registered?
 						<button mat-button
 						        type="button"
-						        [ngClass]="'color' + random.resultOfRandom"
+						        [ngStyle]="{'color': random.getStyleTheme().color}"
 						        (click)="changeForm(formToLogIn)">
 							Create an account
 						</button>
@@ -110,7 +110,7 @@
 				<div class="button">
 					<button mat-raised-button
 					        class="full-width"
-					        [ngClass]="createObjectOfClasses()"
+					        [ngStyle]="{'backgroundColor': random.getStyleTheme().backGroundColor}"
 					        type="submit"
 					        [disabled]="formToSignUp.invalid">
 						Create
@@ -121,7 +121,7 @@
 					<p>
 						Already registered?
 						<button mat-button
-						        [ngClass]="'color' + random.resultOfRandom"
+						        [ngStyle]="{'color': random.getStyleTheme().color}"
 						        (click)="changeForm(formToSignUp)">
 							Sign in
 						</button>
