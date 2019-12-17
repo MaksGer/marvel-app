@@ -12,7 +12,6 @@ export class AppComponent {
 	routerChanged = true;
 	constructor(private router: Router) {
 		router.events.subscribe((event: Event) => {
-
 			if (event instanceof NavigationStart) {
 				this.routerChanged = true;
 			}
