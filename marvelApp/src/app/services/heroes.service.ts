@@ -15,7 +15,7 @@ export class HeroesService {
 
 	constructor(private http: HttpClient) {}
 
-	getHeroes(): Observable<object> {
+	getHeroes(): Observable<any> {
 		return this.http.get(this.urlAPI);
 	}
 }
