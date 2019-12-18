@@ -19,6 +19,7 @@ import {FavoritesComponent} from './favorites/favorites.component';
 import {LoginPageComponent} from './layouts/login-page/login-page.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
 import {NgxSpinnersModule} from "ngx-spinners";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,8 @@ import {NgxSpinnersModule} from "ngx-spinners";
 		FormsModule,
 		MatSnackBarModule,
 		MatTabsModule,
-		NgxSpinnersModule
+		NgxSpinnersModule,
+		HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
