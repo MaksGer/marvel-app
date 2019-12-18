@@ -8,13 +8,13 @@ import {HeroesService} from "../services/heroes.service";
 })
 
 export class HeroesComponent implements OnInit {
-	heroesList = [];
+	heroesList;
 
 	constructor(private heroes: HeroesService) { }
 
 	ngOnInit() {
 		this.heroes.getHeroes().subscribe(response => {
-				this.heroesList = response.data.results;
+				this.heroesList = response;
 			}
 		);
 	}
