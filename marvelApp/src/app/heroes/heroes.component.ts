@@ -10,7 +10,8 @@ import {HeroesService} from "../services/heroes.service";
 export class HeroesComponent implements OnInit {
 	heroesList;
 
-	constructor(private heroes: HeroesService) { }
+	constructor(private heroes: HeroesService) {
+	}
 
 	ngOnInit() {
 		this.heroes.getHeroes().subscribe(response => {
