@@ -35,7 +35,7 @@ export class AuthenticationFormComponent implements OnInit {
 				this.timeout = setTimeout(() => {
 					clearTimeout(this.timeout);
 					this.routerChanged = false;
-				}, 700);
+				}, 1000);
 			}
 		});
 	}

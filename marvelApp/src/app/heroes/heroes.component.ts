@@ -7,16 +7,15 @@ import {HeroesService} from "../services/heroes.service";
 	styles: []
 })
 
-export class HeroesComponent implements OnInit{
+export class HeroesComponent implements OnInit {
 	heroesList = [];
 
-	constructor (private heroes: HeroesService) { }
+	constructor(private heroes: HeroesService) { }
 
-	ngOnInit(){
-		this.heroes.getHeroes().subscribe( response => {
-			this.heroesList = response.data.results;
+	ngOnInit() {
+		this.heroes.getHeroes().subscribe(response => {
+				this.heroesList = response.data.results;
 			}
 		);
-
 	}
 }

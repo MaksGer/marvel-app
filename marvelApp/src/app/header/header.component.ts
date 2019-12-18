@@ -16,7 +16,7 @@ export class HeaderComponent {
 	activeLink: string;
 
 	logout() {
-	this.router.navigate(['/login']);
-	sessionStorage.clear();
+		sessionStorage.clear();
+		this.router.navigate(['/login']);
 	}
 }
