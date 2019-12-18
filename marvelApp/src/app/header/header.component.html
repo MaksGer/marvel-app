@@ -20,6 +20,11 @@
 	<div class="header-user marvel-font">
 		<mat-icon>account_circle</mat-icon>
 		<span class="header-user-name">{{authService.activeUser.name}}</span>
+		<mat-icon class="logo-out"
+		          routerLink="/login"
+		          (click)="logout();">
+			exit_to_app
+		</mat-icon>
 	</div>
 
 </mat-toolbar>
