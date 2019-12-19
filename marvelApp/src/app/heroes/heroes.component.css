@@ -1,8 +1,11 @@
 .container {
 	display: flex;
+	max-width: 2400px;
+	margin: 0 auto;
 	flex-wrap: wrap;
 	padding: 50px;
 	justify-content: space-between;
+	align-content: stretch;
 }
 
 .hero-item {
