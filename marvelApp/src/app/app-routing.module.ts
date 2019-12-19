@@ -16,7 +16,6 @@ import {LoginPageComponent} from "./layouts/login-page/login-page.component";
 const routes: Routes = [
 	{
 		path: '', component: MainPageLayoutComponent, canActivate: [AuthGuard], children: [
-			// {path: 'main', component: MainPageComponent},
 			{path: 'heroes', component: HeroesComponent},
 			{path: 'comics', component: ComicsComponent},
 			{path: 'creators', component: CreatorsComponent},

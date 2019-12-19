@@ -10,7 +10,6 @@
 	flex-grow: 0;
 	display: flex;
 	align-items: center;
-
 }
 
 .header-logo-img {
@@ -44,8 +43,3 @@
 .logo-out {
 	cursor: pointer;
 }
-
-.mat-ink-bar {
-	width: 110px;
-}
-
