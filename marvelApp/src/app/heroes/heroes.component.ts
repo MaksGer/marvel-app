@@ -31,7 +31,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
-				) {
+	) {
 	}
 
 	ngOnInit() {
@@ -55,6 +55,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 				this.isLoading = false;
 			});
 	}
+
 	ngDoCheck(): void {
 		this.setBreakpoint()
 	}
@@ -62,20 +63,22 @@ export class HeroesComponent implements OnInit, DoCheck {
 	setBreakpoint() {
 		switch (true) {
 			case window.innerWidth > 2000:
-				this. breakpoint = 5;
+				this.breakpoint = 5;
 
 				break;
 
 			case window.innerWidth > 1400:
-				this. breakpoint = 4;
+				this.breakpoint = 4;
 
 				break;
+
 			case window.innerWidth > 800:
-				this. breakpoint = 2;
+				this.breakpoint = 2;
 
 				break;
+
 			case window.innerWidth < 800:
-				this. breakpoint = 1;
+				this.breakpoint = 1;
 
 		}
 	}
