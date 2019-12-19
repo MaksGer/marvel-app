@@ -1,15 +1,21 @@
-<section class="heroes" *ngIf="!isLoading; else spinner">
-	<div class="container">
-		<div class="hero-item"
-		     *ngFor="let hero of heroesList;">
-			<div class="title marvel-font">
-				{{hero.name}}
+<section *ngIf="!isLoading; else spinner">
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="500px">
+
+		<mat-grid-tile
+			*ngFor="let hero of heroesList;">
+			<div class="hero-item">
+
+				<div class="title marvel-font full-width">
+					{{hero.name}}
+				</div>
+
+				<div class="hero-image full-width"
+				     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
+				</div>
 			</div>
-			<div class="hero-image"
-			     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
-			</div>
-		</div>
-	</div>
+		</mat-grid-tile>
+	</mat-grid-list>
 </section>
 
 <ng-template #spinner>
@@ -20,10 +26,3 @@
 		</ngx-ring-loader>
 	</div>
 </ng-template>
-
-<!--[style.background]=-->
-<!--"'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension + '\') no-repeat center'">-->
-
-<!--<img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}"-->
-<!--     class="img"-->
-<!--     alt="{{hero.name}}">-->
