@@ -8,7 +8,7 @@
 .hero-item {
 	display: flex;
 	flex-direction: column;
-	width: 250px;
+	width: 350px;
 	margin: 25px;
 }
 
@@ -20,5 +20,15 @@
 }
 
 .hero-image {
-	height: 200px;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*object-fit: fill;*/
 }
+
+/*.img {*/
+/*	height: auto;*/
+/*	width: auto;*/
+/*	max-width: 300px;*/
+/*	max-height: 300px;*/
+/*}*/

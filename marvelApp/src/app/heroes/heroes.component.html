@@ -5,10 +5,8 @@
 			<div class="title marvel-font">
 				{{hero.name}}
 			</div>
-			<div class="hero-image">
-				<img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}"
-				     class="full-width full-height"
-				     alt="{{hero.name}}">
+			<div class="hero-image"
+			     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
 			</div>
 		</div>
 	</div>
@@ -23,3 +21,9 @@
 	</div>
 </ng-template>
 
+<!--[style.background]=-->
+<!--"'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension + '\') no-repeat center'">-->
+
+<!--<img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}"-->
+<!--     class="img"-->
+<!--     alt="{{hero.name}}">-->
