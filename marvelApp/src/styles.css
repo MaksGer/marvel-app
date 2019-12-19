@@ -17,6 +17,8 @@ html, body {
 body {
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 	font-size: 14px;
+	color: white;
+	background-color: #212121
 }
 
 .full-width {

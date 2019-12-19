@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {delay} from "rxjs/operators";
+import {catchError, delay} from "rxjs/operators";
+import {throwError} from "rxjs";
+import {MatSnackBar} from "@angular/material";
 
 export interface Hero {
 	id: number,
@@ -26,17 +28,30 @@ export class HeroesComponent implements OnInit {
 	heroesList: Hero[];
 	isLoading: boolean;
 
-	constructor(private heroes: HeroesService) {
+	constructor(private heroes: HeroesService,
+				private _snackBar: MatSnackBar,
+				) {
 	}
 
 	ngOnInit() {
 		this.isLoading = true;
 		this.heroes.getHeroes()
-			.pipe(delay(1000))
+			.pipe(
+				delay(1000),
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+					this.isLoading = false;
+
+					return throwError(error);
+				}))
+
 			.subscribe(response => {
 				this.heroesList = response.data.results;
 				this.isLoading = false;
-			}
-		);
+			});
 	}
 }
