@@ -42,13 +42,11 @@
 	min-width: 100px;
 }
 
-.marvel-font {
-	font-family: 'Marvel', sans-serif;
-	letter-spacing: 2px;
-	font-size: 25px;
-	text-transform: uppercase;
-}
-
 .logo-out {
 	cursor: pointer;
 }
+
+.mat-ink-bar {
+	width: 110px;
+}
+

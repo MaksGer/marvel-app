@@ -1,0 +1,29 @@
+.heroes {
+	background-color: #212121;
+	color: white;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 50px;
+	justify-content: space-between;
+}
+
+.hero-item {
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	margin: 25px;
+}
+
+.title {
+	text-align: center;
+	padding: 10px 10px;
+	height: 80px;
+	border: 2px solid white;
+}
+
+.image {
+	height: 200px;
+}

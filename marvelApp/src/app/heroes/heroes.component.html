@@ -1,3 +1,25 @@
-<h3 *ngFor="let hero of heroesList;">
-	{{hero.name}}
-</h3>
+<section class="heroes" *ngIf="!isLoading; else spinner">
+	<div class="container">
+		<div class="hero-item"
+		     *ngFor="let hero of heroesList;">
+			<div class="title marvel-font">
+				{{hero.name}}
+			</div>
+			<div class="image">
+				<img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}"
+				     class="full-width full-height"
+				     alt="{{hero.name}}">
+			</div>
+		</div>
+	</div>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-ring-loader class="item"
+		                 color="white"
+		                 size="200">
+		</ngx-ring-loader>
+	</div>
+</ng-template>
+

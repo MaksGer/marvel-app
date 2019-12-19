@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-header',
@@ -9,11 +8,12 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
 	constructor(private authService: AuthService,
-				private router: Router,
-				) { }
+				) {
+
+	}
 
 	links = ['heroes', 'comics', 'creators', 'events', 'series', 'stories', 'favorites'];
-	activeLink: string;
+	activeLink = this.links[0];
 
 	logout() {
 		sessionStorage.clear();
