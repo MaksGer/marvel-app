@@ -1,8 +1,8 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
 import {catchError, delay} from "rxjs/operators";
 import {throwError} from "rxjs";
-import {MatSnackBar} from "@angular/material";
+import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
 
 export interface Hero {
 	id: number,
@@ -28,6 +28,13 @@ export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
 	breakpoint: number;
+
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+	length = 20;
+	pageSize = 20;
+	pageSizeOptions = [ 8, 20, 40, 50];
+	lowValue = 0;
+	highValue = 20;
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
@@ -81,5 +88,13 @@ export class HeroesComponent implements OnInit, DoCheck {
 				this.breakpoint = 1;
 
 		}
+	}
+
+	getPaginatorData(event: PageEvent): PageEvent {
+		this.length = this.heroesList.length;
+		this.lowValue = event.pageIndex * event.pageSize;
+		this.highValue = this.lowValue + event.pageSize;
+
+		return event;
 	}
 }

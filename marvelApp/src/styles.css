@@ -59,6 +59,14 @@ body {
 	width: 110px !important;
 }
 
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+	color: white !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+	color: white !important;
+}
+
 .marvel-font {
 	font-family: 'Marvel', sans-serif;
 	letter-spacing: 2px;
