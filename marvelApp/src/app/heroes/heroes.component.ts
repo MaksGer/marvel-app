@@ -1,8 +1,9 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {catchError, delay} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {catchError, debounceTime, delay} from "rxjs/operators";
+import {fromEvent, throwError} from "rxjs";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
+import {FormControl, FormGroup} from "@angular/forms";
 
 export interface Hero {
 	id: number,
@@ -28,6 +29,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
 	breakpoint: number;
+	searchForm: FormGroup;
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
@@ -39,6 +41,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
 	) {
+		this.searchForm = new FormGroup({
+			searchInput: new FormControl(null, [])
+		})
 	}
 
 	ngOnInit() {
@@ -97,4 +102,28 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 		return event;
 	}
+
+	searchUserHero(event) {
+		// console.log( this.searchForm.controls);
+		// 		fromEvent(this.searchForm.controls.searchInput<>, 'keyup')
+		// 			.pipe(
+		// 				debounceTime(2000)
+		// 				)
+		// 			.subscribe(response => {
+		// 				this.heroesList = response.data.results;
+		// 				// this.isLoading = false;
+		// 			});
+	}
 }
+// this.heroes.getHeroFromUserString(event.target.value)
+// 	.pipe(
+// 		debounceTime(2000),
+// 		catchError(error => {
+// 			this._snackBar.open(error.message, 'Close', {
+// 				duration: 4000,
+// 				horizontalPosition: 'center',
+// 				panelClass: 'error-snack-bar',
+// 			});
+// 			// this.isLoading = false;
+//
+// 			return throwError(error);

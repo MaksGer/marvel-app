@@ -8,13 +8,18 @@ import {Observable} from "rxjs";
 })
 
 export class HeroesService {
-	publicKey = '261184743b3ca5f2464aa5f310961b29';
-	urlAPI = `https://gateway.marvel.com/v1/public/characters?apikey=
-	${this.publicKey}`;
+	publicKey = '&apikey=261184743b3ca5f2464aa5f310961b29';
+	urlAPI = `https://gateway.marvel.com/v1/public/`;
+	urlForStartList = `characters?`;
+	urlForUserNameString= `nameStartsWith=`;
 
 	constructor(private http: HttpClient) {}
 
 	getHeroes(): Observable<any> {
-		return this.http.get(this.urlAPI);
+		return this.http.get(this.urlAPI + this.urlForStartList + this.publicKey);
+	}
+
+	getHeroFromUserString(name: string): Observable<any> {
+		return this.http.get(this.urlAPI + this.urlForStartList + this.urlForUserNameString + name + this.publicKey);
 	}
 }

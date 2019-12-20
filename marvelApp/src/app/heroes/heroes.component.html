@@ -1,4 +1,14 @@
 <section *ngIf="!isLoading; else spinner">
+	<div [formGroup] = searchForm>
+		<input
+		formControlName="searchInput"
+		matInput
+		type="text"
+		class="hero-search-input"
+		placeholder="Enter a superhero name"
+		(input)="searchUserHero($event);">
+	</div>
+
 	<mat-grid-list [cols]="breakpoint"
 	               rowHeight="500px">
 
