@@ -6,7 +6,6 @@ import {AuthenticationFormComponent} from './authentication-form/authentication-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MainPageComponent} from './main-page/main-page.component';
 import {MatSnackBarModule, MatTabsModule} from "@angular/material";
 import {HeaderComponent} from './header/header.component';
 import {HeroesComponent} from './heroes/heroes.component';
@@ -25,7 +24,6 @@ import {HttpClientModule} from "@angular/common/http";
 	declarations: [
 		AppComponent,
 		AuthenticationFormComponent,
-		MainPageComponent,
 		HeaderComponent,
 		HeroesComponent,
 		ComicsComponent,

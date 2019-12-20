@@ -1,3 +1,26 @@
-<h3 *ngFor="let hero of heroesList;">
-	{{hero.name}}
-</h3>
+<section *ngIf="!isLoading; else spinner">
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="500px">
+
+		<mat-grid-tile
+			*ngFor="let hero of heroesList;">
+			<div class="hero-item">
+				<div class="title marvel-font full-width">
+					{{hero.name}}
+				</div>
+
+				<div class="hero-image full-width"
+				     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                 color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

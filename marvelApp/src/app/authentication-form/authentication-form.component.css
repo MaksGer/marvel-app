@@ -7,7 +7,6 @@
 	width: 350px;
 	display: flex;
 	flex-direction: column;
-	color: white;
 	position: absolute;
 	top: 20%;
 	left: 25%;
@@ -60,12 +59,4 @@
 
 .error {
 	color: #f44336;
-}
-
-.spinner {
-	height: 100vh;
-	background-color: black;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }

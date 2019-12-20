@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {MainPageComponent} from "./main-page/main-page.component";
 import {AuthenticationFormComponent} from "./authentication-form/authentication-form.component";
 import {AuthGuard} from "./auth.guard";
 import {HeroesComponent} from "./heroes/heroes.component";
@@ -16,7 +15,6 @@ import {LoginPageComponent} from "./layouts/login-page/login-page.component";
 const routes: Routes = [
 	{
 		path: '', component: MainPageLayoutComponent, canActivate: [AuthGuard], children: [
-			{path: 'main', component: MainPageComponent},
 			{path: 'heroes', component: HeroesComponent},
 			{path: 'comics', component: ComicsComponent},
 			{path: 'creators', component: CreatorsComponent},
@@ -31,7 +29,7 @@ const routes: Routes = [
 			{path: 'login', component: AuthenticationFormComponent}
 		]
 	},
-	{path: '**', redirectTo: 'main'}
+	{path: '**', redirectTo: 'heroes'}
 ];
 
 @NgModule({

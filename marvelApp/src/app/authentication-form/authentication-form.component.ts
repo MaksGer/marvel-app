@@ -75,7 +75,7 @@ export class AuthenticationFormComponent implements OnInit {
 
 	submitLogIn() {
 		if (this.authService.getData(this.formToLogIn.value.login)) {
-			this.router.navigate(['/main']);
+			this.router.navigate(['/heroes']);
 			this.authService.setAuthFlag();
 		} else {
 			this._snackBar.open('Please check your Login and Password and try again', 'Close', {
