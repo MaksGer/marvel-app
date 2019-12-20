@@ -57,7 +57,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	ngDoCheck(): void {
-		this.setBreakpoint()
+		this.setBreakpoint();
 	}
 
 	setBreakpoint() {

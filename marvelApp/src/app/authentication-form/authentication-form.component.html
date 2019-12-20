@@ -1,10 +1,9 @@
 <div class="spinner"
      *ngIf="routerChanged; else app">
 
-	<ngx-ring-loader class="item"
-	                 color="white"
-	                 size="200">
-	</ngx-ring-loader>
+	<ngx-pulse-loader class="item"
+	                 color="white">
+	</ngx-pulse-loader>
 </div>
 <ng-template #app>
 
