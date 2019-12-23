@@ -1,9 +1,9 @@
-import {Component, DoCheck, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {catchError, debounceTime, delay} from "rxjs/operators";
-import {fromEvent, throwError} from "rxjs";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
-import {FormControl, FormGroup} from "@angular/forms";
+import {catchError, debounceTime, delay, map, switchMap} from "rxjs/operators";
+import {Subject, throwError} from "rxjs";
+import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 
 export interface Hero {
 	id: number,
@@ -29,21 +29,18 @@ export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
 	breakpoint: number;
-	searchForm: FormGroup;
+	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
 	pageSize = 20;
-	pageSizeOptions = [ 8, 20, 40, 50];
+	pageSizeOptions = [8, 20, 40, 50];
 	lowValue = 0;
 	highValue = 20;
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
 	) {
-		this.searchForm = new FormGroup({
-			searchInput: new FormControl(null, [])
-		})
 	}
 
 	ngOnInit() {
@@ -51,6 +48,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.heroes.getHeroes()
 			.pipe(
 				delay(1000),
+				map((response: any) => response.data.results),
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
@@ -61,9 +59,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 					return throwError(error);
 				}))
-
 			.subscribe(response => {
-				this.heroesList = response.data.results;
+				this.heroesList = response;
 				this.isLoading = false;
 			});
 	}
@@ -91,8 +88,22 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 			case window.innerWidth < 800:
 				this.breakpoint = 1;
-
 		}
+	}
+
+	search(userString: string) {
+		this.searchTerms.next(userString);
+		this.searchTerms
+			.pipe(
+				debounceTime(2000),
+				distinctUntilChanged(),
+				switchMap((term: string) => this.heroes.getHeroesFromUserSearch(term)),
+				map((response: any) => response.data.results),
+			)
+			.subscribe((response: any) => {
+				this.heroesList = response;
+			})
+
 	}
 
 	getPaginatorData(event: PageEvent): PageEvent {
@@ -102,28 +113,4 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 		return event;
 	}
-
-	searchUserHero(event) {
-		// console.log( this.searchForm.controls);
-		// 		fromEvent(this.searchForm.controls.searchInput<>, 'keyup')
-		// 			.pipe(
-		// 				debounceTime(2000)
-		// 				)
-		// 			.subscribe(response => {
-		// 				this.heroesList = response.data.results;
-		// 				// this.isLoading = false;
-		// 			});
-	}
 }
-// this.heroes.getHeroFromUserString(event.target.value)
-// 	.pipe(
-// 		debounceTime(2000),
-// 		catchError(error => {
-// 			this._snackBar.open(error.message, 'Close', {
-// 				duration: 4000,
-// 				horizontalPosition: 'center',
-// 				panelClass: 'error-snack-bar',
-// 			});
-// 			// this.isLoading = false;
-//
-// 			return throwError(error);

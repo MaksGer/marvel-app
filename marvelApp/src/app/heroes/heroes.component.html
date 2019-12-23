@@ -1,13 +1,9 @@
 <section *ngIf="!isLoading; else spinner">
-	<div [formGroup] = searchForm>
-		<input
-		formControlName="searchInput"
-		matInput
-		type="text"
-		class="hero-search-input"
-		placeholder="Enter a superhero name"
-		(input)="searchUserHero($event);">
-	</div>
+	<input matInput
+	       placeholder="Search your hero"
+	       class="user-search"
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
 
 	<mat-grid-list [cols]="breakpoint"
 	               rowHeight="500px">
@@ -42,5 +38,3 @@
 		</ngx-pulse-loader>
 	</div>
 </ng-template>
-
-
