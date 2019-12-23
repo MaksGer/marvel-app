@@ -1,8 +1,10 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {catchError, debounceTime, delay} from "rxjs/operators";
+import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {Observable, Subject, throwError} from "rxjs";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
+import {of} from "rxjs/internal/observable/of";
+import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 
 export interface Hero {
 	id: number,
@@ -26,8 +28,10 @@ export interface Hero {
 
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
+	heroes$: Observable<Hero[]>;
 	isLoading: boolean;
 	breakpoint: number;
+	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
@@ -35,7 +39,6 @@ export class HeroesComponent implements OnInit, DoCheck {
 	pageSizeOptions = [ 8, 20, 40, 50];
 	lowValue = 0;
 	highValue = 20;
-	searchTerms = new Subject<string>();
 
 
 	constructor(private heroes: HeroesService,
@@ -66,15 +69,16 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	ngDoCheck(): void {
+		console.log('do check works');
 		this.setBreakpoint();
 
-		// this.searchTerms
-		// 	.pipe(
-		// 		debounceTime(2000),
-		// 	)
-		// 	.subscribe(response => {
-		// 		this.heroesList = response.data.results;
-		// 	})
+		this.heroes$ = this.searchTerms
+			.pipe(
+				debounceTime(200),
+				distinctUntilChanged(),
+				switchMap((term: string) => this.searchCountry(term))
+			)
+
 	}
 
 	setBreakpoint() {
@@ -113,4 +117,26 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
+	searchCountry(term): Observable<Hero[]> {
+
+		if (!term.trim()) {
+			return of([]);
+		}
+		return this.heroes.getHeroesFromUserSearch(term)
+			.pipe(
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+
+					return throwError(error);
+				})
+			)
+
+	}
+
+
 }
+

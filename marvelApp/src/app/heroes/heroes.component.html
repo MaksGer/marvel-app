@@ -1,5 +1,5 @@
 <section *ngIf="!isLoading; else spinner">
-	<input (keyup)="search($event.target.value)">
+	<input #searchBox (keyup)="search(searchBox.value)">
 
 	<mat-grid-list [cols]="breakpoint"
 	               rowHeight="500px">
