@@ -92,7 +92,13 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	search(userString: string) {
-		this.searchTerms.next(userString);
+		this.searchTerms.next(userString.trim());
+
+		if (!userString.trim()) {
+			return;
+
+		}
+
 		this.searchTerms
 			.pipe(
 				debounceTime(2000),
@@ -102,8 +108,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 			)
 			.subscribe((response: any) => {
 				this.heroesList = response;
-			})
-
+			});
 	}
 
 	getPaginatorData(event: PageEvent): PageEvent {
