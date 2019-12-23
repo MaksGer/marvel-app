@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 
 @Injectable({
@@ -16,5 +16,9 @@ export class HeroesService {
 
 	getHeroes(): Observable<any> {
 		return this.http.get(this.urlAPI);
+	}
+
+	getHeroesFromUserSearch(): Observable<any> {
+		return  this.http.get("write here url string");
 	}
 }

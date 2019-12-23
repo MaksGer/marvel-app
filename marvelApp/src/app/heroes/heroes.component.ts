@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {catchError, delay} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {catchError, debounceTime, delay} from "rxjs/operators";
+import {Subject, throwError} from "rxjs";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
 
 export interface Hero {
@@ -35,6 +35,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 	pageSizeOptions = [ 8, 20, 40, 50];
 	lowValue = 0;
 	highValue = 20;
+	searchTerms = new Subject<string>();
+
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
@@ -65,6 +67,14 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	ngDoCheck(): void {
 		this.setBreakpoint();
+
+		this.searchTerms
+			.pipe(
+				debounceTime(2000),
+			)
+			.subscribe(response => {
+				this.heroesList = response.data.results;
+			})
 	}
 
 	setBreakpoint() {
@@ -97,4 +107,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 		return event;
 	}
+
+	search(userString: string) {
+		this.searchTerms.next(userString);
+	}
+
 }
