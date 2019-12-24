@@ -84,7 +84,7 @@ body {
 	text-transform: uppercase;
 }
 
-.section-item {
+.mat-figure .section-item {
 	display: flex;
 	flex-direction: column;
 	width: 350px;

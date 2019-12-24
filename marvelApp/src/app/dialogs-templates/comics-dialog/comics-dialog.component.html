@@ -1,0 +1,30 @@
+<div class="comics-modal">
+	<h2 mat-dialog-title
+	    class="comics-item-title marvel-font">
+		{{comics.title}}
+	</h2>
+
+	<mat-dialog-content>
+		<div class="comics-item-image"
+		     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
+		</div>
+
+		<div class="comics-item-links full-width">
+			<a *ngFor="let link of comics.urls"
+			   href="{{link.url}}"
+			   target="_blank">
+				{{link.type}}
+			</a>
+		</div>
+		<div class="dialog-description">
+			<p>{{comics.description}}}</p>
+		</div>
+	</mat-dialog-content>
+
+	<mat-dialog-actions>
+		<mat-icon class="comics-dialog-close"
+		          (click)="close()">
+			close
+		</mat-icon>
+	</mat-dialog-actions>
+</div>

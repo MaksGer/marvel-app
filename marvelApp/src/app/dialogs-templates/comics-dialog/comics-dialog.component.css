@@ -1,0 +1,37 @@
+.comics-modal {
+	position: relative;
+}
+
+.comics-item-title {
+	text-align: center;
+}
+
+.comics-item-image {
+	height: 65vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.comics-item-links {
+	display: flex;
+	justify-content: space-around;
+	padding: 15px 0;
+	position: absolute;
+	bottom: 0;
+}
+
+.comics-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+
+.mat-raised-button {
+	margin: 0 auto;
+}
+
+.comics-dialog-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

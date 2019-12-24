@@ -3,6 +3,7 @@ import {catchError, delay, map} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {ComicsRestService} from "../services/comics-rest.service";
 import {MatDialog, MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
+import {ComicsDialogComponent} from "../dialogs-templates/comics-dialog/comics-dialog.component";
 
 
 export interface Comics {
@@ -96,5 +97,13 @@ export class ComicsComponent implements OnInit, DoCheck{
 		this.highValue = this.lowValue + event.pageSize;
 
 		return event;
+	}
+
+	openDialog(comics: Comics) {
+		console.log(comics);
+		this.dialog.open(ComicsDialogComponent, {
+			width: '70vh',
+			data: comics,
+		});
 	}
 }

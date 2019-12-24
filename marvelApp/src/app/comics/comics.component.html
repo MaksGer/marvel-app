@@ -10,8 +10,8 @@
 
 		<mat-grid-tile *ngFor="let comics of comicsList | slice :lowValue :highValue">
 			<div>
-				<mat-card class="section-item">
-<!--				          (click)="openDialog(hero)"-->
+				<mat-card class="section-item"
+				          (click)="openDialog(comics)">
 
 					<div class="item-title marvel-font full-width">
 						{{comics.title}}
