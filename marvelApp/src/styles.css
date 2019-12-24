@@ -83,3 +83,30 @@ body {
 	font-size: 25px;
 	text-transform: uppercase;
 }
+
+.section-item {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	margin: 0 auto;
+	background-color: #212121;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.item-title {
+	text-align: center;
+	padding: 10px 10px;
+	border: 2px solid white;
+}
+
+.item-image {
+	min-height: 300px;
+	height: 80%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.section-item:hover {
+	transform: scale(1.1);
+}

@@ -1,1 +1,43 @@
-<p>comics works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<input matInput
+	       placeholder="Search your hero"
+	       class="user-search"
+	       #searchBox>
+<!--	       (keyup)="search(searchBox.value)">-->
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="500px">
+
+		<mat-grid-tile *ngFor="let comics of comicsList | slice :lowValue :highValue">
+			<div>
+				<mat-card class="section-item">
+<!--				          (click)="openDialog(hero)"-->
+
+					<div class="item-title marvel-font full-width">
+						{{comics.title}}
+					</div>
+
+					<div class="item-image full-width"
+					     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
+					</div>
+				</mat-card>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+
+	<mat-paginator class="tab-pagination full-width"
+	               [length]="length"
+	               [pageSize]="pageSize"
+	               [pageSizeOptions]="pageSizeOptions"
+	               (page)="getPaginatorData($event)">
+	</mat-paginator>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>
+
