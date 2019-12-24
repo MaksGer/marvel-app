@@ -19,7 +19,7 @@ import {LoginPageComponent} from './layouts/login-page/login-page.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
 import {NgxSpinnersModule} from "ngx-spinners";
 import {HttpClientModule} from "@angular/common/http";
-import { Hero } from './dialogs-templates/hero.dialog/hero.dialog.component';
+import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +35,7 @@ import { Hero } from './dialogs-templates/hero.dialog/hero.dialog.component';
 		FavoritesComponent,
 		LoginPageComponent,
 		MainPageLayoutComponent,
-		Hero.DialogComponent,
+		HeroDialogComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -48,6 +48,9 @@ import { Hero } from './dialogs-templates/hero.dialog/hero.dialog.component';
 		MatTabsModule,
 		NgxSpinnersModule,
 		HttpClientModule,
+	],
+	entryComponents: [
+		HeroDialogComponent
 	],
 	providers: [],
 	bootstrap: [AppComponent],

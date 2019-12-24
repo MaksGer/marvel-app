@@ -1,0 +1,37 @@
+.hero-modal {
+	position: relative;
+}
+
+.hero-item-title {
+	text-align: center;
+}
+
+.hero-item-image {
+	height: 65vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.hero-item-links {
+	display: flex;
+	justify-content: space-around;
+	padding: 15px 0;
+	position: absolute;
+	bottom: 0;
+}
+
+.hero-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+
+.mat-raised-button {
+	margin: 0 auto;
+}
+
+.hero-dialog-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

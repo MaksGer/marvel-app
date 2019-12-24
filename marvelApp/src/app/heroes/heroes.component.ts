@@ -3,6 +3,8 @@ import {HeroesService} from "../services/heroes.service";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
 import {catchError, debounceTime, delay, distinctUntilChanged, map, switchMap} from "rxjs/operators";
 import {Subject, throwError} from "rxjs";
+import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
+import {MatDialog} from '@angular/material/dialog';
 
 export interface Hero {
 	id: number,
@@ -39,6 +41,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
+				private dialog: MatDialog,
 	) {
 	}
 
@@ -107,6 +110,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 			)
 			.subscribe((response: any) => {
 				this.heroesList = response;
+				this.length = this.heroesList.length;
 			});
 	}
 
@@ -116,5 +120,12 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.highValue = this.lowValue + event.pageSize;
 
 		return event;
+	}
+
+	openDialog(selectedHero: object) {
+		this.dialog.open(HeroDialogComponent, {
+			width: '70vh',
+			data: selectedHero,
+		});
 	}
 }
