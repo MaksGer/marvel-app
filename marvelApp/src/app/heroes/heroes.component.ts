@@ -1,9 +1,8 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
-import {catchError, debounceTime, delay, map, switchMap} from "rxjs/operators";
+import {catchError, debounceTime, delay, distinctUntilChanged, map, switchMap} from "rxjs/operators";
 import {Subject, throwError} from "rxjs";
-import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 
 export interface Hero {
 	id: number,
