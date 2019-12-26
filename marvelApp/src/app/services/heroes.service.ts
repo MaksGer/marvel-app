@@ -34,4 +34,3 @@ export class HeroesService {
 		);
 	}
 }
-// return this.http.get( this.urlAPI + `nameStartsWith=${name}&` + this.publicKey);
