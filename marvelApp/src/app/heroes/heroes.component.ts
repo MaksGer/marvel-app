@@ -2,8 +2,9 @@ import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
 import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
 import {catchError, debounceTime, delay, map, switchMap} from "rxjs/operators";
-import {Subject, throwError} from "rxjs";
+import {Observable, of, Subject, throwError} from "rxjs";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
+import {tap} from "rxjs/internal/operators/tap";
 
 export interface Hero {
 	id: number,
@@ -27,16 +28,16 @@ export interface Hero {
 
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
-	isLoading: boolean;
+	isLoading = true;
 	breakpoint: number;
+	heroes$: Observable<Hero[]>;
+	userHeroes$: Observable<Hero[]>;
 	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
-	pageSize = 20;
 	pageSizeOptions = [8, 20, 40, 50];
-	lowValue = 0;
-	highValue = 20;
+
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
@@ -44,25 +45,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	ngOnInit() {
-		this.isLoading = true;
-		this.heroes.getHeroes()
-			.pipe(
-				delay(1000),
-				map((response: any) => response.data.results),
-				catchError(error => {
-					this._snackBar.open(error.message, 'Close', {
-						duration: 4000,
-						horizontalPosition: 'center',
-						panelClass: 'error-snack-bar',
-					});
-					this.isLoading = false;
+		// this.getStartHero();
+		this.getHero();
 
-					return throwError(error);
-				}))
-			.subscribe(response => {
-				this.heroesList = response;
-				this.isLoading = false;
-			});
 	}
 
 	ngDoCheck(): void {
@@ -92,30 +77,69 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	search(userString: string) {
-		this.searchTerms.next(userString.trim());
-
-		if (!userString.trim()) {
-			return;
-
-		}
-
-		this.searchTerms
-			.pipe(
-				debounceTime(2000),
-				distinctUntilChanged(),
-				switchMap((term: string) => this.heroes.getHeroesFromUserSearch(term)),
-				map((response: any) => response.data.results),
-			)
-			.subscribe((response: any) => {
-				this.heroesList = response;
-			});
+		this.searchTerms.next(userString);
 	}
 
-	getPaginatorData(event: PageEvent): PageEvent {
-		this.length = this.heroesList.length;
-		this.lowValue = event.pageIndex * event.pageSize;
-		this.highValue = this.lowValue + event.pageSize;
+	// getPaginatorData(event: PageEvent): PageEvent {
+	// 	this.length = this.heroesList.length;
+	// 	this.lowValue = event.pageIndex * event.pageSize;
+	// 	this.highValue = this.lowValue + event.pageSize;
+	//
+	// 	return event;
+	// }
 
-		return event;
+	getHero() {
+		const obsNoCharacters = of<Hero[]>([]);
+
+		this.heroes$ = this.searchTerms
+			.pipe(
+				debounceTime(1000),
+				// tap(_ => this.isLoading = true),
+				distinctUntilChanged(),
+				switchMap((term: string) => {
+					if (term) {
+						// this.isLoading = true;
+						return this.heroes.getHeroesFromUserSearch(term);
+
+					} else {
+						// this.isLoading = false;
+						return obsNoCharacters;
+					}
+
+				}),
+				// tap(_ => this.isLoading = false),
+				// switchMap(heroes => {
+				// 	this.isLoading = false;
+				// 	return of(heroes);
+				// }),
+
+			);
+		this.isLoading = false;
+		// .subscribe(data =>
+		// this.heroes$ = data)
+	}
+
+	getStartHero() {
+		 this.heroes.getHeroes()
+			.pipe(
+				delay(1000),
+				map((response: any) => {
+						return response.data.results;
+					}),
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+					this.isLoading = false;
+
+					return throwError(error);
+				})
+			)
+			.subscribe(data => {
+				this.heroes$ = of(data);
+				this.isLoading = false;
+			})
 	}
 }
