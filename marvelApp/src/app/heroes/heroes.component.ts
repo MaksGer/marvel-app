@@ -1,8 +1,8 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
-import {catchError, debounceTime, delay, map, switchMap} from "rxjs/operators";
-import {Observable, of, Subject, throwError} from "rxjs";
+import {MatPaginator, MatSnackBar} from "@angular/material";
+import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
+import {of, Subject, throwError} from "rxjs";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 import {tap} from "rxjs/internal/operators/tap";
 
@@ -30,8 +30,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
 	breakpoint: number;
-	heroes$: Observable<Hero[]>;
-	userHeroes$: Observable<Hero[]>;
+	currentItemsToShow: Hero[];
+
 	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -41,15 +41,11 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		console.log(this.isLoading);
 		this.getStartHero();
-		console.log('init');
-		console.log(this.isLoading);
 		this.getHero();
 
 	}
@@ -84,13 +80,10 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	// getPaginatorData(event: PageEvent): PageEvent {
-	// 	this.length = this.heroesList.length;
-	// 	this.lowValue = event.pageIndex * event.pageSize;
-	// 	this.highValue = this.lowValue + event.pageSize;
-	//
-	// 	return event;
-	// }
+	onPageChanges($event) {
+		this.currentItemsToShow = this.heroesList.slice
+		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	}
 
 	getHero() {
 		const obsNoCharacters = of<Hero[]>([]);
@@ -102,56 +95,40 @@ export class HeroesComponent implements OnInit, DoCheck {
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
-						// this.isLoading = true;
 						return this.heroes.getHeroesFromUserSearch(term);
 
 					} else {
-						// this.isLoading = false;
 						return obsNoCharacters;
-					}
 
+					}
 				}),
 				delay(1000),
-				// tap(_ => this.isLoading = false),
-				// switchMap(heroes => {
-				// 	this.isLoading = false;
-				// 	return of(heroes);
-				// }),
-
 			).subscribe(response => {
-				this.heroes$ = of(response);
-				this.isLoading = false;
+			this.heroesList = response;
+			this.currentItemsToShow = this.heroesList.slice(0, 20);
+			this.length = response.length;
+			this.isLoading = false;
 		});
-		this.isLoading = false;
-		// .subscribe(data =>
-		// this.heroes$ = data)
 	}
 
 	getStartHero() {
-		this.isLoading = true;
-		 this.heroes.getHeroes()
+		this.heroes.getHeroes()
 			.pipe(
-				// tap(_ => this.isLoading = true),
 				delay(1000),
-				// map((response: any) => {
-				// 		return response.data.results;
-				// 	}),
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
 						horizontalPosition: 'center',
 						panelClass: 'error-snack-bar',
 					});
-					// this.isLoading = false;
 
 					return throwError(error);
 				})
 			)
 			.subscribe(data => {
-				this.heroes$ = of(data);
+				this.heroesList = data;
+				this.currentItemsToShow = this.heroesList.slice(0, 20);
 				this.isLoading = false;
-				// console.log(this.isLoading);
-
 			})
 	}
 }
