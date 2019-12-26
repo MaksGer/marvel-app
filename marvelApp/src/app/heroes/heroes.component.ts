@@ -150,7 +150,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 			.subscribe(data => {
 				this.heroes$ = of(data);
 				this.isLoading = false;
-				console.log(this.isLoading);
+				// console.log(this.isLoading);
 
 			})
 	}
