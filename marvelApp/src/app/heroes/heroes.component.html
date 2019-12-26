@@ -1,39 +1,42 @@
-<section *ngIf="!isLoading; else spinner">
-	<input matInput
-	       placeholder="Search your hero"
-	       class="user-search"
-	       #searchBox
-	       (keyup)="search(searchBox.value)">
-
-	<mat-paginator class="tab-pagination full-width"
-	               [pageSizeOptions]="pageSizeOptions">
-	</mat-paginator>
-
-	<mat-grid-list [cols]="breakpoint"
-	               rowHeight="500px">
-
-		<mat-grid-tile *ngFor="let hero of heroes$ | async ">
-<!--			| async-->
-<!--			slice :lowValue :highValue-->
-			<div>
-				<mat-card class="hero-item">
-					<div class="title marvel-font full-width">
-						{{hero.name}}
-					</div>
-
-					<div class="hero-image full-width"
-						[style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
-					</div>
-				</mat-card>
-			</div>
-		</mat-grid-tile>
-	</mat-grid-list>
-</section>
-
-<ng-template #spinner>
+<div *ngIf="isLoading; else tab">
 	<div class="spinner">
 		<ngx-pulse-loader class="item"
-		                 color="white">
+		                  color="white">
 		</ngx-pulse-loader>
 	</div>
+</div>
+
+
+<ng-template #tab>
+	<section>
+		<input matInput
+		       placeholder="Search your hero"
+		       class="user-search"
+		       #searchBox
+		       (keyup)="search(searchBox.value)">
+
+		<mat-paginator class="tab-pagination full-width"
+		               [pageSizeOptions]="pageSizeOptions">
+		</mat-paginator>
+
+		<mat-grid-list [cols]="breakpoint"
+		               rowHeight="500px">
+
+			<mat-grid-tile *ngFor="let hero of heroes$ | async ">
+				<!--			| async-->
+				<!--			slice :lowValue :highValue-->
+				<div>
+					<mat-card class="hero-item">
+						<div class="title marvel-font full-width">
+							{{hero.name}}
+						</div>
+
+						<div class="hero-image full-width"
+						     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
+						</div>
+					</mat-card>
+				</div>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</section>
 </ng-template>

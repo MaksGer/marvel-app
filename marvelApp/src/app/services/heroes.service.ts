@@ -16,7 +16,9 @@ export class HeroesService {
 	getHeroes(): Observable<any> {
 		return this.http.get( this.urlAPI, {
 			params: new HttpParams().set('apikey', this.publicKey),
-		});
+		}).pipe(
+			map((response: any) => response.data.results)
+		);
 	}
 
 	getHeroesFromUserSearch(name: string): Observable<any> {

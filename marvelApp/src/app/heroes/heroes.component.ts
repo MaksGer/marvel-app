@@ -28,7 +28,7 @@ export interface Hero {
 
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
-	isLoading = true;
+	isLoading: boolean;
 	breakpoint: number;
 	heroes$: Observable<Hero[]>;
 	userHeroes$: Observable<Hero[]>;
@@ -45,7 +45,11 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	ngOnInit() {
-		// this.getStartHero();
+		this.isLoading = true;
+		console.log(this.isLoading);
+		this.getStartHero();
+		console.log('init');
+		console.log(this.isLoading);
 		this.getHero();
 
 	}
@@ -91,10 +95,10 @@ export class HeroesComponent implements OnInit, DoCheck {
 	getHero() {
 		const obsNoCharacters = of<Hero[]>([]);
 
-		this.heroes$ = this.searchTerms
+		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				// tap(_ => this.isLoading = true),
+				tap(_ => this.isLoading = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
@@ -107,32 +111,38 @@ export class HeroesComponent implements OnInit, DoCheck {
 					}
 
 				}),
+				delay(1000),
 				// tap(_ => this.isLoading = false),
 				// switchMap(heroes => {
 				// 	this.isLoading = false;
 				// 	return of(heroes);
 				// }),
 
-			);
+			).subscribe(response => {
+				this.heroes$ = of(response);
+				this.isLoading = false;
+		});
 		this.isLoading = false;
 		// .subscribe(data =>
 		// this.heroes$ = data)
 	}
 
 	getStartHero() {
+		this.isLoading = true;
 		 this.heroes.getHeroes()
 			.pipe(
+				// tap(_ => this.isLoading = true),
 				delay(1000),
-				map((response: any) => {
-						return response.data.results;
-					}),
+				// map((response: any) => {
+				// 		return response.data.results;
+				// 	}),
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
 						horizontalPosition: 'center',
 						panelClass: 'error-snack-bar',
 					});
-					this.isLoading = false;
+					// this.isLoading = false;
 
 					return throwError(error);
 				})
@@ -140,6 +150,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 			.subscribe(data => {
 				this.heroes$ = of(data);
 				this.isLoading = false;
+				console.log(this.isLoading);
+
 			})
 	}
 }
