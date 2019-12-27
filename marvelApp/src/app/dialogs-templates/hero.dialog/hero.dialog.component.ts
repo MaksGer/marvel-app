@@ -1,7 +1,5 @@
 import {
-	AfterContentInit,
 	AfterViewInit,
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
 	Inject,
@@ -23,20 +21,17 @@ export interface Comics {
 }
 
 @Component({
-	// changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-hero.dialog',
-  templateUrl: './hero.dialog.component.html',
-  styleUrls: ['./hero.dialog.component.css']
+	selector: 'app-hero.dialog',
+	templateUrl: './hero.dialog.component.html',
+	styleUrls: ['./hero.dialog.component.css'],
 })
-export class HeroDialogComponent implements OnInit, AfterViewInit{
-	slideNo = 0;
+export class HeroDialogComponent implements OnInit, AfterViewInit {
 	isLoading = true;
 	listOfComics: Comics[];
 
-
 	@ViewChild('myCarousel', {static: false}) myCarousel: NguCarousel<[Comics]>;
 	carouselConfig: NguCarouselConfig = {
-		grid: { xs: 3, sm: 3, md: 3, lg: 4, all: 0 },
+		grid: {xs: 3, sm: 3, md: 3, lg: 4, all: 0},
 		interval: {timing: 4000, initialDelay: 1000},
 		// load: 1,
 		loop: false,
@@ -54,16 +49,14 @@ export class HeroDialogComponent implements OnInit, AfterViewInit{
 	ngOnInit(): void {
 		this.rest.getComicsForHero(this.hero.id)
 			.pipe(
-			delay(1000)
+				delay(1000)
 			)
 			.subscribe(
-			data => {
-				console.log(data);
-				this.listOfComics = data;
-
-				this.isLoading = false;
-			}
-		)
+				data => {
+					this.listOfComics = data;
+					this.isLoading = false;
+				}
+			)
 	}
 
 	close(): void {
@@ -71,15 +64,6 @@ export class HeroDialogComponent implements OnInit, AfterViewInit{
 	}
 
 	ngAfterViewInit() {
-		console.log(this.cdr.detectChanges());
-
+		this.cdr.detectChanges();
 	}
-
-	// reset() {
-	// 	this.myCarousel.reset(!this.resetAnim);
-	// }
-	//
-	// moveTo(slide) {
-	// 	this.myCarousel.moveTo(slide, !this.withAnim);
-	// }
 }

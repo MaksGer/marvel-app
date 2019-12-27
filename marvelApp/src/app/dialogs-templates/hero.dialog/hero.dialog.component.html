@@ -41,26 +41,11 @@
 				<button NguCarouselNext class="rightRs">></button>
 				<button NguCarouselPrev class="leftRs"><</button>
 				<ul class="myPoint" NguCarouselPoint>
-					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j == myCarousel.activePoint"
 					    (click)="myCarousel.moveTo(j)"></li>
 				</ul>
 		</ngu-carousel>
 	</div>
-
-
-
-<!--	<div mat-tab-nav-bar>-->
-<!--		<div mat-tab-link-->
-<!--		     class="comics-item"-->
-<!--		     *ngFor="let item of listOfComics">-->
-
-<!--		     <div class="comics-background"-->
-<!--			     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">-->
-<!--		     </div>-->
-<!--			<p class="comics-title">{{item.title}}</p>-->
-<!--		</div>-->
-
-<!--	</div>-->
 </div>
 
 

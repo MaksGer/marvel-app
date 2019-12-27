@@ -22,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.component';
 import {NguCarouselModule} from "@ngu/carousel";
 
+// @ts-ignore
 @NgModule({
 	declarations: [
 		AppComponent,

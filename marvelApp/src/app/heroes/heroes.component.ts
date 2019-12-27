@@ -136,7 +136,6 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	openDialog(selectedHero: object) {
-		console.log(selectedHero);
 		this.dialog.open(HeroDialogComponent, {
 			width: '90vh',
 			data: selectedHero,
