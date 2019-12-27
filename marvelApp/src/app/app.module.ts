@@ -20,6 +20,7 @@ import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layo
 import {NgxSpinnersModule} from "ngx-spinners";
 import {HttpClientModule} from "@angular/common/http";
 import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.component';
+import {NguCarouselModule} from "@ngu/carousel";
 
 @NgModule({
 	declarations: [
@@ -48,6 +49,7 @@ import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.c
 		MatTabsModule,
 		NgxSpinnersModule,
 		HttpClientModule,
+		NguCarouselModule,
 	],
 	entryComponents: [
 		HeroDialogComponent

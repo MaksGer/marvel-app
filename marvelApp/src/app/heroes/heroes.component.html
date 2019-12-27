@@ -5,10 +5,17 @@
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
+	<mat-paginator class="tab-pagination full-width"
+	               (page)="onPageChanges($event)"
+	               [length]="length"
+	               [pageSize]="20"
+	               [pageSizeOptions]="pageSizeOptions">
+	</mat-paginator>
+
 	<mat-grid-list [cols]="breakpoint"
 	               rowHeight="500px">
 
-		<mat-grid-tile *ngFor="let hero of heroesList | slice :lowValue :highValue">
+		<mat-grid-tile *ngFor="let hero of currentItemsToShow">
 			<div>
 				<mat-card class="hero-item"
 				          (click)="openDialog(hero)">
@@ -17,25 +24,21 @@
 					</div>
 
 					<div class="hero-image full-width"
-						[style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
+					     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
 					</div>
 				</mat-card>
 			</div>
 		</mat-grid-tile>
 	</mat-grid-list>
-
-	<mat-paginator class="tab-pagination full-width"
-	               [length]="length"
-	               [pageSize]="pageSize"
-	               [pageSizeOptions]="pageSizeOptions"
-	               (page)="getPaginatorData($event)">
-	</mat-paginator>
 </section>
 
 <ng-template #spinner>
 	<div class="spinner">
 		<ngx-pulse-loader class="item"
-		                 color="white">
+		                  color="white">
 		</ngx-pulse-loader>
 	</div>
 </ng-template>
+
+
+

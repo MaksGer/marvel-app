@@ -1,27 +1,73 @@
-<div class="hero-modal">
-	<h2 mat-dialog-title
-	    class="hero-item-title marvel-font">
-		{{hero.name}}
-	</h2>
-
-	<mat-dialog-content>
+<mat-dialog-content>
+	<div class="hero-modal">
 		<div class="hero-item-image"
 		     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
 		</div>
 
-		<div class="hero-item-links full-width">
-			<a *ngFor="let link of hero.urls"
-			   href="{{link.url}}"
-			   target="_blank">
-				{{link.type}}
-			</a>
+
+		<div class="hero-info"><div class="position-relative">
+			<h3 mat-dialog-title
+			    class="hero-item-title marvel-font">
+				{{hero.name}}
+			</h3>
+			<mat-dialog-actions>
+				<mat-icon class="hero-dialog-close"
+				          (click)="close()">
+					close
+				</mat-icon>
+			</mat-dialog-actions></div>
+
+			<div class="hero-item-links full-width">
+				<a *ngFor="let link of hero.urls"
+				   href="{{link.url}}"
+				   target="_blank">
+					{{link.type}}
+				</a>
+			</div>
 		</div>
+	</div>
 	</mat-dialog-content>
 
-	<mat-dialog-actions>
-		<mat-icon class="hero-dialog-close"
-		          (click)="close()">
-			close
-		</mat-icon>
-	</mat-dialog-actions>
+
+<div *ngIf="!isLoading; else spinner">
+	<div class="comics-carousel">
+		<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="listOfComics">
+			<div *nguCarouselDef="let item;" class="comics-item item">
+				<div class="comics-background"
+				     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
+				</div>
+				<p class="comics-title">{{item.title}}</p>
+			</div>
+				<button NguCarouselNext class="rightRs">></button>
+				<button NguCarouselPrev class="leftRs"><</button>
+				<ul class="myPoint" NguCarouselPoint>
+					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+					    (click)="myCarousel.moveTo(j)"></li>
+				</ul>
+		</ngu-carousel>
+	</div>
+
+
+
+<!--	<div mat-tab-nav-bar>-->
+<!--		<div mat-tab-link-->
+<!--		     class="comics-item"-->
+<!--		     *ngFor="let item of listOfComics">-->
+
+<!--		     <div class="comics-background"-->
+<!--			     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">-->
+<!--		     </div>-->
+<!--			<p class="comics-title">{{item.title}}</p>-->
+<!--		</div>-->
+
+<!--	</div>-->
 </div>
+
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

@@ -1,10 +1,12 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {HeroesService} from "../services/heroes.service";
-import {MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
-import {catchError, debounceTime, delay, distinctUntilChanged, map, switchMap} from "rxjs/operators";
-import {Subject, throwError} from "rxjs";
+import {HeroesRestService} from "../services/heroes-rest.service";
+import {MatPaginator, MatSnackBar} from "@angular/material";
 import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
 import {MatDialog} from '@angular/material/dialog';
+import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
+import {of, Subject, throwError} from "rxjs";
+import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
+import {tap} from "rxjs/internal/operators/tap";
 
 export interface Hero {
 	id: number,
@@ -30,41 +32,25 @@ export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
 	breakpoint: number;
+	currentItemsToShow: Hero[];
+
 	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
-	pageSize = 20;
 	pageSizeOptions = [8, 20, 40, 50];
-	lowValue = 0;
-	highValue = 20;
 
-	constructor(private heroes: HeroesService,
+
+	constructor(private heroes: HeroesRestService,
 				private _snackBar: MatSnackBar,
 				private dialog: MatDialog,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.heroes.getHeroes()
-			.pipe(
-				delay(1000),
-				map((response: any) => response.data.results),
-				catchError(error => {
-					this._snackBar.open(error.message, 'Close', {
-						duration: 4000,
-						horizontalPosition: 'center',
-						panelClass: 'error-snack-bar',
-					});
-					this.isLoading = false;
+		this.getStartHero();
+		this.getHero();
 
-					return throwError(error);
-				}))
-			.subscribe(response => {
-				this.heroesList = response;
-				this.isLoading = false;
-			});
 	}
 
 	ngDoCheck(): void {
@@ -94,37 +80,65 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	search(userString: string) {
-		this.searchTerms.next(userString.trim());
+		this.searchTerms.next(userString);
+	}
 
-		if (!userString.trim()) {
-			return;
+	onPageChanges($event) {
+		this.currentItemsToShow = this.heroesList.slice
+		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	}
 
-		}
+	getHero() {
+		const obsNoCharacters = of<Hero[]>([]);
 
 		this.searchTerms
 			.pipe(
-				debounceTime(2000),
+				debounceTime(1000),
+				tap(() => this.isLoading = true),
 				distinctUntilChanged(),
-				switchMap((term: string) => this.heroes.getHeroesFromUserSearch(term)),
-				map((response: any) => response.data.results),
-			)
-			.subscribe((response: any) => {
-				this.heroesList = response;
-				this.length = this.heroesList.length;
-			});
+				switchMap((term: string) => {
+					if (term) {
+						return this.heroes.getHeroesFromUserSearch(term);
+
+					} else {
+						return obsNoCharacters;
+
+					}
+				}),
+				delay(1000),
+			).subscribe(response => {
+			this.heroesList = response;
+			this.currentItemsToShow = this.heroesList.slice(0, 20);
+			this.length = response.length;
+			this.isLoading = false;
+		});
 	}
 
-	getPaginatorData(event: PageEvent): PageEvent {
-		this.length = this.heroesList.length;
-		this.lowValue = event.pageIndex * event.pageSize;
-		this.highValue = this.lowValue + event.pageSize;
+	getStartHero() {
+		this.heroes.getHeroes()
+			.pipe(
+				delay(1000),
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
 
-		return event;
+					return throwError(error);
+				})
+			)
+			.subscribe(data => {
+				this.heroesList = data;
+				this.currentItemsToShow = this.heroesList.slice(0, 20);
+				this.isLoading = false;
+			})
 	}
 
 	openDialog(selectedHero: object) {
+		console.log(selectedHero);
 		this.dialog.open(HeroDialogComponent, {
-			width: '70vh',
+			width: '90vh',
 			data: selectedHero,
 		});
 	}
