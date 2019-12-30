@@ -2,35 +2,35 @@
 	<input matInput
 	       placeholder="Search your hero"
 	       class="user-search"
-	       #searchBox>
-<!--	       (keyup)="search(searchBox.value)">-->
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
+
+	<mat-paginator class="tab-pagination full-width"
+	               (page)="onPageChanges($event)"
+	               [length]="length"
+	               [pageSize]="20"
+	               [pageSizeOptions]="pageSizeOptions">
+	</mat-paginator>
 
 	<mat-grid-list [cols]="breakpoint"
-	               rowHeight="500px">
+	               rowHeight="450px">
 
-		<mat-grid-tile *ngFor="let comics of comicsList | slice :lowValue :highValue">
+		<mat-grid-tile class="item-card"
+			*ngFor="let comics of currentItemsToShow">
 			<div>
-				<mat-card class="section-item"
+				<mat-card class="comics-item"
 				          (click)="openDialog(comics)">
-
-					<div class="item-title marvel-font full-width">
-						{{comics.title}}
+					<div class="comics-image"
+					     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
 					</div>
 
-					<div class="item-image full-width"
-					     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
+					<div class="comics-item-title marvel-font">
+						{{comics.title}}
 					</div>
 				</mat-card>
 			</div>
 		</mat-grid-tile>
 	</mat-grid-list>
-
-	<mat-paginator class="tab-pagination full-width"
-	               [length]="length"
-	               [pageSize]="pageSize"
-	               [pageSizeOptions]="pageSizeOptions"
-	               (page)="getPaginatorData($event)">
-	</mat-paginator>
 </section>
 
 <ng-template #spinner>
@@ -40,4 +40,76 @@
 		</ngx-pulse-loader>
 	</div>
 </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<section *ngIf="!isLoading; else spinner">-->
+<!--	<input matInput-->
+<!--	       placeholder="Search your hero"-->
+<!--	       class="user-search"-->
+<!--	       #searchBox>-->
+<!--&lt;!&ndash;	       (keyup)="search(searchBox.value)">&ndash;&gt;-->
+
+<!--	<mat-grid-list [cols]="breakpoint"-->
+<!--	               rowHeight="500px">-->
+
+<!--		<mat-grid-tile *ngFor="let comics of comicsList | slice :lowValue :highValue">-->
+<!--			<div>-->
+<!--				<mat-card class="comics-item"-->
+<!--				          (click)="openDialog(comics)">-->
+
+<!--					<div class="comics-item-title marvel-font full-width">-->
+<!--						{{comics.title}}-->
+<!--					</div>-->
+
+<!--					<div class="comics-item-image full-width"-->
+<!--					     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">-->
+<!--					</div>-->
+<!--				</mat-card>-->
+<!--			</div>-->
+<!--		</mat-grid-tile>-->
+<!--	</mat-grid-list>-->
+
+<!--	<mat-paginator class="tab-pagination full-width"-->
+<!--	               [length]="length"-->
+<!--	               [pageSize]="pageSize"-->
+<!--	               [pageSizeOptions]="pageSizeOptions"-->
+<!--	               (page)="getPaginatorData($event)">-->
+<!--	</mat-paginator>-->
+<!--</section>-->
+
+<!--<ng-template #spinner>-->
+<!--	<div class="spinner">-->
+<!--		<ngx-pulse-loader class="item"-->
+<!--		                  color="white">-->
+<!--		</ngx-pulse-loader>-->
+<!--	</div>-->
+<!--</ng-template>-->
 

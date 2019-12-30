@@ -96,6 +96,7 @@ body {
 	margin: 20px 0;
 }
 
-.section-item:hover {
-	transform: scale(1.1);
+.item-card.mat-grid-tile > .mat-figure {
+	align-items: start;
+	padding-top: 5px;
 }

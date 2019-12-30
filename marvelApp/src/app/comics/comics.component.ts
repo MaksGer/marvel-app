@@ -1,9 +1,13 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {catchError, delay, map} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {catchError, debounceTime, delay, map} from "rxjs/operators";
+import {Subject, throwError} from "rxjs";
 import {ComicsRestService} from "../services/comics-rest.service";
-import {MatDialog, MatPaginator, MatSnackBar, PageEvent} from "@angular/material";
+import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
 import {ComicsDialogComponent} from "../dialogs-templates/comics-dialog/comics-dialog.component";
+import {of} from "rxjs/internal/observable/of";
+import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
+import {tap} from "rxjs/internal/operators/tap";
+import {switchMap} from "rxjs/internal/operators/switchMap";
 
 
 export interface Comics {
@@ -23,19 +27,20 @@ export interface Comics {
 @Component({
 	selector: 'app-comics',
 	templateUrl: './comics.component.html',
-	styles: ['./comics.component.css'],
+	styleUrls: ['./comics.component.css'],
 })
 export class ComicsComponent implements OnInit, DoCheck{
 	comicsList: Comics[];
 	isLoading: boolean;
 	breakpoint: number;
+	currentItemsToShow: Comics[];
+
+	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	length = 20;
-	pageSize = 20;
 	pageSizeOptions = [8, 20, 40, 50];
-	lowValue = 0;
-	highValue = 20;
+
 
 	constructor (
 		private rest: ComicsRestService,
@@ -45,24 +50,9 @@ export class ComicsComponent implements OnInit, DoCheck{
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.rest.getComics()
-			.pipe(
-				delay(1000),
-				map((response: any) => response.data.results),
-				catchError(error => {
-					this._snackBar.open(error.message, 'Close', {
-						duration: 4000,
-						horizontalPosition: 'center',
-						panelClass: 'error-snack-bar',
-					});
-					this.isLoading = false;
+		this.getStartComics();
+		this.getComics();
 
-					return throwError(error);
-				}))
-			.subscribe(response => {
-				this.comicsList = response;
-				this.isLoading = false;
-			});
 	}
 
 	ngDoCheck(): void {
@@ -91,12 +81,9 @@ export class ComicsComponent implements OnInit, DoCheck{
 		}
 	}
 
-	getPaginatorData(event: PageEvent): PageEvent {
-		this.length = this.comicsList.length;
-		this.lowValue = event.pageIndex * event.pageSize;
-		this.highValue = this.lowValue + event.pageSize;
-
-		return event;
+	onPageChanges($event) {
+		this.currentItemsToShow = this.comicsList.slice
+		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
 	}
 
 	openDialog(comics: Comics) {
@@ -104,6 +91,59 @@ export class ComicsComponent implements OnInit, DoCheck{
 		this.dialog.open(ComicsDialogComponent, {
 			width: '70vh',
 			data: comics,
+		});
+	}
+
+	getStartComics() {
+		this.rest.getComics()
+			.pipe(
+				delay(1000),
+				map((response: any) => response.data.results),
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+					this.isLoading = false;
+
+					return throwError(error);
+				}))
+			.subscribe(response => {
+				this.comicsList = response;
+				this.currentItemsToShow = response.slice(0, 20);
+				this.length = response.length;
+				this.isLoading = false;
+			});
+	}
+
+		search(userString: string) {
+		this.searchTerms.next(userString);
+	}
+
+		getComics() {
+		const obsNoCharacters = of<Comics[]>([]);
+
+		this.searchTerms
+			.pipe(
+				debounceTime(1000),
+				tap(() => this.isLoading = true),
+				distinctUntilChanged(),
+				switchMap((term: string) => {
+					if (term) {
+						return this.rest.getComicsFromUserSearch(term);
+
+					} else {
+						return obsNoCharacters;
+
+					}
+				}),
+				delay(1000),
+			).subscribe(response => {
+			this.comicsList = response;
+			this.currentItemsToShow = response.slice(0, 20);
+			this.length = response.length;
+			this.isLoading = false;
 		});
 	}
 }

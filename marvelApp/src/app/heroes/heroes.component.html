@@ -13,9 +13,10 @@
 	</mat-paginator>
 
 	<mat-grid-list [cols]="breakpoint"
-	               rowHeight="500px">
+	               rowHeight="450px">
 
-		<mat-grid-tile *ngFor="let hero of currentItemsToShow">
+		<mat-grid-tile class="item-card"
+		               *ngFor="let hero of currentItemsToShow">
 			<div>
 				<mat-card class="hero-item"
 				          (click)="openDialog(hero)">
