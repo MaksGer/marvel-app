@@ -21,6 +21,7 @@ import {NgxSpinnersModule} from "ngx-spinners";
 import {HttpClientModule} from "@angular/common/http";
 import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.component';
 import {ComicsDialogComponent} from './dialogs-templates/comics-dialog/comics-dialog.component';
+import {NguCarouselModule} from "@ngu/carousel";
 
 @NgModule({
 	declarations: [
@@ -50,6 +51,7 @@ import {ComicsDialogComponent} from './dialogs-templates/comics-dialog/comics-di
 		MatTabsModule,
 		NgxSpinnersModule,
 		HttpClientModule,
+		NguCarouselModule,
 	],
 	entryComponents: [
 		HeroDialogComponent,

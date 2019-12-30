@@ -23,7 +23,7 @@ export interface Comics {
 @Component({
 	selector: 'app-comics',
 	templateUrl: './comics.component.html',
-	styles: []
+	styles: ['./comics.component.css'],
 })
 export class ComicsComponent implements OnInit, DoCheck{
 	comicsList: Comics[];
