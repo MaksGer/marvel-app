@@ -1,39 +1,3 @@
-// import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-// import {Subject, throwError} from "rxjs";
-// import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
-// import {EventsRestService} from "../services/events-rest.service";
-// import {of} from "rxjs/internal/observable/of";
-// import {catchError, debounceTime, delay} from "rxjs/operators";
-// import {tap} from "rxjs/internal/operators/tap";
-// import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
-// import {switchMap} from "rxjs/internal/operators/switchMap";
-//
-// export interface Event {
-// 	id: number,
-// 	title: string,
-// 	description?: string,
-// 	thumbnail: {
-// 		path: string,
-// 		extension: string
-// 	},
-// 	urls: [{
-// 		type: string,
-// 		url: string,
-// 	}],
-// }
-//
-// @Component({
-// 	selector: 'app-events',
-// 	templateUrl: './events.component.html',
-// 	styleUrls: ['./events.component.css']
-// })
-// export class EventsComponent implements OnInit,DoCheck {
-
-//
-
-
-
-
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {SeriesRestService} from "../services/series-rest.service";
 import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
@@ -78,8 +42,7 @@ export class SeriesComponent implements OnInit, DoCheck {
 	constructor(private rest: SeriesRestService,
 				private _snackBar: MatSnackBar,
 				private dialog: MatDialog,
-	) {
-	}
+	) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;
@@ -122,7 +85,7 @@ export class SeriesComponent implements OnInit, DoCheck {
 		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
 	}
 
-		getSeries() {
+	getSeries() {
 		const obsNoCharacters = of<Event[]>([]);
 
 		this.searchTerms

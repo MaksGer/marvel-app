@@ -38,8 +38,10 @@
 				</div>
 				<p class="comics-title">{{item.title}}</p>
 			</div>
-				<button NguCarouselNext class="rightRs">></button>
-				<button NguCarouselPrev class="leftRs"><</button>
+<!--				<button NguCarouselNext class="rightRs">></button>-->
+			<mat-icon NguCarouselPrev class="leftRs">navigate_before</mat-icon>
+			<mat-icon NguCarouselNext class="rightRs">navigate_next</mat-icon>
+<!--				<button NguCarouselPrev class="leftRs"><</button>-->
 				<ul class="myPoint" NguCarouselPoint>
 					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j == myCarousel.activePoint"
 					    (click)="myCarousel.moveTo(j)"></li>

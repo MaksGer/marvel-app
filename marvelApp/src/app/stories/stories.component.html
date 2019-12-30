@@ -1,1 +1,47 @@
-<p>stories works!</p>
+<section *ngIf="!isLoading; else spinner">
+<!--	<input matInput-->
+<!--	       placeholder="Search your series"-->
+<!--	       class="user-search"-->
+<!--	       #searchBox-->
+<!--	       (keyup)="search(searchBox.value)">-->
+
+<!--	<mat-paginator class="tab-pagination full-width"-->
+<!--	               (page)="onPageChanges($event)"-->
+<!--	               [length]="length"-->
+<!--	               [pageSize]="20"-->
+<!--	               [pageSizeOptions]="pageSizeOptions">-->
+<!--	</mat-paginator>-->
+<div class="story-item" *ngFor="let story of storiesList">
+	{{story.title}}
+
+</div>
+<!--	<mat-grid-list [cols]="breakpoint"-->
+<!--	               rowHeight="450px">-->
+
+<!--		<mat-grid-tile class="item-container"-->
+<!--		               *ngFor="let series of currentItemsToShow">-->
+<!--			<div>-->
+<!--				<mat-card class="series-item hover-scale">-->
+<!--					&lt;!&ndash;				          (click)="openDialog(series)">&ndash;&gt;-->
+<!--					<div class="title marvel-font full-width">-->
+<!--						{{series.title}}-->
+<!--					</div>-->
+
+<!--					<div class="series-image full-width"-->
+<!--					     [style.background-image]="'url(' + series.thumbnail.path + '.' + series.thumbnail.extension +')'">-->
+<!--					</div>-->
+<!--				</mat-card>-->
+<!--			</div>-->
+<!--		</mat-grid-tile>-->
+<!--	</mat-grid-list>-->
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>
+
+
