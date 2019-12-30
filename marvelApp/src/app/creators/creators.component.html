@@ -1,1 +1,42 @@
-<p>creators works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<input matInput
+	       placeholder="Search your creator"
+	       class="user-search"
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
+
+	<mat-paginator class="tab-pagination full-width"
+	               (page)="onPageChanges($event)"
+	               [length]="length"
+	               [pageSize]="20"
+	               [pageSizeOptions]="pageSizeOptions">
+	</mat-paginator>
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
+
+		<mat-grid-tile class="item-container"
+		               *ngFor="let creator of currentItemsToShow">
+			<div>
+				<mat-card class="creators-item hover-scale"
+				          (click)="openDialog(creator)">
+					<div class="title marvel-font full-width">
+						{{creator.fullName}}
+					</div>
+
+					<div class="creators-image full-width"
+					     [style.background-image]="'url(' + creator.thumbnail.path + '.' + creator.thumbnail.extension +')'">
+					</div>
+				</mat-card>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

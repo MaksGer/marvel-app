@@ -15,10 +15,10 @@
 	<mat-grid-list [cols]="breakpoint"
 	               rowHeight="450px">
 
-		<mat-grid-tile class="item-card"
+		<mat-grid-tile class="item-container"
 		               *ngFor="let hero of currentItemsToShow">
 			<div>
-				<mat-card class="hero-item"
+				<mat-card class="hero-item hover-scale"
 				          (click)="openDialog(hero)">
 					<div class="title marvel-font full-width">
 						{{hero.name}}

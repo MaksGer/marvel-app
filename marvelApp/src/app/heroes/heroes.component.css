@@ -4,7 +4,6 @@
 	width: 350px;
 	margin: 0 auto;
 	background-color: #212121;
-	transition: 1s;
 }
 
 .title {
@@ -18,8 +17,4 @@
 	height: 80%;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-.hero-item:hover {
-	transform: scale(1.1);
 }

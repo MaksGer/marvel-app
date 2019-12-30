@@ -29,7 +29,7 @@ export interface Comics {
 	templateUrl: './comics.component.html',
 	styleUrls: ['./comics.component.css'],
 })
-export class ComicsComponent implements OnInit, DoCheck{
+export class ComicsComponent implements OnInit, DoCheck {
 	comicsList: Comics[];
 	isLoading: boolean;
 	breakpoint: number;
@@ -42,11 +42,12 @@ export class ComicsComponent implements OnInit, DoCheck{
 	pageSizeOptions = [8, 20, 40, 50];
 
 
-	constructor (
+	constructor(
 		private rest: ComicsRestService,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
-	) { }
+	) {
+	}
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -117,11 +118,11 @@ export class ComicsComponent implements OnInit, DoCheck{
 			});
 	}
 
-		search(userString: string) {
+	search(userString: string) {
 		this.searchTerms.next(userString);
 	}
 
-		getComics() {
+	getComics() {
 		const obsNoCharacters = of<Comics[]>([]);
 
 		this.searchTerms
@@ -140,6 +141,15 @@ export class ComicsComponent implements OnInit, DoCheck{
 				}),
 				delay(1000),
 			).subscribe(response => {
+			if (!response[0]) {
+				console.log('block if');
+				this._snackBar.open('There are no matches', 'Close', {
+					duration: 2000,
+					horizontalPosition: 'center',
+					panelClass: 'error-snack-bar',
+				});
+			}
+
 			this.comicsList = response;
 			this.currentItemsToShow = response.slice(0, 20);
 			this.length = response.length;

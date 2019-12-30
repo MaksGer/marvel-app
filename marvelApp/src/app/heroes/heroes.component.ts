@@ -44,7 +44,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 	constructor(private heroes: HeroesRestService,
 				private _snackBar: MatSnackBar,
 				private dialog: MatDialog,
-	) { }
+	) {
+	}
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -107,6 +108,15 @@ export class HeroesComponent implements OnInit, DoCheck {
 				}),
 				delay(1000),
 			).subscribe(response => {
+			if (!response[0]) {
+				console.log('block if');
+				this._snackBar.open('There are no matches', 'Close', {
+					duration: 2000,
+					horizontalPosition: 'center',
+					panelClass: 'error-snack-bar',
+				});
+			}
+
 			this.heroesList = response;
 			this.currentItemsToShow = this.heroesList.slice(0, 20);
 			this.length = response.length;

@@ -1,1 +1,42 @@
-<p>events works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<input matInput
+	       placeholder="Search your event"
+	       class="user-search"
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
+
+	<mat-paginator class="tab-pagination full-width"
+	               (page)="onPageChanges($event)"
+	               [length]="length"
+	               [pageSize]="20"
+	               [pageSizeOptions]="pageSizeOptions">
+	</mat-paginator>
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
+
+		<mat-grid-tile class="item-container"
+		               *ngFor="let event of currentItemsToShow">
+			<div>
+				<mat-card class="events-item hover-scale">
+<!--				          (click)="openDialog(event)">-->
+					<div class="title marvel-font full-width">
+						{{event.title}}
+					</div>
+
+					<div class="events-image full-width"
+					     [style.background-image]="'url(' + event.thumbnail.path + '.' + event.thumbnail.extension +')'">
+					</div>
+				</mat-card>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

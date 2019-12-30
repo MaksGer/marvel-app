@@ -49,7 +49,7 @@
 .comics-item {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	height: 350px;
 }
@@ -70,7 +70,7 @@
 .leftRs {
 	position: absolute;
 	margin: auto;
-	top: 0;
+	top: 65%;
 	bottom: 0;
 	width: 50px;
 	height: 50px;
@@ -82,7 +82,7 @@
 .rightRs {
 	position: absolute;
 	margin: auto;
-	top: 0;
+	top: 65%;
 	bottom: 0;
 	width: 50px;
 	height: 50px;
@@ -100,7 +100,7 @@
 	overflow: auto;
 	box-sizing: border-box;
 }
-.myPoint  li {
+.myPoint li {
 	display: inline-block;
 	border-radius: 50%;
 	border: 2px solid rgba(255, 255, 255, 0.55);
@@ -109,7 +109,7 @@
 	transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
 	transition: 0.4s;
 }
-.myPoint  li.active {
+.myPoint li.active {
 	background: #ffffff;
 	transform: scale(1.2);
 }
