@@ -1,13 +1,12 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {HeroesRestService} from "../services/heroes-rest.service";
 import {MatPaginator, MatSnackBar} from "@angular/material";
-import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
 import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {of, Subject, throwError} from "rxjs";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 import {tap} from "rxjs/internal/operators/tap";
 import {CreatorsRestService} from "../services/creators-rest.service";
+import {CreatorsDialogComponent} from "../dialogs-templates/creators-dialog/creators-dialog.component";
 
 export interface Creator {
 	id: number,
@@ -143,11 +142,11 @@ export class CreatorsComponent implements OnInit, DoCheck {
 		});
 	}
 
-	openDialog(selectedHero: object) {
-		console.log(selectedHero);
-		// this.dialog.open(HeroDialogComponent, {
-		// 	width: '90vh',
-		// 	data: selectedHero,
-		// });
+	openDialog(selectedItem: object) {
+		console.log(selectedItem);
+		this.dialog.open(CreatorsDialogComponent, {
+			width: '50vw',
+			data: selectedItem,
+		});
 	}
 }

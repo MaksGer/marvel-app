@@ -7,6 +7,7 @@ import {catchError, debounceTime, delay} from "rxjs/operators";
 import {tap} from "rxjs/internal/operators/tap";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 import {switchMap} from "rxjs/internal/operators/switchMap";
+import {EventsDialogComponent} from "../dialogs-templates/events-dialog/events-dialog.component";
 
 export interface Event {
 	id: number,
@@ -141,10 +142,10 @@ export class EventsComponent implements OnInit,DoCheck {
 			})
 	}
 
-	// openDialog(selectedHero: object) {
-	// 	this.dialog.open(HeroDialogComponent, {
-	// 		width: '90vh',
-	// 		data: selectedHero,
-	// 	});
-	// }
+	openDialog(selectedItem: object) {
+		this.dialog.open(EventsDialogComponent, {
+			width: '50vw',
+			data: selectedItem,
+		});
+	}
 }

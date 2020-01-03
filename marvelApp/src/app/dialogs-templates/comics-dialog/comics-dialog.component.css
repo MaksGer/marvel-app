@@ -2,22 +2,32 @@
 	position: relative;
 }
 
+.comics-content {
+	display: flex;
+}
+
 .comics-item-title {
 	text-align: center;
 }
 
 .comics-item-image {
-	height: 65vh;
+	min-height: 55vh;
 	background-repeat: no-repeat;
 	background-size: cover;
+	flex: 1;
+}
+
+.comics-description {
+	flex: 1;
+	padding: 0 15px;
 }
 
 .comics-item-links {
 	display: flex;
 	justify-content: space-around;
 	padding: 15px 0;
-	position: absolute;
-	bottom: 0;
+	/*position: absolute;*/
+	/*bottom: 0;*/
 }
 
 .comics-item-links a {
@@ -32,6 +42,6 @@
 
 .comics-dialog-close {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: -15%;
+	right: -1%;
 }

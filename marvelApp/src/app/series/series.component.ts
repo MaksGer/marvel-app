@@ -7,6 +7,7 @@ import {of} from "rxjs/internal/observable/of";
 import {tap} from "rxjs/internal/operators/tap";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 import {switchMap} from "rxjs/internal/operators/switchMap";
+import {SeriesDialogComponent} from "../dialogs-templates/series-dialog/series-dialog.component";
 
 export interface Series {
 	id: number,
@@ -141,10 +142,10 @@ export class SeriesComponent implements OnInit, DoCheck {
 			})
 	}
 
-	// openDialog(selectedHero: object) {
-	// 	this.dialog.open(HeroDialogComponent, {
-	// 		width: '90vh',
-	// 		data: selectedHero,
-	// 	});
-	// }
+	openDialog(selectedItem: object) {
+		this.dialog.open(SeriesDialogComponent, {
+			width: '50vw',
+			data: selectedItem,
+		});
+	}
 }

@@ -90,7 +90,7 @@ export class ComicsComponent implements OnInit, DoCheck {
 	openDialog(comics: Comics) {
 		console.log(comics);
 		this.dialog.open(ComicsDialogComponent, {
-			width: '70vh',
+			width: '50vw',
 			data: comics,
 		});
 	}
@@ -142,7 +142,6 @@ export class ComicsComponent implements OnInit, DoCheck {
 				delay(1000),
 			).subscribe(response => {
 			if (!response[0]) {
-				console.log('block if');
 				this._snackBar.open('There are no matches', 'Close', {
 					duration: 2000,
 					horizontalPosition: 'center',

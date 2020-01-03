@@ -21,9 +21,9 @@ export interface Comics {
 }
 
 @Component({
-	selector: 'app-hero.dialog',
-	templateUrl: './hero.dialog.component.html',
-	styleUrls: ['./hero.dialog.component.css'],
+	selector: 'app-hero-dialog',
+	templateUrl: './hero-dialog.component.html',
+	styleUrls: ['./hero-dialog.component.css'],
 })
 export class HeroDialogComponent implements OnInit, AfterViewInit {
 	isLoading = true;

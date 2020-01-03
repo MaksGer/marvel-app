@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {HeroesRestService} from "../services/heroes-rest.service";
 import {MatPaginator, MatSnackBar} from "@angular/material";
-import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
+import {HeroDialogComponent} from "../dialogs-templates/hero-dialog/hero-dialog.component";
 import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {of, Subject, throwError} from "rxjs";
