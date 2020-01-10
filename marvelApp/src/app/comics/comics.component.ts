@@ -1,14 +1,13 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {catchError, debounceTime, delay, map} from "rxjs/operators";
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {catchError, debounceTime, delay} from "rxjs/operators";
 import {Subject, throwError} from "rxjs";
 import {ComicsRestService} from "../services/comics-rest.service";
-import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {ComicsDialogComponent} from "../dialogs-templates/comics-dialog/comics-dialog.component";
 import {of} from "rxjs/internal/observable/of";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
 import {tap} from "rxjs/internal/operators/tap";
 import {switchMap} from "rxjs/internal/operators/switchMap";
-
 
 export interface Comics {
 	id: number,
@@ -29,18 +28,16 @@ export interface Comics {
 	templateUrl: './comics.component.html',
 	styleUrls: ['./comics.component.css'],
 })
+
 export class ComicsComponent implements OnInit, DoCheck {
 	comicsList: Comics[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Comics[];
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
-
 
 	constructor(
 		private rest: ComicsRestService,
@@ -50,9 +47,8 @@ export class ComicsComponent implements OnInit, DoCheck {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartComics();
+		this.getStartComics(this.selected);
 		this.getComics();
-
 	}
 
 	ngDoCheck(): void {
@@ -81,23 +77,22 @@ export class ComicsComponent implements OnInit, DoCheck {
 		}
 	}
 
-	onPageChanges($event) {
-		this.currentItemsToShow = this.comicsList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartComics(this.selected);
 	}
 
 	openDialog(comics: Comics) {
 		this.dialog.open(ComicsDialogComponent, {
-			width: '50vw',
+			width: '40vw',
 			data: comics,
 		});
 	}
 
-	getStartComics() {
-		this.rest.getComics()
+	getStartComics(limit) {
+		this.rest.getComics(limit)
 			.pipe(
 				delay(1000),
-				map((response: any) => response.data.results),
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
@@ -110,8 +105,7 @@ export class ComicsComponent implements OnInit, DoCheck {
 				}))
 			.subscribe(response => {
 				this.comicsList = response;
-				this.currentItemsToShow = response.slice(0, 20);
-				this.length = response.length;
+				this.isSearchActive = false;
 				this.isLoading = false;
 			});
 	}
@@ -126,15 +120,13 @@ export class ComicsComponent implements OnInit, DoCheck {
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isLoading = true),
+				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getComicsFromUserSearch(term);
-
 					} else {
 						return obsNoCharacters;
-
 					}
 				}),
 				delay(1000),
@@ -148,9 +140,7 @@ export class ComicsComponent implements OnInit, DoCheck {
 			}
 
 			this.comicsList = response;
-			this.currentItemsToShow = response.slice(0, 20);
-			this.length = response.length;
-			this.isLoading = false;
+			this.isSearchActive = false;
 		});
 	}
 }

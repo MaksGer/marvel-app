@@ -11,7 +11,8 @@ export class HeroesRestService {
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
 	urlAPI = `https://gateway.marvel.com/v1/public/characters`;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {
+	}
 
 	getHeroes(limit: string): Observable<any> {
 		let params = new HttpParams();
@@ -19,11 +20,10 @@ export class HeroesRestService {
 		params = params.append('apikey', this.publicKey);
 		params = params.append('limit', limit);
 
-		return this.http.get( this.urlAPI, {
-			params
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getHeroesFromUserSearch(name: string): Observable<any> {
@@ -32,15 +32,14 @@ export class HeroesRestService {
 		params = params.append('nameStartsWith', name);
 		params = params.append('apikey', this.publicKey);
 
-		return this.http.get( this.urlAPI, {
-			params
-		} ).pipe(
-			map((response: any) => response.data.results)
-		);
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getComicsForHero(id: number) {
-		return this.http.get( this.urlAPI + `/${id}/comics`, {
+		return this.http.get(this.urlAPI + `/${id}/comics`, {
 			params: new HttpParams().set('apikey', this.publicKey),
 		}).pipe(
 			map((response: any) => response.data.results)

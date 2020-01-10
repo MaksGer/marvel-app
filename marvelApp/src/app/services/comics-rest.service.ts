@@ -14,10 +14,16 @@ export class ComicsRestService {
   	private http: HttpClient,
 	) { }
 
-	getComics() {
-		return this.http.get(this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
-		} );
+	getComics(limit) {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getComicsFromUserSearch(name: string): Observable<any> {
@@ -26,9 +32,8 @@ export class ComicsRestService {
 		params = params.append('titleStartsWith', name);
 		params = params.append('apikey', this.publicKey);
 
-		return this.http.get( this.urlAPI, {
-			params
-		} ).pipe(
+		return this.http.get( this.urlAPI, {params})
+			.pipe(
 			map((response: any) => response.data.results)
 		);
 	}

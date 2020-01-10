@@ -1,21 +1,13 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {catchError, debounceTime, delay, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
-import {of, Subject, throwError} from "rxjs";
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {catchError, delay} from "rxjs/operators";
+import {throwError} from "rxjs";
 import {StoriesRestService} from "../services/stories-rest.service";
-import {MatPaginator, MatSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 
 export interface Story {
 	id: number,
 	title: string,
 	description?: string,
-	// thumbnail: {
-	// 	path: string,
-	// 	extension: string
-	// },
-	// urls: [{
-	// 	type: string,
-	// 	url: string,
-	// }],
 }
 
 @Component({
@@ -26,31 +18,24 @@ export interface Story {
 export class StoriesComponent implements OnInit, DoCheck {
 	storiesList: Story[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Story[];
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 	isDescrActivated = false;
 	prevValue: string;
 
-	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
-
-//
 	constructor(private rest: StoriesRestService,
 				private _snackBar: MatSnackBar,
-				// private dialog: MatDialog,
 	) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartStories();
-		// this.getStories();
+		this.getStartStories(this.selected);
 	}
 
-	getStartStories() {
-		this.rest.getStories()
+	getStartStories(limit) {
+		this.rest.getStories(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -65,53 +50,14 @@ export class StoriesComponent implements OnInit, DoCheck {
 			)
 			.subscribe(data => {
 				this.storiesList = data;
-				this.currentItemsToShow = data.slice(0, 20);
+				this.isSearchActive = false;
 				this.isLoading = false;
 			})
 	}
 
-	// search(userString: string) {
-	// 	this.searchTerms.next(userString);
-	// }
-
-	// getStories() {
-	// 	const obsNoCharacters = of<Event[]>([]);
-	//
-	// 	this.searchTerms
-	// 		.pipe(
-	// 			debounceTime(1000),
-	// 			tap(() => this.isLoading = true),
-	// 			distinctUntilChanged(),
-	// 			switchMap((term: string) => {
-	// 				if (term) {
-	// 					return this.rest.getStoriesFromUserSearch(term);
-	//
-	// 				} else {
-	// 					return obsNoCharacters;
-	//
-	// 				}
-	// 			}),
-	// 			delay(1000),
-	// 		)
-	// 		.subscribe(response => {
-	// 			if (!response[0]) {
-	// 				this._snackBar.open('There are no matches', 'Close', {
-	// 					duration: 2000,
-	// 					horizontalPosition: 'center',
-	// 					panelClass: 'error-snack-bar',
-	// 				});
-	// 			}
-	//
-	// 			this.storiesList = response;
-	// 			this.currentItemsToShow = response.slice(0, 20);
-	// 			this.length = response.length;
-	// 			this.isLoading = false;
-	// 		});
-	// }
-
-	onPageChanges($event) {
-		this.currentItemsToShow = this.storiesList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartStories(this.selected);
 	}
 
 	ngDoCheck(): void {
@@ -138,12 +84,6 @@ export class StoriesComponent implements OnInit, DoCheck {
 			case window.innerWidth < 800:
 				this.breakpoint = 1;
 		}
-// 	openDialog(selectedHero: object) {
-// 		this.dialog.open(HeroDialogComponent, {
-// 			width: '90vh',
-// 			data: selectedHero,
-// 		});
-// 	}
 	}
 
 	changeText(event, story?: Story,) {

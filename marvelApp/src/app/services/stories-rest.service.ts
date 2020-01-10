@@ -13,12 +13,16 @@ export class StoriesRestService {
 	constructor(private http: HttpClient) {
 	}
 
-	getStories(): Observable<any> {
-		return this.http.get(this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+	getStories(limit): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 	//
 	// getStoriesFromUserSearch(name: string): Observable<any> {

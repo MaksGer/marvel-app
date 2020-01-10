@@ -13,12 +13,16 @@ export class SeriesRestService {
 	constructor(private http: HttpClient) {
 	}
 
-	getSeries(): Observable<any> {
-		return this.http.get(this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+	getSeries(limit): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getSeriesFromUserSearch(name: string): Observable<any> {

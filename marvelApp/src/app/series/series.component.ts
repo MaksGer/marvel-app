@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {SeriesRestService} from "../services/series-rest.service";
-import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {Subject, throwError} from "rxjs";
 import {catchError, debounceTime, delay} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
@@ -28,17 +28,16 @@ export interface Series {
 	templateUrl: './series.component.html',
 	styleUrls: ['./series.component.css'],
 })
+
 export class SeriesComponent implements OnInit, DoCheck {
 	seriesList: Series[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Series[];
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
 
 	constructor(private rest: SeriesRestService,
 				private _snackBar: MatSnackBar,
@@ -47,7 +46,7 @@ export class SeriesComponent implements OnInit, DoCheck {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartSeries();
+		this.getStartSeries(this.selected);
 		this.getSeries();
 	}
 
@@ -81,9 +80,9 @@ export class SeriesComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	onPageChanges($event) {
-		this.currentItemsToShow = this.seriesList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartSeries(this.selected);
 	}
 
 	getSeries() {
@@ -92,15 +91,13 @@ export class SeriesComponent implements OnInit, DoCheck {
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isLoading = true),
+				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getSeriesFromUserSearch(term);
-
 					} else {
 						return obsNoCharacters;
-
 					}
 				}),
 				delay(1000),
@@ -115,14 +112,12 @@ export class SeriesComponent implements OnInit, DoCheck {
 				}
 
 				this.seriesList = response;
-				this.currentItemsToShow = response.slice(0, 20);
-				this.length = response.length;
-				this.isLoading = false;
+				this.isSearchActive = false;
 			});
 	}
 
-	getStartSeries() {
-		this.rest.getSeries()
+	getStartSeries(limit) {
+		this.rest.getSeries(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -137,7 +132,7 @@ export class SeriesComponent implements OnInit, DoCheck {
 			)
 			.subscribe(data => {
 				this.seriesList = data;
-				this.currentItemsToShow = data.slice(0, 20);
+				this.isSearchActive = false;
 				this.isLoading = false;
 			})
 	}

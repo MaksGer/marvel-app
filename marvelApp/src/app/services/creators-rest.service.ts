@@ -13,12 +13,16 @@ export class CreatorsRestService {
 	constructor(private http: HttpClient) {
 	}
 
-	getCreators(): Observable<any> {
-		return this.http.get(this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+	getCreators(limit): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getCreatorsFromUserSearch(name: string): Observable<any> {

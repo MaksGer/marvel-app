@@ -3,20 +3,12 @@
 }
 
 .comics-item-image {
-	min-height: 63vh;
-	min-width: 45%;
+	min-height: 29vh;
+	max-height: 400px;
+	max-width: 350px;
+	flex: 1;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-.comics-info {
-	flex: 1 100px;
-	display: flex;
-	flex-direction: column;
-}
-
-.comics-description {
-	padding-left: 24px;
 }
 
 .comics-item-title {
@@ -34,7 +26,6 @@
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
-	margin-left: 15px;
 }
 
 .comics-dialog-close {

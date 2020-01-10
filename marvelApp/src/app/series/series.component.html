@@ -10,20 +10,20 @@
 			<mat-label>Item per page</mat-label>
 			<mat-select [(value)]="selected"
 			            (selectionChange)="itemsPerPage()">
-				<mat-option value="20">20</mat-option>
-				<mat-option value="40">40</mat-option>
-				<mat-option value="60">60</mat-option>
-				<mat-option value="80">80</mat-option>
-				<mat-option value="100">100</mat-option>
+				<mat-option *ngFor="let item of selectOptions"
+				            [value]=item>
+					{{item}}
+				</mat-option>
 			</mat-select>
 		</mat-form-field>
 	</div>
 
-	<mat-grid-list [cols]="breakpoint"
+	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
+	               [cols]="breakpoint"
 	               rowHeight="450px">
 
 		<mat-grid-tile class="item-container"
-		               *ngFor="let series of currentItemsToShow">
+		               *ngFor="let series of seriesList">
 			<div>
 				<mat-card class="series-item hover-scale"
 				          (click)="openDialog(series)">
@@ -38,6 +38,13 @@
 			</div>
 		</mat-grid-tile>
 	</mat-grid-list>
+	<ng-template #searchSpinner>
+		<div class="spinner">
+			<ngx-pulse-loader class="item"
+			                  color="white">
+			</ngx-pulse-loader>
+		</div>
+	</ng-template>
 </section>
 
 <ng-template #spinner>

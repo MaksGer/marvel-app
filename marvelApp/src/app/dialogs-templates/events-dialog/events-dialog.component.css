@@ -13,15 +13,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-.event-info {
-	flex: 1 100px;
-	display: flex;
-	flex-direction: column;
-}
-
-.event-description {
-	padding-left: 24px;
-}
 
 .event-item-links {
 	display: flex;
@@ -33,7 +24,6 @@
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
-	margin-left: 15px;
 }
 
 .event-dialog-close {

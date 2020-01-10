@@ -1,12 +1,10 @@
 .creator-modal {
 	display: flex;
-	/*justify-content: center;*/
 }
 
 .creator-item-title {
 	text-align: center;
 	padding-top: 35px;
-	padding-left: 24px;
 }
 
 .creator-item-image {
@@ -14,13 +12,6 @@
 	width: 45%;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-.creator-info{
-	flex: 1 100px;
-	display: flex;
-	flex-direction: column;
-	/*justify-content: flex-start;*/
 }
 
 .creator-item-links {
@@ -33,7 +24,6 @@
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
-	padding-left: 24px;
 }
 
 .creator-dialog-close {

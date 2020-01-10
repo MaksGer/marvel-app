@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class EventsRestService {
 
@@ -14,12 +14,16 @@ export class EventsRestService {
 	constructor(private http: HttpClient) {
 	}
 
-	getEvents(): Observable<any> {
-		return this.http.get(this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+	getEvents(limit): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 
 	getEventsFromUserSearch(name: string): Observable<any> {
@@ -28,10 +32,9 @@ export class EventsRestService {
 		params = params.append('nameStartsWith', name);
 		params = params.append('apikey', this.publicKey);
 
-		return this.http.get(this.urlAPI, {
-			params
-		}).pipe(
-			map((response: any) => response.data.results)
-		);
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 }

@@ -1,5 +1,5 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSnackBar} from "@angular/material";
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {MatSnackBar} from "@angular/material";
 import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {of, Subject, throwError} from "rxjs";
@@ -26,27 +26,25 @@ export interface Creator {
 	templateUrl: './creators.component.html',
 	styleUrls: ['./creators.component.css']
 })
+
 export class CreatorsComponent implements OnInit, DoCheck {
 	creatorsList: Creator[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Creator[];
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
 
 	constructor(private rest: CreatorsRestService,
 				private _snackBar: MatSnackBar,
 				private dialog: MatDialog,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartCreators();
+		this.getStartCreators(this.selected);
 		this.getCreator();
 
 	}
@@ -81,13 +79,13 @@ export class CreatorsComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	onPageChanges($event) {
-		this.currentItemsToShow = this.creatorsList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartCreators(this.selected);
 	}
 
-	getStartCreators() {
-		this.rest.getCreators()
+	getStartCreators(limit) {
+		this.rest.getCreators(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -102,7 +100,7 @@ export class CreatorsComponent implements OnInit, DoCheck {
 			)
 			.subscribe(data => {
 				this.creatorsList = data;
-				this.currentItemsToShow = data.slice(0, 20);
+				this.isSearchActive = false;
 				this.isLoading = false;
 			})
 	}
@@ -113,15 +111,13 @@ export class CreatorsComponent implements OnInit, DoCheck {
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isLoading = true),
+				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getCreatorsFromUserSearch(term);
-
 					} else {
 						return obsNoCharacters;
-
 					}
 				}),
 				delay(1000),
@@ -135,9 +131,7 @@ export class CreatorsComponent implements OnInit, DoCheck {
 			}
 
 			this.creatorsList = response;
-			this.currentItemsToShow = response.slice(0, 20);
-			this.length = response.length;
-			this.isLoading = false;
+			this.isSearchActive = false;
 		});
 	}
 

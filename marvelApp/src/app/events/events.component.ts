@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {Subject, throwError} from "rxjs";
-import {MatDialog, MatPaginator, MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {EventsRestService} from "../services/events-rest.service";
 import {of} from "rxjs/internal/observable/of";
 import {catchError, debounceTime, delay} from "rxjs/operators";
@@ -28,17 +28,16 @@ export interface Event {
 	templateUrl: './events.component.html',
 	styleUrls: ['./events.component.css']
 })
+
 export class EventsComponent implements OnInit,DoCheck {
 	eventsList: Event[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Event[];
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
 
 	constructor(private rest: EventsRestService,
 				private _snackBar: MatSnackBar,
@@ -47,7 +46,7 @@ export class EventsComponent implements OnInit,DoCheck {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartEvents();
+		this.getStartEvents(this.selected);
 		this.getEvent();
 	}
 
@@ -81,18 +80,18 @@ export class EventsComponent implements OnInit,DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	onPageChanges($event) {
-		this.currentItemsToShow = this.eventsList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartEvents(this.selected);
 	}
 
-		getEvent() {
+	getEvent() {
 		const obsNoCharacters = of<Event[]>([]);
 
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isLoading = true),
+				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
@@ -100,7 +99,6 @@ export class EventsComponent implements OnInit,DoCheck {
 
 					} else {
 						return obsNoCharacters;
-
 					}
 				}),
 				delay(1000),
@@ -115,14 +113,12 @@ export class EventsComponent implements OnInit,DoCheck {
 			}
 
 			this.eventsList = response;
-			this.currentItemsToShow = response.slice(0, 20);
-			this.length = response.length;
-			this.isLoading = false;
+			this.isSearchActive = false;
 		});
 	}
 
-	getStartEvents() {
-		this.rest.getEvents()
+	getStartEvents(limit) {
+		this.rest.getEvents(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -137,7 +133,7 @@ export class EventsComponent implements OnInit,DoCheck {
 			)
 			.subscribe(data => {
 				this.eventsList = data;
-				this.currentItemsToShow = data.slice(0, 20);
+				this.isSearchActive = false;
 				this.isLoading = false;
 			})
 	}
