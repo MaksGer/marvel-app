@@ -19,7 +19,7 @@
 	</div>
 
 	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
-		[cols]="breakpoint"
+	               [cols]="breakpoint"
 	               rowHeight="500px">
 		<mat-grid-tile *ngFor="let hero of heroesList">
 			<div>

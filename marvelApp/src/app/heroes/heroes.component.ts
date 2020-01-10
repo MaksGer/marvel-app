@@ -96,7 +96,6 @@ export class HeroesComponent implements OnInit, DoCheck {
 				switchMap((term: string) => {
 					if (term) {
 						return this.heroes.getHeroesFromUserSearch(term);
-
 					}
 
 					return obsNoCharacters;
