@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-
+import {map} from "rxjs/operators";
 
 @Injectable({
 	providedIn: 'root'
@@ -9,12 +9,32 @@ import {Observable} from "rxjs";
 
 export class HeroesService {
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
-	urlAPI = `https://gateway.marvel.com/v1/public/characters?apikey=
-	${this.publicKey}`;
+	urlAPI = `https://gateway.marvel.com/v1/public/characters`;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {
+	}
 
-	getHeroes(): Observable<any> {
-		return this.http.get(this.urlAPI);
+	getHeroes(limit: string): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
+	}
+
+	getHeroesFromUserSearch(name: string): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('nameStartsWith', name);
+		params = params.append('apikey', this.publicKey);
+
+		return this.http.get(this.urlAPI, {params})
+			.pipe(
+				map((response: any) => response.data.results)
+			);
 	}
 }

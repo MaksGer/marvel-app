@@ -29,7 +29,18 @@ body {
 	height: 100%;
 }
 
+.mat-input-element.user-search {
+	display: block;
+	border: 2px solid white;
+	padding: 5px;
+	margin: 50px auto 0;
+	width: 30%;
+	border-radius: 15px;
+	caret-color: white;
+}
+
 .spinner {
+	min-height: 50vh;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -59,9 +70,23 @@ body {
 	width: 110px !important;
 }
 
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+	color: white !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+	color: white !important;
+}
+
 .marvel-font {
 	font-family: 'Marvel', sans-serif;
 	letter-spacing: 2px;
 	font-size: 25px;
 	text-transform: uppercase;
+}
+
+.simple-pagination {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 2%;
 }

@@ -1,8 +1,10 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {catchError, delay} from "rxjs/operators";
-import {throwError} from "rxjs";
 import {MatSnackBar} from "@angular/material";
+import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
+import {of, Subject, throwError} from "rxjs";
+import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
+import {tap} from "rxjs/internal/operators/tap";
 
 export interface Hero {
 	id: number,
@@ -27,33 +29,22 @@ export interface Hero {
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
+
+	private searchTerms = new Subject<string>();
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.heroes.getHeroes()
-			.pipe(
-				delay(1000),
-				catchError(error => {
-					this._snackBar.open(error.message, 'Close', {
-						duration: 4000,
-						horizontalPosition: 'center',
-						panelClass: 'error-snack-bar',
-					});
-					this.isLoading = false;
+		this.getStartHero(this.selected);
+		this.getHero();
 
-					return throwError(error);
-				}))
-
-			.subscribe(response => {
-				this.heroesList = response.data.results;
-				this.isLoading = false;
-			});
 	}
 
 	ngDoCheck(): void {
@@ -79,7 +70,58 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 			case window.innerWidth < 800:
 				this.breakpoint = 1;
-
 		}
+	}
+
+	search(userString: string) {
+		this.searchTerms.next(userString);
+	}
+
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartHero(this.selected);
+	}
+
+	getHero() {
+		const obsNoCharacters = of<Hero[]>([]);
+
+		this.searchTerms
+			.pipe(
+				debounceTime(1000),
+				tap(_ => this.isSearchActive = true),
+				distinctUntilChanged(),
+				switchMap((term: string) => {
+					if (term) {
+						return this.heroes.getHeroesFromUserSearch(term);
+					} else {
+						return obsNoCharacters;
+					}
+				}),
+				delay(1000),
+			).subscribe(response => {
+			this.heroesList = response;
+			this.isSearchActive = false;
+		});
+	}
+
+	getStartHero(limit) {
+		this.heroes.getHeroes(limit)
+			.pipe(
+				delay(1000),
+				catchError(error => {
+					this._snackBar.open(error.message, 'Close', {
+						duration: 4000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+
+					return throwError(error);
+				})
+			)
+			.subscribe(data => {
+				this.heroesList = data;
+				this.isLoading = false;
+				this.isSearchActive = false;
+			})
 	}
 }
