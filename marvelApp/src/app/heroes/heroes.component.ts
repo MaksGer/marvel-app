@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {HeroesRestService} from "../services/heroes-rest.service";
-import {MatPaginator, MatSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
 import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
@@ -31,15 +31,11 @@ export interface Hero {
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Hero[];
+	selected = "20";
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
-
 
 	constructor(private heroes: HeroesRestService,
 				private _snackBar: MatSnackBar,
@@ -48,7 +44,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartHero();
+		this.getStartHero(this.selected);
 		this.getHero();
 
 	}
@@ -83,9 +79,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	onPageChanges($event) {
-		this.currentItemsToShow = this.heroesList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+	itemsPerPage() {
+		this.isSearchActive = true;
+		this.getStartHero(this.selected);
 	}
 
 	getHero() {
@@ -94,7 +90,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isLoading = true),
+				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
@@ -108,14 +104,12 @@ export class HeroesComponent implements OnInit, DoCheck {
 				delay(1000),
 			).subscribe(response => {
 			this.heroesList = response;
-			this.currentItemsToShow = this.heroesList.slice(0, 20);
-			this.length = response.length;
-			this.isLoading = false;
+			this.isSearchActive = false;
 		});
 	}
 
-	getStartHero() {
-		this.heroes.getHeroes()
+	getStartHero(limit: string) {
+		this.heroes.getHeroes(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -130,8 +124,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 			)
 			.subscribe(data => {
 				this.heroesList = data;
-				this.currentItemsToShow = this.heroesList.slice(0, 20);
 				this.isLoading = false;
+				this.isSearchActive = false;
 			})
 	}
 

@@ -9,6 +9,7 @@ import {
 	MatGridListModule,
 	MatPaginatorModule,
 	MatCardModule,
+	MatSelectModule,
 	MatDialogModule,
 } from "@angular/material";
 
@@ -23,6 +24,7 @@ const MaterialComponents = [
 	MatGridListModule,
 	MatPaginatorModule,
 	MatCardModule,
+	MatSelectModule,
 	MatDialogModule,
 ];
 

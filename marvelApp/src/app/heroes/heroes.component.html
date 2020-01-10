@@ -5,17 +5,24 @@
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
-	<mat-paginator class="tab-pagination full-width"
-	               (page)="onPageChanges($event)"
-	               [length]="length"
-	               [pageSize]="20"
-	               [pageSizeOptions]="pageSizeOptions">
-	</mat-paginator>
+	<div class="simple-pagination full-width">
+		<mat-form-field>
+			<mat-label>Item per page</mat-label>
+			<mat-select [(value)]="selected"
+			            (selectionChange)="itemsPerPage()">
+				<mat-option value="20">20</mat-option>
+				<mat-option value="40">40</mat-option>
+				<mat-option value="60">60</mat-option>
+				<mat-option value="80">80</mat-option>
+				<mat-option value="100">100</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
 
-	<mat-grid-list [cols]="breakpoint"
+	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
+		[cols]="breakpoint"
 	               rowHeight="500px">
-
-		<mat-grid-tile *ngFor="let hero of currentItemsToShow">
+		<mat-grid-tile *ngFor="let hero of heroesList">
 			<div>
 				<mat-card class="hero-item"
 				          (click)="openDialog(hero)">
@@ -30,6 +37,14 @@
 			</div>
 		</mat-grid-tile>
 	</mat-grid-list>
+
+	<ng-template #searchSpinner>
+		<div class="spinner">
+			<ngx-pulse-loader class="item"
+			                  color="white">
+			</ngx-pulse-loader>
+		</div>
+	</ng-template>
 </section>
 
 <ng-template #spinner>

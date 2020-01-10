@@ -13,9 +13,14 @@ export class HeroesRestService {
 
 	constructor(private http: HttpClient) {}
 
-	getHeroes(): Observable<any> {
+	getHeroes(limit: string): Observable<any> {
+		let params = new HttpParams();
+
+		params = params.append('apikey', this.publicKey);
+		params = params.append('limit', limit);
+
 		return this.http.get( this.urlAPI, {
-			params: new HttpParams().set('apikey', this.publicKey),
+			params
 		}).pipe(
 			map((response: any) => response.data.results)
 		);
