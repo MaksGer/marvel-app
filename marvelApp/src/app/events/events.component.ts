@@ -97,9 +97,9 @@ export class EventsComponent implements OnInit,DoCheck {
 					if (term) {
 						return this.rest.getEventsFromUserSearch(term);
 
-					} else {
-						return obsNoCharacters;
 					}
+
+					return obsNoCharacters;
 				}),
 				delay(1000),
 			)

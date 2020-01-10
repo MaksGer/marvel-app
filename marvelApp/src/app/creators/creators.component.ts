@@ -116,9 +116,9 @@ export class CreatorsComponent implements OnInit, DoCheck {
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getCreatorsFromUserSearch(term);
-					} else {
-						return obsNoCharacters;
 					}
+
+					return obsNoCharacters;
 				}),
 				delay(1000),
 			).subscribe(response => {

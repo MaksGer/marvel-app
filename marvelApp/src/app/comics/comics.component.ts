@@ -125,9 +125,9 @@ export class ComicsComponent implements OnInit, DoCheck {
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getComicsFromUserSearch(term);
-					} else {
-						return obsNoCharacters;
 					}
+
+					return obsNoCharacters;
 				}),
 				delay(1000),
 			).subscribe(response => {

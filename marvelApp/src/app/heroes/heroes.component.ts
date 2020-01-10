@@ -97,10 +97,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 					if (term) {
 						return this.heroes.getHeroesFromUserSearch(term);
 
-					} else {
-						return obsNoCharacters;
-
 					}
+
+					return obsNoCharacters;
 				}),
 				delay(1000),
 			)

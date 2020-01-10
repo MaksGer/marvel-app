@@ -96,9 +96,9 @@ export class SeriesComponent implements OnInit, DoCheck {
 				switchMap((term: string) => {
 					if (term) {
 						return this.rest.getSeriesFromUserSearch(term);
-					} else {
-						return obsNoCharacters;
 					}
+
+					return obsNoCharacters;
 				}),
 				delay(1000),
 			)
