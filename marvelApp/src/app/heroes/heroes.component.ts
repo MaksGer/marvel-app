@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {HeroesRestService} from "../services/heroes-rest.service";
 import {MatSnackBar} from "@angular/material";
-import {HeroDialogComponent} from "../dialogs-templates/hero.dialog/hero.dialog.component";
+import {HeroDialogComponent} from "../dialogs-templates/hero-dialog/hero-dialog.component";
 import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {of, Subject, throwError} from "rxjs";
@@ -102,10 +102,19 @@ export class HeroesComponent implements OnInit, DoCheck {
 					}
 				}),
 				delay(1000),
-			).subscribe(response => {
-			this.heroesList = response;
-			this.isSearchActive = false;
-		});
+			)
+			.subscribe(response => {
+				if (!response[0]) {
+					this._snackBar.open('There are no matches', 'Close', {
+						duration: 2000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+				}
+
+				this.heroesList = response;
+				this.isSearchActive = false;
+			});
 	}
 
 	getStartHero(limit: string) {
@@ -131,7 +140,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	openDialog(selectedHero: object) {
 		this.dialog.open(HeroDialogComponent, {
-			width: '90vh',
+			width: '70vw',
 			data: selectedHero,
 		});
 	}

@@ -1,1 +1,68 @@
-<p>stories works!</p>
+<section *ngIf="!isLoading; else spinner">
+<!--	<input matInput-->
+<!--	       placeholder="Search your series"-->
+<!--	       class="user-search"-->
+<!--	       #searchBox-->
+<!--	       (keyup)="search(searchBox.value)">-->
+
+	<div class="simple-pagination full-width">
+		<mat-form-field>
+			<mat-label>Item per page</mat-label>
+			<mat-select [(value)]="selected"
+			            (selectionChange)="itemsPerPage()">
+				<mat-option value="20">20</mat-option>
+				<mat-option value="40">40</mat-option>
+				<mat-option value="60">60</mat-option>
+				<mat-option value="80">80</mat-option>
+				<mat-option value="100">100</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
+
+		<mat-grid-tile class="item-container"
+		               *ngFor="let story of currentItemsToShow; let i = index">
+				<mat-card class="stories-item hover-scale position-relative">
+
+					<div class="story-title marvel-font full-width"
+					     (click)="changeText($event, story)">
+						Story {{i + 1}}
+					</div>
+
+<!--					<mat-card-content class="stories-description"-->
+<!--					                  [ngClass]="{displayNone: !isDescrActivated}">-->
+<!--&lt;!&ndash;					<p>&ndash;&gt;-->
+<!--						{{story.title}}-->
+<!--&lt;!&ndash;					</p>&ndash;&gt;-->
+<!--					</mat-card-content>-->
+
+					<div class="series-image full-width"
+					     [style.background-image]="'url(../../assets/images/stories-bg.jpg)'">
+					</div>
+
+					<mat-card-actions>
+						<mat-icon class="story-descr-close"
+						          (click)="changeText($event)">
+							close
+						</mat-icon>
+					</mat-card-actions>
+				</mat-card>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>
+
+
+<!--<div class="story-item" *ngFor="let story of storiesList">-->
+<!--	{{story.title}}-->
+
+<!--</div>-->

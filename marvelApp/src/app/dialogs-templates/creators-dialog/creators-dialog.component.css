@@ -1,0 +1,43 @@
+.creator-modal {
+	display: flex;
+	/*justify-content: center;*/
+}
+
+.creator-item-title {
+	text-align: center;
+	padding-top: 35px;
+	padding-left: 24px;
+}
+
+.creator-item-image {
+	min-height: 49vh;
+	width: 45%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.creator-info{
+	flex: 1 100px;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: flex-start;*/
+}
+
+.creator-item-links {
+	display: flex;
+	justify-content: space-around;
+	padding: 15px 0;
+}
+
+.creator-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+	padding-left: 24px;
+}
+
+.creator-dialog-close {
+	position: absolute;
+	top: 0;
+	right: -1%;
+}

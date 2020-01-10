@@ -19,10 +19,13 @@ import {LoginPageComponent} from './layouts/login-page/login-page.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
 import {NgxSpinnersModule} from "ngx-spinners";
 import {HttpClientModule} from "@angular/common/http";
-import {HeroDialogComponent} from './dialogs-templates/hero.dialog/hero.dialog.component';
+import {HeroDialogComponent} from './dialogs-templates/hero-dialog/hero-dialog.component';
+import {ComicsDialogComponent} from './dialogs-templates/comics-dialog/comics-dialog.component';
 import {NguCarouselModule} from "@ngu/carousel";
+import {CreatorsDialogComponent} from './dialogs-templates/creators-dialog/creators-dialog.component';
+import {EventsDialogComponent} from './dialogs-templates/events-dialog/events-dialog.component';
+import {SeriesDialogComponent} from './dialogs-templates/series-dialog/series-dialog.component';
 
-// @ts-ignore
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -38,6 +41,10 @@ import {NguCarouselModule} from "@ngu/carousel";
 		LoginPageComponent,
 		MainPageLayoutComponent,
 		HeroDialogComponent,
+		ComicsDialogComponent,
+		CreatorsDialogComponent,
+		EventsDialogComponent,
+		SeriesDialogComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -53,7 +60,11 @@ import {NguCarouselModule} from "@ngu/carousel";
 		NguCarouselModule,
 	],
 	entryComponents: [
-		HeroDialogComponent
+		HeroDialogComponent,
+		ComicsDialogComponent,
+		CreatorsDialogComponent,
+		EventsDialogComponent,
+		SeriesDialogComponent,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

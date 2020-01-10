@@ -1,0 +1,33 @@
+<mat-dialog-content>
+	<div class="event-modal">
+		<div class="event-item-image"
+		     [style.background-image]="'url(' + event.thumbnail.path + '.' + event.thumbnail.extension +')'">
+		</div>
+
+		<div class="event-info position-relative">
+			<h3 mat-dialog-title
+			    class="event-item-title marvel-font">
+				{{event.title}}
+			</h3>
+
+			<mat-dialog-actions>
+				<mat-icon class="event-dialog-close"
+				          (click)="close()">
+					close
+				</mat-icon>
+			</mat-dialog-actions>
+
+			<div class="event-description">
+				{{event.description}}
+			</div>
+
+			<div class="event-item-links full-width">
+				<a *ngFor="let link of event.urls"
+				   href="{{link.url}}"
+				   target="_blank">
+					{{link.type}}
+				</a>
+			</div>
+		</div>
+	</div>
+</mat-dialog-content>

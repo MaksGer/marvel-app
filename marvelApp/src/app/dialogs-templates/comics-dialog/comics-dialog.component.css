@@ -1,0 +1,44 @@
+.comics-modal {
+	display: flex;
+}
+
+.comics-item-image {
+	min-height: 63vh;
+	min-width: 45%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.comics-info {
+	flex: 1 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.comics-description {
+	padding-left: 24px;
+}
+
+.comics-item-title {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.comics-item-links {
+	display: flex;
+	justify-content: space-around;
+	padding: 15px 0;
+}
+
+.comics-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+	margin-left: 15px;
+}
+
+.comics-dialog-close {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+}

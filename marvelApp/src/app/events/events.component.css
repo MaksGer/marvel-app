@@ -1,4 +1,4 @@
-.hero-item {
+.events-item {
 	display: flex;
 	flex-direction: column;
 	width: 350px;
@@ -12,7 +12,7 @@
 	border: 2px solid white;
 }
 
-.hero-image {
+.events-image {
 	min-height: 300px;
 	height: 80%;
 	background-repeat: no-repeat;

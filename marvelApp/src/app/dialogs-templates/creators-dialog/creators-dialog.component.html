@@ -1,0 +1,28 @@
+<mat-dialog-content>
+	<div class="creator-modal">
+		<div class="creator-item-image"
+		     [style.background-image]="'url(' + creator.thumbnail.path + '.' + creator.thumbnail.extension +')'">
+		</div>
+
+		<div class="creator-info position-relative">
+			<h3 mat-dialog-title
+			    class="creator-item-title marvel-font">
+				{{creator.fullName}}
+			</h3>
+			<mat-dialog-actions>
+				<mat-icon class="creator-dialog-close"
+				          (click)="close()">
+					close
+				</mat-icon>
+			</mat-dialog-actions>
+
+			<div class="creator-item-links full-width">
+				<a *ngFor="let link of creator.urls"
+				   href="{{link.url}}"
+				   target="_blank">
+					{{link.type}}
+				</a>
+			</div>
+		</div>
+	</div>
+</mat-dialog-content>

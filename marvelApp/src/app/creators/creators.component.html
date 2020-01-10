@@ -1,1 +1,49 @@
-<p>creators works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<input matInput
+	       placeholder="Search your creator"
+	       class="user-search"
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
+
+	<div class="simple-pagination full-width">
+		<mat-form-field>
+			<mat-label>Item per page</mat-label>
+			<mat-select [(value)]="selected"
+			            (selectionChange)="itemsPerPage()">
+				<mat-option value="20">20</mat-option>
+				<mat-option value="40">40</mat-option>
+				<mat-option value="60">60</mat-option>
+				<mat-option value="80">80</mat-option>
+				<mat-option value="100">100</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
+
+		<mat-grid-tile class="item-container"
+		               *ngFor="let creator of currentItemsToShow">
+			<div>
+				<mat-card class="creators-item hover-scale"
+				          (click)="openDialog(creator)">
+					<div class="title marvel-font full-width">
+						{{creator.fullName}}
+					</div>
+
+					<div class="creators-image full-width"
+					     [style.background-image]="'url(' + creator.thumbnail.path + '.' + creator.thumbnail.extension +')'">
+					</div>
+				</mat-card>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

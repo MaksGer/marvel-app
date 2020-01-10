@@ -4,18 +4,22 @@
 		     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
 		</div>
 
-
-		<div class="hero-info"><div class="position-relative">
+		<div class="hero-info position-relative">
 			<h3 mat-dialog-title
 			    class="hero-item-title marvel-font">
 				{{hero.name}}
 			</h3>
+
 			<mat-dialog-actions>
 				<mat-icon class="hero-dialog-close"
 				          (click)="close()">
 					close
 				</mat-icon>
-			</mat-dialog-actions></div>
+			</mat-dialog-actions>
+
+			<div class="hero-description">
+				{{hero.description}}
+			</div>
 
 			<div class="hero-item-links full-width">
 				<a *ngFor="let link of hero.urls"
@@ -26,8 +30,7 @@
 			</div>
 		</div>
 	</div>
-	</mat-dialog-content>
-
+</mat-dialog-content>
 
 <div *ngIf="!isLoading; else spinner">
 	<div class="comics-carousel">
@@ -38,8 +41,8 @@
 				</div>
 				<p class="comics-title">{{item.title}}</p>
 			</div>
-				<button NguCarouselNext class="rightRs">></button>
-				<button NguCarouselPrev class="leftRs"><</button>
+			<mat-icon NguCarouselPrev class="leftRs">navigate_before</mat-icon>
+			<mat-icon NguCarouselNext class="rightRs">navigate_next</mat-icon>
 				<ul class="myPoint" NguCarouselPoint>
 					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j == myCarousel.activePoint"
 					    (click)="myCarousel.moveTo(j)"></li>
@@ -47,7 +50,6 @@
 		</ngu-carousel>
 	</div>
 </div>
-
 
 <ng-template #spinner>
 	<div class="spinner">

@@ -24,7 +24,7 @@
 	               rowHeight="500px">
 		<mat-grid-tile *ngFor="let hero of heroesList">
 			<div>
-				<mat-card class="hero-item"
+				<mat-card class="hero-item hover-scale"
 				          (click)="openDialog(hero)">
 					<div class="title marvel-font full-width">
 						{{hero.name}}
@@ -54,6 +54,3 @@
 		</ngx-pulse-loader>
 	</div>
 </ng-template>
-
-
-

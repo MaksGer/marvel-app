@@ -1,1 +1,50 @@
-<p>series works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<input matInput
+	       placeholder="Search your series"
+	       class="user-search"
+	       #searchBox
+	       (keyup)="search(searchBox.value)">
+
+	<div class="simple-pagination full-width">
+		<mat-form-field>
+			<mat-label>Item per page</mat-label>
+			<mat-select [(value)]="selected"
+			            (selectionChange)="itemsPerPage()">
+				<mat-option value="20">20</mat-option>
+				<mat-option value="40">40</mat-option>
+				<mat-option value="60">60</mat-option>
+				<mat-option value="80">80</mat-option>
+				<mat-option value="100">100</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
+
+		<mat-grid-tile class="item-container"
+		               *ngFor="let series of currentItemsToShow">
+			<div>
+				<mat-card class="series-item hover-scale"
+				          (click)="openDialog(series)">
+					<div class="title marvel-font full-width">
+						{{series.title}}
+					</div>
+
+					<div class="series-image full-width"
+					     [style.background-image]="'url(' + series.thumbnail.path + '.' + series.thumbnail.extension +')'">
+					</div>
+				</mat-card>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>
+
