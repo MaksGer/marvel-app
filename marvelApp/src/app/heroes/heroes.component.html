@@ -6,16 +6,16 @@
 	       (keyup)="search(searchBox.value)">
 
 	<mat-paginator class="tab-pagination full-width"
-	               (page)="onPageChanges($event)"
-	               [length]="length"
 	               [pageSize]="20"
-	               [pageSizeOptions]="pageSizeOptions">
+	               [pageSizeOptions]="pageSizeOptions"
+	               (page)="onPageChanges($event)">
+
 	</mat-paginator>
 
-	<mat-grid-list [cols]="breakpoint"
+	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
+		[cols]="breakpoint"
 	               rowHeight="500px">
-
-		<mat-grid-tile *ngFor="let hero of currentItemsToShow">
+		<mat-grid-tile *ngFor="let hero of heroesList">
 			<div>
 				<mat-card class="hero-item">
 					<div class="title marvel-font full-width">
@@ -29,6 +29,14 @@
 			</div>
 		</mat-grid-tile>
 	</mat-grid-list>
+
+	<ng-template #searchSpinner>
+		<div class="spinner">
+			<ngx-pulse-loader class="item"
+			                  color="white">
+			</ngx-pulse-loader>
+		</div>
+	</ng-template>
 </section>
 
 <ng-template #spinner>

@@ -29,15 +29,13 @@ export interface Hero {
 export class HeroesComponent implements OnInit, DoCheck {
 	heroesList: Hero[];
 	isLoading: boolean;
+	isSearchActive: boolean;
 	breakpoint: number;
-	currentItemsToShow: Hero[];
 
 	private searchTerms = new Subject<string>();
 
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	length = 20;
-	pageSizeOptions = [8, 20, 40, 50];
-
+	pageSizeOptions = [20, 40, 60, 80, 100];
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
@@ -45,7 +43,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartHero();
+		this.getStartHero(20);
 		this.getHero();
 
 	}
@@ -81,8 +79,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	onPageChanges($event) {
-		this.currentItemsToShow = this.heroesList.slice
-		($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+		this.isSearchActive = true;
+		this.getStartHero($event.pageSize);
 	}
 
 	getHero() {
@@ -91,7 +89,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(_ => this.isLoading = true),
+				tap(_ => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
 					if (term) {
@@ -105,14 +103,12 @@ export class HeroesComponent implements OnInit, DoCheck {
 				delay(1000),
 			).subscribe(response => {
 			this.heroesList = response;
-			this.currentItemsToShow = this.heroesList.slice(0, 20);
-			this.length = response.length;
-			this.isLoading = false;
+			this.isSearchActive = false;
 		});
 	}
 
-	getStartHero() {
-		this.heroes.getHeroes()
+	getStartHero(limit: number) {
+		this.heroes.getHeroes(limit)
 			.pipe(
 				delay(1000),
 				catchError(error => {
@@ -127,8 +123,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 			)
 			.subscribe(data => {
 				this.heroesList = data;
-				this.currentItemsToShow = this.heroesList.slice(0, 20);
 				this.isLoading = false;
+				this.isSearchActive = false;
 			})
 	}
 }
