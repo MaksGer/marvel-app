@@ -85,10 +85,8 @@ body {
 	text-transform: uppercase;
 }
 
-.tab-pagination {
-	margin: 20px 0;
-}
-.mat-paginator-range-label,
-.mat-paginator-range-actions {
-	display: none !important;
+.simple-pagination {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 2%;
 }

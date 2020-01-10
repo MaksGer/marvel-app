@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {HeroesService} from "../services/heroes.service";
-import {MatPaginator, MatSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
 import {of, Subject, throwError} from "rxjs";
 import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
@@ -31,11 +31,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	breakpoint: number;
+	selected = 20;
 
 	private searchTerms = new Subject<string>();
-
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	pageSizeOptions = [20, 40, 60, 80, 100];
 
 	constructor(private heroes: HeroesService,
 				private _snackBar: MatSnackBar,
@@ -43,7 +41,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartHero(20);
+		this.getStartHero(this.selected);
 		this.getHero();
 
 	}
@@ -78,9 +76,9 @@ export class HeroesComponent implements OnInit, DoCheck {
 		this.searchTerms.next(userString);
 	}
 
-	onPageChanges($event) {
+	itemsPerPage() {
 		this.isSearchActive = true;
-		this.getStartHero($event.pageSize);
+		this.getStartHero(this.selected);
 	}
 
 	getHero() {
