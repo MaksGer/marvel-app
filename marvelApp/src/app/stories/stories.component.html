@@ -5,35 +5,45 @@
 <!--	       #searchBox-->
 <!--	       (keyup)="search(searchBox.value)">-->
 
-<!--	<mat-paginator class="tab-pagination full-width"-->
-<!--	               (page)="onPageChanges($event)"-->
-<!--	               [length]="length"-->
-<!--	               [pageSize]="20"-->
-<!--	               [pageSizeOptions]="pageSizeOptions">-->
-<!--	</mat-paginator>-->
-<div class="story-item" *ngFor="let story of storiesList">
-	{{story.title}}
+	<mat-paginator class="tab-pagination full-width"
+	               (page)="onPageChanges($event)"
+	               [length]="length"
+	               [pageSize]="20"
+	               [pageSizeOptions]="pageSizeOptions">
+	</mat-paginator>
 
-</div>
-<!--	<mat-grid-list [cols]="breakpoint"-->
-<!--	               rowHeight="450px">-->
+	<mat-grid-list [cols]="breakpoint"
+	               rowHeight="450px">
 
-<!--		<mat-grid-tile class="item-container"-->
-<!--		               *ngFor="let series of currentItemsToShow">-->
-<!--			<div>-->
-<!--				<mat-card class="series-item hover-scale">-->
-<!--					&lt;!&ndash;				          (click)="openDialog(series)">&ndash;&gt;-->
-<!--					<div class="title marvel-font full-width">-->
-<!--						{{series.title}}-->
-<!--					</div>-->
+		<mat-grid-tile class="item-container"
+		               *ngFor="let story of currentItemsToShow; let i = index">
+				<mat-card class="stories-item hover-scale position-relative">
 
-<!--					<div class="series-image full-width"-->
-<!--					     [style.background-image]="'url(' + series.thumbnail.path + '.' + series.thumbnail.extension +')'">-->
-<!--					</div>-->
-<!--				</mat-card>-->
-<!--			</div>-->
-<!--		</mat-grid-tile>-->
-<!--	</mat-grid-list>-->
+					<div class="story-title marvel-font full-width"
+					     (click)="changeText($event, story)">
+						Story {{i + 1}}
+					</div>
+
+<!--					<mat-card-content class="stories-description"-->
+<!--					                  [ngClass]="{displayNone: !isDescrActivated}">-->
+<!--&lt;!&ndash;					<p>&ndash;&gt;-->
+<!--						{{story.title}}-->
+<!--&lt;!&ndash;					</p>&ndash;&gt;-->
+<!--					</mat-card-content>-->
+
+					<div class="series-image full-width"
+					     [style.background-image]="'url(../../assets/images/stories-bg.jpg)'">
+					</div>
+
+					<mat-card-actions>
+						<mat-icon class="story-descr-close"
+						          (click)="changeText($event)">
+							close
+						</mat-icon>
+					</mat-card-actions>
+				</mat-card>
+		</mat-grid-tile>
+	</mat-grid-list>
 </section>
 
 <ng-template #spinner>
@@ -45,3 +55,7 @@
 </ng-template>
 
 
+<!--<div class="story-item" *ngFor="let story of storiesList">-->
+<!--	{{story.title}}-->
+
+<!--</div>-->

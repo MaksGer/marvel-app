@@ -127,7 +127,6 @@ export class CreatorsComponent implements OnInit, DoCheck {
 				delay(1000),
 			).subscribe(response => {
 			if (!response[0]) {
-				console.log('block if');
 				this._snackBar.open('There are no matches', 'Close', {
 					duration: 2000,
 					horizontalPosition: 'center',
@@ -143,9 +142,8 @@ export class CreatorsComponent implements OnInit, DoCheck {
 	}
 
 	openDialog(selectedItem: object) {
-		console.log(selectedItem);
 		this.dialog.open(CreatorsDialogComponent, {
-			width: '50vw',
+			width: '40vw',
 			data: selectedItem,
 		});
 	}

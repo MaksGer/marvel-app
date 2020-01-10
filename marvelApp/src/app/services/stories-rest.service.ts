@@ -20,4 +20,18 @@ export class StoriesRestService {
 			map((response: any) => response.data.results)
 		);
 	}
+	//
+	// getStoriesFromUserSearch(name: string): Observable<any> {
+	// 	let params = new HttpParams();
+	//
+	// 	params = params.append('titleStartsWith', name);
+	// 	params = params.append('apikey', this.publicKey);
+	//
+	// 	return this.http.get(this.urlAPI, {
+	// 		params
+	// 	}).pipe(
+	// 		map((response: any) => response.data.results)
+	// 	);
+	// }
+
 }

@@ -1,36 +1,32 @@
-<div class="comics-item">
-	<div class="comics-title-container position-relative">
-		<h2 mat-dialog-title
-		    class="comics-item-title marvel-font position-relative">
-			{{comics.title}}
-		</h2>
+<mat-dialog-content>
+	<div class="comics-modal">
+		<div class="comics-item-image"
+		     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
+		</div>
 
-		<mat-dialog-actions>
-			<mat-icon class="comics-dialog-close"
-			          (click)="close()">
-				close
-			</mat-icon>
-		</mat-dialog-actions>
-	</div>
-
-	<mat-dialog-content>
-		<div class="comics-content">
-			<div class="comics-item-image"
-			     [style.background-image]="'url(' + comics.thumbnail.path + '.' + comics.thumbnail.extension +')'">
-			</div>
+		<div class="comics-info position-relative">
+			<h3 mat-dialog-title
+			    class="comics-item-title marvel-font">
+				{{comics.title}}
+			</h3>
+			<mat-dialog-actions>
+				<mat-icon class="comics-dialog-close"
+				          (click)="close()">
+					close
+				</mat-icon>
+			</mat-dialog-actions>
 
 			<div class="comics-description">
 				<p>{{comics.description}}}</p>
 			</div>
-		</div>
 
-		<div class="comics-item-links full-width">
-			<a *ngFor="let link of comics.urls"
-			   href="{{link.url}}"
-			   target="_blank">
-				{{link.type}}
-			</a>
+			<div class="comics-item-links full-width">
+				<a *ngFor="let link of comics.urls"
+				   href="{{link.url}}"
+				   target="_blank">
+					{{link.type}}
+				</a>
+			</div>
 		</div>
-	</mat-dialog-content>
-
-</div>
+	</div>
+</mat-dialog-content>

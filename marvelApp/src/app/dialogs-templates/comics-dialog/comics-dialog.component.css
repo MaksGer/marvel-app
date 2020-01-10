@@ -1,47 +1,44 @@
 .comics-modal {
-	position: relative;
+	display: flex;
 }
 
-.comics-content {
+.comics-item-image {
+	min-height: 63vh;
+	min-width: 45%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.comics-info {
+	flex: 1 100px;
 	display: flex;
+	flex-direction: column;
+}
+
+.comics-description {
+	padding-left: 24px;
 }
 
 .comics-item-title {
 	text-align: center;
-}
-
-.comics-item-image {
-	min-height: 55vh;
-	background-repeat: no-repeat;
-	background-size: cover;
-	flex: 1;
-}
-
-.comics-description {
-	flex: 1;
-	padding: 0 15px;
+	margin-top: 40px;
 }
 
 .comics-item-links {
 	display: flex;
 	justify-content: space-around;
 	padding: 15px 0;
-	/*position: absolute;*/
-	/*bottom: 0;*/
 }
 
 .comics-item-links a {
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
-}
-
-.mat-raised-button {
-	margin: 0 auto;
+	margin-left: 15px;
 }
 
 .comics-dialog-close {
 	position: absolute;
-	top: -15%;
-	right: -1%;
+	top: 2%;
+	right: 2%;
 }

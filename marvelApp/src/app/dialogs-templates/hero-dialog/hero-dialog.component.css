@@ -9,8 +9,8 @@
 }
 
 .hero-item-image {
-	height: 30vh;
-	width: 28%;
+	height: 56vh;
+	width: 42%;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -19,6 +19,11 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.hero-description {
+	padding-left: 24px;
+}
+
 .hero-item-links {
 	display: flex;
 	justify-content: center;

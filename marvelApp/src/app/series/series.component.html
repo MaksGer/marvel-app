@@ -18,8 +18,8 @@
 		<mat-grid-tile class="item-container"
 		               *ngFor="let series of currentItemsToShow">
 			<div>
-				<mat-card class="series-item hover-scale">
-					<!--				          (click)="openDialog(series)">-->
+				<mat-card class="series-item hover-scale"
+				          (click)="openDialog(series)">
 					<div class="title marvel-font full-width">
 						{{series.title}}
 					</div>

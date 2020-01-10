@@ -46,8 +46,7 @@ export class ComicsComponent implements OnInit, DoCheck {
 		private rest: ComicsRestService,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
-	) {
-	}
+	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
@@ -88,7 +87,6 @@ export class ComicsComponent implements OnInit, DoCheck {
 	}
 
 	openDialog(comics: Comics) {
-		console.log(comics);
 		this.dialog.open(ComicsDialogComponent, {
 			width: '50vw',
 			data: comics,

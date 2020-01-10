@@ -1,0 +1,43 @@
+.event-modal {
+	display: flex;
+}
+
+.event-item-title {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.event-item-image {
+	height: 42vh;
+	min-width: 45%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.event-info {
+	flex: 1 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.event-description {
+	padding-left: 24px;
+}
+
+.event-item-links {
+	display: flex;
+	justify-content: center;
+	padding: 15px 0;
+}
+
+.event-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+	margin-left: 15px;
+}
+
+.event-dialog-close {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+}
