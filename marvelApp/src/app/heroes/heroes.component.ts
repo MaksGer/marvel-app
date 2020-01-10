@@ -31,7 +31,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	breakpoint: number;
-	selected = 20;
+	selected = "20";
 
 	private searchTerms = new Subject<string>();
 
@@ -105,7 +105,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 		});
 	}
 
-	getStartHero(limit: number) {
+	getStartHero(limit: string) {
 		this.heroes.getHeroes(limit)
 			.pipe(
 				delay(1000),

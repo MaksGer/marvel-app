@@ -13,11 +13,11 @@ export class HeroesService {
 
 	constructor(private http: HttpClient) {}
 
-	getHeroes(limit: number): Observable<any> {
+	getHeroes(limit: string): Observable<any> {
 		let params = new HttpParams();
 
 		params = params.append('apikey', this.publicKey);
-		params = params.append('limit', limit.toString());
+		params = params.append('limit', limit);
 
 		return this.http.get( this.urlAPI, {
 			params
