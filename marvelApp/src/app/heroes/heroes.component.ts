@@ -31,7 +31,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	breakpoint: number;
-	selected = "20";
+	selectOptions = [20, 40, 60, 80, 100];
+	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
 
@@ -92,10 +93,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 				switchMap((term: string) => {
 					if (term) {
 						return this.heroes.getHeroesFromUserSearch(term);
-
 					} else {
 						return obsNoCharacters;
-
 					}
 				}),
 				delay(1000),
@@ -105,7 +104,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 		});
 	}
 
-	getStartHero(limit: string) {
+	getStartHero(limit) {
 		this.heroes.getHeroes(limit)
 			.pipe(
 				delay(1000),
