@@ -5,46 +5,13 @@
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
-	<div class="simple-pagination full-width">
-		<mat-form-field>
-			<mat-label>Item per page</mat-label>
-			<mat-select [(value)]="selected"
-			            (selectionChange)="itemsPerPage()">
-				<mat-option *ngFor="let item of selectOptions"
-				            [value]=item>
-					{{item}}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
+	<app-pagination (changeLimit)="getLimit($event)">
+	</app-pagination>
 
-	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
-	               [cols]="breakpoint"
-	               rowHeight="450px">
-
-		<mat-grid-tile class="item-container"
-		               *ngFor="let event of eventsList">
-			<div>
-				<mat-card class="events-item hover-scale"
-				          (click)="openDialog(event)">
-					<div class="title marvel-font full-width">
-						{{event.title}}
-					</div>
-
-					<div class="events-image full-width"
-					     [style.background-image]="'url(' + event.thumbnail.path + '.' + event.thumbnail.extension +')'">
-					</div>
-				</mat-card>
-			</div>
-		</mat-grid-tile>
-	</mat-grid-list>
-	<ng-template #searchSpinner>
-		<div class="spinner">
-			<ngx-pulse-loader class="item"
-			                  color="white">
-			</ngx-pulse-loader>
-		</div>
-	</ng-template>
+	<app-grid-for-tabs [itemsList]="eventsList"
+	                   [isSearchActive]="isSearchActive">
+		<!--                   (itemChanges)="getLimit($event)">-->
+	</app-grid-for-tabs>
 </section>
 
 <ng-template #spinner>
@@ -54,3 +21,65 @@
 		</ngx-pulse-loader>
 	</div>
 </ng-template>
+
+
+<!--<section *ngIf="!isLoading; else spinner">-->
+<!--	<input matInput-->
+<!--	       placeholder="Search your event"-->
+<!--	       class="user-search"-->
+<!--	       #searchBox-->
+<!--	       (keyup)="search(searchBox.value)">-->
+
+<!--	<div class="simple-pagination full-width">-->
+<!--		<mat-form-field>-->
+<!--			<mat-label>Item per page</mat-label>-->
+<!--			<mat-select [(value)]="selected"-->
+<!--			            (selectionChange)="itemsPerPage()">-->
+<!--				<mat-option *ngFor="let item of selectOptions"-->
+<!--				            [value]=item>-->
+<!--					{{item}}-->
+<!--				</mat-option>-->
+<!--			</mat-select>-->
+<!--		</mat-form-field>-->
+<!--	</div>-->
+
+<!--	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"-->
+<!--	               [cols]="breakpoint"-->
+<!--	               rowHeight="450px">-->
+
+<!--		<mat-grid-tile *ngFor="let event of eventsList">-->
+
+<!--		<app-item-card class="item-container"-->
+<!--		[item] = event>-->
+<!--		</app-item-card>-->
+
+
+<!--&lt;!&ndash;				<mat-card class="events-item hover-scale"&ndash;&gt;-->
+<!--&lt;!&ndash;				          (click)="openDialog(event)">&ndash;&gt;-->
+<!--&lt;!&ndash;					<div class="title marvel-font full-width">&ndash;&gt;-->
+<!--&lt;!&ndash;						{{event.title}}&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<div class="events-image full-width"&ndash;&gt;-->
+<!--&lt;!&ndash;					     [style.background-image]="'url(' + event.thumbnail.path + '.' + event.thumbnail.extension +')'">&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</mat-card>&ndash;&gt;-->
+
+<!--		</mat-grid-tile>-->
+<!--	</mat-grid-list>-->
+<!--	<ng-template #searchSpinner>-->
+<!--		<div class="spinner">-->
+<!--			<ngx-pulse-loader class="item"-->
+<!--			                  color="white">-->
+<!--			</ngx-pulse-loader>-->
+<!--		</div>-->
+<!--	</ng-template>-->
+<!--</section>-->
+
+<!--<ng-template #spinner>-->
+<!--	<div class="spinner">-->
+<!--		<ngx-pulse-loader class="item"-->
+<!--		                  color="white">-->
+<!--		</ngx-pulse-loader>-->
+<!--	</div>-->
+<!--</ng-template>-->

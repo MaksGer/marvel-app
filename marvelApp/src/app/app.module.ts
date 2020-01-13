@@ -26,6 +26,9 @@ import {CreatorsDialogComponent} from './dialogs-templates/creators-dialog/creat
 import {EventsDialogComponent} from './dialogs-templates/events-dialog/events-dialog.component';
 import {SeriesDialogComponent} from './dialogs-templates/series-dialog/series-dialog.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { GridForTabsComponent } from './grid-for-tabs/grid-for-tabs.component';
+import { ItemCardComponent } from './item-card/item-card.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
 	declarations: [
@@ -47,6 +50,9 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 		EventsDialogComponent,
 		SeriesDialogComponent,
 		TruncatePipe,
+		GridForTabsComponent,
+		ItemCardComponent,
+		PaginationComponent,
 	],
 	imports: [
 		BrowserModule,
