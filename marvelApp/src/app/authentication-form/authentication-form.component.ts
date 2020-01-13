@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from "../services/auth.service";
-import {Event, NavigationEnd, NavigationStart, Router} from "@angular/router";
-import {RandomBackgroundService} from "../services/random-background.service";
+import {AuthService} from '../services/auth.service';
+import {Event, NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {RandomBackgroundService} from '../services/random-background.service';
 
 @Component({
 	selector: 'app-authentication-form',

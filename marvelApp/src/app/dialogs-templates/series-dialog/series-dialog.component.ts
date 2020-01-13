@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Series} from "../../series/series.component";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Series} from '../../series/series.component';
 
 @Component({
   selector: 'app-series-dialog',

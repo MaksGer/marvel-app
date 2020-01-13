@@ -11,7 +11,7 @@ import {
 	MatCardModule,
 	MatSelectModule,
 	MatDialogModule,
-} from "@angular/material";
+} from '@angular/material';
 
 
 const MaterialComponents = [

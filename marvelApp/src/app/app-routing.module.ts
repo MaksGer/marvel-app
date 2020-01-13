@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AuthenticationFormComponent} from "./authentication-form/authentication-form.component";
-import {AuthGuard} from "./auth.guard";
-import {HeroesComponent} from "./heroes/heroes.component";
-import {ComicsComponent} from "./comics/comics.component";
-import {CreatorsComponent} from "./creators/creators.component";
-import {EventsComponent} from "./events/events.component";
-import {SeriesComponent} from "./series/series.component";
-import {StoriesComponent} from "./stories/stories.component";
-import {FavoritesComponent} from "./favorites/favorites.component";
-import {MainPageLayoutComponent} from "./layouts/main-page-layout/main-page-layout.component";
-import {LoginPageComponent} from "./layouts/login-page/login-page.component";
+import {AuthenticationFormComponent} from './authentication-form/authentication-form.component';
+import {AuthGuard} from './auth.guard';
+import {HeroesComponent} from './heroes/heroes.component';
+import {ComicsComponent} from './comics/comics.component';
+import {CreatorsComponent} from './creators/creators.component';
+import {EventsComponent} from './events/events.component';
+import {SeriesComponent} from './series/series.component';
+import {StoriesComponent} from './stories/stories.component';
+import {FavoritesComponent} from './favorites/favorites.component';
+import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
+import {LoginPageComponent} from './layouts/login-page/login-page.component';
 
 const routes: Routes = [
 	{

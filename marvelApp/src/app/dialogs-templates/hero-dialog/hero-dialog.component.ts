@@ -6,11 +6,11 @@ import {
 	OnInit,
 	ViewChild
 } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Hero} from "../../heroes/heroes.component";
-import {HeroesRestService} from "../../services/heroes-rest.service";
-import {delay} from "rxjs/operators";
-import {NguCarousel, NguCarouselConfig} from "@ngu/carousel";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Hero} from '../../heroes/heroes.component';
+import {HeroesRestService} from '../../services/heroes-rest.service';
+import {delay} from 'rxjs/operators';
+import {NguCarousel, NguCarouselConfig} from '@ngu/carousel';
 
 export interface Comics {
 	title: string,
@@ -33,7 +33,6 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 	carouselConfig: NguCarouselConfig = {
 		grid: {xs: 3, sm: 3, md: 3, lg: 4, all: 0},
 		interval: {timing: 4000, initialDelay: 1000},
-		// load: 1,
 		loop: false,
 		touch: true,
 		velocity: 0.2
@@ -56,7 +55,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 					this.listOfComics = data;
 					this.isLoading = false;
 				}
-			)
+			);
 	}
 
 	close(): void {

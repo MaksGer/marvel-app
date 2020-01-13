@@ -1,12 +1,12 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material";
+import {MatSnackBar} from '@angular/material';
 import {MatDialog} from '@angular/material/dialog';
-import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
-import {of, Subject, throwError} from "rxjs";
-import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
-import {tap} from "rxjs/internal/operators/tap";
-import {CreatorsRestService} from "../services/creators-rest.service";
-import {CreatorsDialogComponent} from "../dialogs-templates/creators-dialog/creators-dialog.component";
+import {catchError, debounceTime, delay, switchMap} from 'rxjs/operators';
+import {of, Subject, throwError} from 'rxjs';
+import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
+import {tap} from 'rxjs/internal/operators/tap';
+import {CreatorsRestService} from '../services/creators-rest.service';
+import {CreatorsDialogComponent} from '../dialogs-templates/creators-dialog/creators-dialog.component';
 
 export interface Creator {
 	id: number,
@@ -46,7 +46,6 @@ export class CreatorsComponent implements OnInit, DoCheck {
 		this.isLoading = true;
 		this.getStartCreators(this.selected);
 		this.getCreator();
-
 	}
 
 	ngDoCheck(): void {
@@ -102,7 +101,7 @@ export class CreatorsComponent implements OnInit, DoCheck {
 				this.creatorsList = data;
 				this.isSearchActive = false;
 				this.isLoading = false;
-			})
+			});
 	}
 
 	getCreator() {

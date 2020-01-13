@@ -1,8 +1,8 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {catchError, delay} from "rxjs/operators";
-import {throwError} from "rxjs";
-import {StoriesRestService} from "../services/stories-rest.service";
-import {MatSnackBar} from "@angular/material";
+import {catchError, delay} from 'rxjs/operators';
+import {throwError} from 'rxjs';
+import {StoriesRestService} from '../services/stories-rest.service';
+import {MatSnackBar} from '@angular/material';
 
 export interface Story {
 	id: number,

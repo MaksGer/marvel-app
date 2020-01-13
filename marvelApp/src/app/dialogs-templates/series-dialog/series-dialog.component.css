@@ -24,6 +24,7 @@
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
+	margin-right: 15px;
 }
 
 .series-dialog-close {

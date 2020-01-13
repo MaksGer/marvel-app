@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Event} from "../../events/events.component";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Event} from '../../events/events.component';
 
 @Component({
   selector: 'app-events-dialog',

@@ -1,13 +1,13 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {Subject, throwError} from "rxjs";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {EventsRestService} from "../services/events-rest.service";
-import {of} from "rxjs/internal/observable/of";
-import {catchError, debounceTime, delay} from "rxjs/operators";
-import {tap} from "rxjs/internal/operators/tap";
-import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
-import {switchMap} from "rxjs/internal/operators/switchMap";
-import {EventsDialogComponent} from "../dialogs-templates/events-dialog/events-dialog.component";
+import {Subject, throwError} from 'rxjs';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {EventsRestService} from '../services/events-rest.service';
+import {of} from 'rxjs/internal/observable/of';
+import {catchError, debounceTime, delay} from 'rxjs/operators';
+import {tap} from 'rxjs/internal/operators/tap';
+import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
+import {switchMap} from 'rxjs/internal/operators/switchMap';
+import {EventsDialogComponent} from '../dialogs-templates/events-dialog/events-dialog.component';
 
 export interface Event {
 	id: number,
@@ -29,7 +29,7 @@ export interface Event {
 	styleUrls: ['./events.component.css']
 })
 
-export class EventsComponent implements OnInit,DoCheck {
+export class EventsComponent implements OnInit, DoCheck {
 	eventsList: Event[];
 	isLoading: boolean;
 	isSearchActive: boolean;

@@ -1,12 +1,12 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {HeroesRestService} from "../services/heroes-rest.service";
-import {MatSnackBar} from "@angular/material";
-import {HeroDialogComponent} from "../dialogs-templates/hero-dialog/hero-dialog.component";
+import {HeroesRestService} from '../services/heroes-rest.service';
+import {MatSnackBar} from '@angular/material';
+import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {catchError, debounceTime, delay, switchMap} from "rxjs/operators";
-import {of, Subject, throwError} from "rxjs";
-import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
-import {tap} from "rxjs/internal/operators/tap";
+import {catchError, debounceTime, delay, switchMap} from 'rxjs/operators';
+import {of, Subject, throwError} from 'rxjs';
+import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
+import {tap} from 'rxjs/internal/operators/tap';
 
 export interface Hero {
 	id: number,
@@ -134,7 +134,7 @@ export class HeroesComponent implements OnInit, DoCheck {
 				this.heroesList = data;
 				this.isLoading = false;
 				this.isSearchActive = false;
-			})
+			});
 	}
 
 	openDialog(selectedHero: object) {

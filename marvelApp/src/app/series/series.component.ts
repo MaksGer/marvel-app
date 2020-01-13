@@ -1,13 +1,13 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {SeriesRestService} from "../services/series-rest.service";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {Subject, throwError} from "rxjs";
-import {catchError, debounceTime, delay} from "rxjs/operators";
-import {of} from "rxjs/internal/observable/of";
-import {tap} from "rxjs/internal/operators/tap";
-import {distinctUntilChanged} from "rxjs/internal/operators/distinctUntilChanged";
-import {switchMap} from "rxjs/internal/operators/switchMap";
-import {SeriesDialogComponent} from "../dialogs-templates/series-dialog/series-dialog.component";
+import {SeriesRestService} from '../services/series-rest.service';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {Subject, throwError} from 'rxjs';
+import {catchError, debounceTime, delay} from 'rxjs/operators';
+import {of} from 'rxjs/internal/observable/of';
+import {tap} from 'rxjs/internal/operators/tap';
+import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
+import {switchMap} from 'rxjs/internal/operators/switchMap';
+import {SeriesDialogComponent} from '../dialogs-templates/series-dialog/series-dialog.component';
 
 export interface Series {
 	id: number,

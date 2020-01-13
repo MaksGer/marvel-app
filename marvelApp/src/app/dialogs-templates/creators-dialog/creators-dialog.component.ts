@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Creator} from "../../creators/creators.component";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Creator} from '../../creators/creators.component';
 
 @Component({
   selector: 'app-creators-dialog',

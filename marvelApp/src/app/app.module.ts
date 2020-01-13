@@ -4,9 +4,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthenticationFormComponent} from './authentication-form/authentication-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from "./material/material.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatSnackBarModule, MatTabsModule} from "@angular/material";
+import {MaterialModule} from './material/material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule, MatTabsModule} from '@angular/material';
 import {HeaderComponent} from './header/header.component';
 import {HeroesComponent} from './heroes/heroes.component';
 import {ComicsComponent} from './comics/comics.component';
@@ -17,14 +17,15 @@ import {StoriesComponent} from './stories/stories.component';
 import {FavoritesComponent} from './favorites/favorites.component';
 import {LoginPageComponent} from './layouts/login-page/login-page.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
-import {NgxSpinnersModule} from "ngx-spinners";
-import {HttpClientModule} from "@angular/common/http";
+import {NgxSpinnersModule} from 'ngx-spinners';
+import {HttpClientModule} from '@angular/common/http';
 import {HeroDialogComponent} from './dialogs-templates/hero-dialog/hero-dialog.component';
 import {ComicsDialogComponent} from './dialogs-templates/comics-dialog/comics-dialog.component';
-import {NguCarouselModule} from "@ngu/carousel";
+import {NguCarouselModule} from '@ngu/carousel';
 import {CreatorsDialogComponent} from './dialogs-templates/creators-dialog/creators-dialog.component';
 import {EventsDialogComponent} from './dialogs-templates/events-dialog/events-dialog.component';
 import {SeriesDialogComponent} from './dialogs-templates/series-dialog/series-dialog.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
 	declarations: [
@@ -45,6 +46,7 @@ import {SeriesDialogComponent} from './dialogs-templates/series-dialog/series-di
 		CreatorsDialogComponent,
 		EventsDialogComponent,
 		SeriesDialogComponent,
+		TruncatePipe,
 	],
 	imports: [
 		BrowserModule,

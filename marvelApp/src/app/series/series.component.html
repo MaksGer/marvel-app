@@ -28,7 +28,7 @@
 				<mat-card class="series-item hover-scale"
 				          (click)="openDialog(series)">
 					<div class="title marvel-font full-width">
-						{{series.title}}
+						{{series.title | truncate}}
 					</div>
 
 					<div class="series-image full-width"
