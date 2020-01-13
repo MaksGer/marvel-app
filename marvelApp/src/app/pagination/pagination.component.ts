@@ -9,7 +9,6 @@ export class PaginationComponent implements OnInit {
 	@Output() changeLimit = new EventEmitter;
 	selectOptions = [20, 40, 60, 80, 100];
 	selected = this.selectOptions[0];
-	isSearchActive: boolean;
 
 	constructor() {
 	}
@@ -18,7 +17,6 @@ export class PaginationComponent implements OnInit {
 	}
 
 	itemsPerPage() {
-		this.isSearchActive = true;
 		this.changeLimit.emit(this.selected);
 	}
 }

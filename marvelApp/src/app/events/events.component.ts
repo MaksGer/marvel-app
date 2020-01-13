@@ -155,6 +155,7 @@ export class EventsComponent implements OnInit {
 	// }
 
 	getLimit (limit) {
+		this.isSearchActive = true;
 		this.getStartEvents(limit);
 	}
 }
