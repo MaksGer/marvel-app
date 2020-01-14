@@ -1,8 +1,8 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
-import {catchError, debounceTime, delay} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {catchError, debounceTime, delay, filter} from 'rxjs/operators';
 import {Subject, throwError} from 'rxjs';
 import {ComicsRestService} from '../services/comics-rest.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {ComicsDialogComponent} from '../dialogs-templates/comics-dialog/comics-dialog.component';
 import {of} from 'rxjs/internal/observable/of';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
@@ -30,7 +30,7 @@ export interface Comics {
 	styleUrls: ['./comics.component.css'],
 })
 
-export class ComicsComponent implements OnInit, DoCheck {
+export class ComicsComponent implements OnInit {
 	comicsList: Comics[];
 	isLoading: boolean;
 	isSearchActive: boolean;
@@ -43,7 +43,6 @@ export class ComicsComponent implements OnInit, DoCheck {
 	constructor(
 		private rest: ComicsRestService,
 		private _snackBar: MatSnackBar,
-		private dialog: MatDialog,
 	) { }
 
 	ngOnInit() {
@@ -52,42 +51,9 @@ export class ComicsComponent implements OnInit, DoCheck {
 		this.getComics();
 	}
 
-	ngDoCheck(): void {
-		this.setBreakpoint();
-	}
-
-	setBreakpoint() {
-		switch (true) {
-			case window.innerWidth > 2000:
-				this.breakpoint = 5;
-
-				break;
-
-			case window.innerWidth > 1400:
-				this.breakpoint = 4;
-
-				break;
-
-			case window.innerWidth > 800:
-				this.breakpoint = 2;
-
-				break;
-
-			case window.innerWidth < 800:
-				this.breakpoint = 1;
-		}
-	}
-
-	itemsPerPage() {
+	getLimit (limit) {
 		this.isSearchActive = true;
-		this.getStartComics(this.selected);
-	}
-
-	openDialog(comics: Comics) {
-		this.dialog.open(ComicsDialogComponent, {
-			width: '40vw',
-			data: comics,
-		});
+		this.getStartComics(limit);
 	}
 
 	getStartComics(limit) {
@@ -116,20 +82,15 @@ export class ComicsComponent implements OnInit, DoCheck {
 	}
 
 	getComics() {
-		const obsNoCharacters = of<Comics[]>([]);
-
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
+				filter(term => !!term),
 				switchMap((term: string) => {
-					if (term) {
 						return this.rest.getComicsFromUserSearch(term);
-					}
-
-					return obsNoCharacters;
 				}),
+				tap(() => this.isSearchActive = true),
 				delay(1000),
 			).subscribe(response => {
 			if (!response[0]) {

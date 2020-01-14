@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SeriesRestService} from '../services/series-rest.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {Subject, throwError} from 'rxjs';
 import {catchError, debounceTime, delay} from 'rxjs/operators';
 import {of} from 'rxjs/internal/observable/of';
@@ -29,77 +29,37 @@ export interface Series {
 	styleUrls: ['./series.component.css'],
 })
 
-export class SeriesComponent implements OnInit, DoCheck {
+export class SeriesComponent implements OnInit {
 	seriesList: Series[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	breakpoint: number;
-	selectOptions = [20, 40, 60, 80, 100];
-	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
 
 	constructor(private rest: SeriesRestService,
 				private _snackBar: MatSnackBar,
-				private dialog: MatDialog,
-	) { }
+	) {
+	}
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartSeries(this.selected);
+		this.getStartSeries(20);
 		this.getSeries();
-	}
-
-	ngDoCheck(): void {
-		this.setBreakpoint();
-	}
-
-	setBreakpoint() {
-		switch (true) {
-			case window.innerWidth > 2000:
-				this.breakpoint = 5;
-
-				break;
-
-			case window.innerWidth > 1400:
-				this.breakpoint = 4;
-
-				break;
-
-			case window.innerWidth > 800:
-				this.breakpoint = 2;
-
-				break;
-
-			case window.innerWidth < 800:
-				this.breakpoint = 1;
-		}
 	}
 
 	search(userString: string) {
 		this.searchTerms.next(userString);
 	}
 
-	itemsPerPage() {
-		this.isSearchActive = true;
-		this.getStartSeries(this.selected);
-	}
-
 	getSeries() {
-		const obsNoCharacters = of<Event[]>([]);
-
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
 				switchMap((term: string) => {
-					if (term) {
 						return this.rest.getSeriesFromUserSearch(term);
-					}
-
-					return obsNoCharacters;
 				}),
+				tap(() => this.isSearchActive = true),
 				delay(1000),
 			)
 			.subscribe(response => {
@@ -137,10 +97,8 @@ export class SeriesComponent implements OnInit, DoCheck {
 			})
 	}
 
-	openDialog(selectedItem: object) {
-		this.dialog.open(SeriesDialogComponent, {
-			width: '50vw',
-			data: selectedItem,
-		});
+	getLimit (limit) {
+		this.isSearchActive = true;
+		this.getStartSeries(limit);
 	}
 }

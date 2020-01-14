@@ -3,7 +3,7 @@ import {HeroesRestService} from '../services/heroes-rest.service';
 import {MatSnackBar} from '@angular/material';
 import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {catchError, debounceTime, delay, switchMap} from 'rxjs/operators';
+import {catchError, debounceTime, delay, filter, switchMap} from 'rxjs/operators';
 import {of, Subject, throwError} from 'rxjs';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {tap} from 'rxjs/internal/operators/tap';
@@ -86,20 +86,15 @@ export class HeroesComponent implements OnInit, DoCheck {
 	}
 
 	getHero() {
-		const obsNoCharacters = of<Hero[]>([]);
-
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
+				filter(term => !!term),
 				switchMap((term: string) => {
-					if (term) {
 						return this.heroes.getHeroesFromUserSearch(term);
-					}
-
-					return obsNoCharacters;
 				}),
+				tap(() => this.isSearchActive = true),
 				delay(1000),
 			)
 			.subscribe(response => {

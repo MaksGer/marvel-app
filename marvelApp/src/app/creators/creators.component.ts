@@ -1,7 +1,6 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {MatDialog} from '@angular/material/dialog';
-import {catchError, debounceTime, delay, switchMap} from 'rxjs/operators';
+import {catchError, debounceTime, delay, filter, switchMap} from 'rxjs/operators';
 import {of, Subject, throwError} from 'rxjs';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {tap} from 'rxjs/internal/operators/tap';
@@ -27,60 +26,25 @@ export interface Creator {
 	styleUrls: ['./creators.component.css']
 })
 
-export class CreatorsComponent implements OnInit, DoCheck {
+export class CreatorsComponent implements OnInit {
 	creatorsList: Creator[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	breakpoint: number;
-	selectOptions = [20, 40, 60, 80, 100];
-	selected = this.selectOptions[0];
 
 	private searchTerms = new Subject<string>();
 
 	constructor(private rest: CreatorsRestService,
 				private _snackBar: MatSnackBar,
-				private dialog: MatDialog,
 	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartCreators(this.selected);
+		this.getStartCreators(20);
 		this.getCreator();
-	}
-
-	ngDoCheck(): void {
-		this.setBreakpoint();
-	}
-
-	setBreakpoint() {
-		switch (true) {
-			case window.innerWidth > 2000:
-				this.breakpoint = 5;
-
-				break;
-
-			case window.innerWidth > 1400:
-				this.breakpoint = 4;
-
-				break;
-
-			case window.innerWidth > 800:
-				this.breakpoint = 2;
-
-				break;
-
-			case window.innerWidth < 800:
-				this.breakpoint = 1;
-		}
 	}
 
 	search(userString: string) {
 		this.searchTerms.next(userString);
-	}
-
-	itemsPerPage() {
-		this.isSearchActive = true;
-		this.getStartCreators(this.selected);
 	}
 
 	getStartCreators(limit) {
@@ -105,20 +69,15 @@ export class CreatorsComponent implements OnInit, DoCheck {
 	}
 
 	getCreator() {
-		const obsNoCharacters = of<Creator[]>([]);
-
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
+				filter(term => !!term),
 				switchMap((term: string) => {
-					if (term) {
 						return this.rest.getCreatorsFromUserSearch(term);
-					}
-
-					return obsNoCharacters;
 				}),
+				tap(() => this.isSearchActive = true),
 				delay(1000),
 			).subscribe(response => {
 			if (!response[0]) {
@@ -134,10 +93,8 @@ export class CreatorsComponent implements OnInit, DoCheck {
 		});
 	}
 
-	openDialog(selectedItem: object) {
-		this.dialog.open(CreatorsDialogComponent, {
-			width: '40vw',
-			data: selectedItem,
-		});
+	getLimit (limit) {
+		this.isSearchActive = true;
+		this.getStartCreators(limit);
 	}
 }

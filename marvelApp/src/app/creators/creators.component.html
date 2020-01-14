@@ -1,50 +1,16 @@
 <section *ngIf="!isLoading; else spinner">
 	<input matInput
-	       placeholder="Search your creator"
+	       placeholder="Search your event"
 	       class="user-search"
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
-	<div class="simple-pagination full-width">
-		<mat-form-field>
-			<mat-label>Item per page</mat-label>
-			<mat-select [(value)]="selected"
-			            (selectionChange)="itemsPerPage()">
-				<mat-option *ngFor="let item of selectOptions"
-				            [value]=item>
-					{{item}}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
+	<app-pagination (changeLimit)="getLimit($event)">
+	</app-pagination>
 
-	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
-	               [cols]="breakpoint"
-	               rowHeight="450px">
-
-		<mat-grid-tile class="item-container"
-		               *ngFor="let creator of creatorsList">
-			<div>
-				<mat-card class="creators-item hover-scale"
-				          (click)="openDialog(creator)">
-					<div class="title marvel-font full-width">
-						{{creator.fullName}}
-					</div>
-
-					<div class="creators-image full-width"
-					     [style.background-image]="'url(' + creator.thumbnail.path + '.' + creator.thumbnail.extension +')'">
-					</div>
-				</mat-card>
-			</div>
-		</mat-grid-tile>
-	</mat-grid-list>
-	<ng-template #searchSpinner>
-		<div class="spinner">
-			<ngx-pulse-loader class="item"
-			                  color="white">
-			</ngx-pulse-loader>
-		</div>
-	</ng-template>
+	<app-grid-for-tabs [itemsList]="creatorsList"
+	                   [isSearchActive]="isSearchActive">
+	</app-grid-for-tabs>
 </section>
 
 <ng-template #spinner>

@@ -1,14 +1,11 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subject, throwError} from 'rxjs';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import {EventsRestService} from '../services/events-rest.service';
-import {of} from 'rxjs/internal/observable/of';
 import {catchError, debounceTime, delay, filter} from 'rxjs/operators';
 import {tap} from 'rxjs/internal/operators/tap';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
-import {EventsDialogComponent} from '../dialogs-templates/events-dialog/events-dialog.component';
-import {Item} from '../grid-for-tabs/grid-for-tabs.component';
 
 export interface Event {
 	id: number,
@@ -34,17 +31,11 @@ export class EventsComponent implements OnInit {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	eventsList: Event[];
-	// childConfig = {
-	// 	isSearchActive = false,
-	// 	itemsList = null,
-	// };
 
 	private searchTerms = new Subject<string>();
 
 	constructor(private rest: EventsRestService,
 				private _snackBar: MatSnackBar,
-				// private modalWindow: EventsDialogComponent,
-				// private dialog: MatDialog,
 	) { }
 
 	ngOnInit(): void {
@@ -108,43 +99,4 @@ export class EventsComponent implements OnInit {
 		this.isSearchActive = true;
 		this.getStartEvents(limit);
 	}
-
-		// const obsNoCharacters = of<Event[]>([]);
-		//
-		// this.searchTerms
-		// 	.pipe(
-		// 		debounceTime(1000),
-		// 		tap(() => this.isSearchActive = true),
-		// 		distinctUntilChanged(),
-		// 		switchMap((term: string) => {
-		// 			if (term) {
-		// 				return this.rest.getEventsFromUserSearch(term);
-		//
-		// 			}
-		//
-		// 			return obsNoCharacters;
-		// 		}),
-		// 		delay(1000),
-		// 	)
-		// 	.subscribe(response => {
-		// 	if (!response[0]) {
-		// 		this._snackBar.open('There are no matches', 'Close', {
-		// 			duration: 2000,
-		// 			horizontalPosition: 'center',
-		// 			panelClass: 'error-snack-bar',
-		// 		});
-		// 	}
-		//
-		// 	this.eventsList = response;
-		// 	this.isSearchActive = false;
-		// });
-
-	// openDialog(selectedItem: object) {
-	// 	this.dialog.open(EventsDialogComponent, {
-	// 		width: '50vw',
-	// 		data: selectedItem,
-	// 	});
-	// }
-
-
 }

@@ -1,13 +1,10 @@
-<!--<mat-grid-tile>-->
-	<mat-card class="events-item hover-scale"
-		          (click)="openDialog(item)">
-			<div class="title marvel-font full-width">
-				{{item.title}}
-			</div>
+<mat-card class="events-item hover-scale"
+          (click)="openDialog(item)">
+	<div class="title marvel-font full-width">
+		{{item.title || item.fullName  | truncate}}
+	</div>
 
-			<div class="events-image full-width"
-			     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
-			</div>
-
-	</mat-card>
-<!--</mat-grid-tile>-->
+	<div class="events-image full-width"
+	     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
+	</div>
+</mat-card>
