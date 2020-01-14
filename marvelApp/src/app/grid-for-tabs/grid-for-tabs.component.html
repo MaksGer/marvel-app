@@ -4,8 +4,8 @@
 
 	<mat-grid-tile *ngFor="let item of itemsList">
 		<app-item-card class="item-container"
-		               [item]="item">
-<!--		               (click)="openDialog(item)">-->
+		               [item]="item"
+		               (click)="openDialog(item)">
 		</app-item-card>
 	</mat-grid-tile>
 </mat-grid-list>

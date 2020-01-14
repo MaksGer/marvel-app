@@ -2,6 +2,8 @@ import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/
 import {of, Subject} from 'rxjs';
 import {debounceTime, delay, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
 import {Event} from '../events/events.component';
+import {EventsDialogComponent} from '../dialogs-templates/events-dialog/events-dialog.component';
+import {MatDialog} from '@angular/material';
 // import {MatDialog} from '@angular/material';
 
 export interface Item {
@@ -30,54 +32,13 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 	// @Input() dialogComponent;
 
 	constructor(
-		// private dialog: MatDialog
-	) { }
-	// dataObject: {
-	// 	// isSearchActive: boolean,
-	// 	itemsList: Item[],
-	// };
-	// @Output() itemChanges = new EventEmitter();
-	// @Output() getInputValue = new EventEmitter <string >();
+		public dialog: MatDialog,
+	) {
+	}
 
 	breakpoint: number;
-	// isLoading: boolean;
-	// isSearchActive: boolean;
-	// private searchTerms = new Subject<string>();
 
-
-	// openDialog(selectedItem: object) {
-	// 	this.dialog.open(EventsDialogComponent, {
-	// 		width: '50vw',
-	// 		data: selectedItem,
-	// 	});
-	// }
-
-	// searchFromInput() {
-	// 	const obsNoCharacters = of<string>();
-	//
-	// 	this.searchTerms
-	// 		.pipe(
-	// 			debounceTime(1000),
-	// 			// tap((a) => {
-	// 			// 	this.isSearchActive = true;
-	// 			// }),
-	// 			distinctUntilChanged(),
-	// 			switchMap((term: string) => {
-	// 				if (!term) {
-	// 					// return this.rest.getEventsFromUserSearch(term);
-	// 					return obsNoCharacters;
-	// 				}
-	// 			})
-	// 		)
-	// 		.subscribe( (string) => this.getInputValue.emit(string))
-	// }
-
-	// search(userString: string) {
-	// 	this.searchTerms.next(userString);
-	// }
 	ngOnInit(): void {
-		// console.log(this.itemsList);
-		// this.searchFromInput();
 	}
 
 	ngDoCheck(): void {
@@ -106,7 +67,12 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 		}
 	}
 
-	// changeLimit(str: any) {
-	// 	this.itemChanges.emit(str)
-	// }
+	openDialog(selectedItem: object) {
+
+
+		this.dialog.open(EventsDialogComponent, {
+			width: '50vw',
+			data: selectedItem,
+		});
+	}
 }

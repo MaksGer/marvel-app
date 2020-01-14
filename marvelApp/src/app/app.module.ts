@@ -29,6 +29,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { GridForTabsComponent } from './grid-for-tabs/grid-for-tabs.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import {DataForGridComponentService} from './services/data-for-grid-component.service';
 
 @NgModule({
 	declarations: [
@@ -73,6 +74,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 		CreatorsDialogComponent,
 		EventsDialogComponent,
 		SeriesDialogComponent,
+		ItemCardComponent,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
