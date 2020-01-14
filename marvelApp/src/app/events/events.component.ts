@@ -3,7 +3,7 @@ import {Subject, throwError} from 'rxjs';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {EventsRestService} from '../services/events-rest.service';
 import {of} from 'rxjs/internal/observable/of';
-import {catchError, debounceTime, delay} from 'rxjs/operators';
+import {catchError, debounceTime, delay, filter} from 'rxjs/operators';
 import {tap} from 'rxjs/internal/operators/tap';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
@@ -70,11 +70,8 @@ export class EventsComponent implements OnInit {
 			)
 			.subscribe(data => {
 				this.eventsList = data;
-				// this.childConfig.itemsList = data;
-				// this.childConfig.isSearchActive = false;
 				this.isLoading = false;
 				this.isSearchActive = false;
-
 			})
 	}
 
@@ -83,38 +80,34 @@ export class EventsComponent implements OnInit {
 	}
 
 	getEvent() {
-		const obsNoCharacters = of<Event[]>([]);
-
 		this.searchTerms
 			.pipe(
 				debounceTime(1000),
-				tap(() => this.isSearchActive = true),
 				distinctUntilChanged(),
+				filter(term => !!term),
 				switchMap((term: string) => {
-					if (term) {
-						return this.rest.getEventsFromUserSearch(term);
-
-					}
-
-					return obsNoCharacters;
+					return this.rest.getEventsFromUserSearch(term);
 				}),
+				tap(() => this.isSearchActive = true),
 				delay(1000),
 			)
 			.subscribe(response => {
-			if (!response[0]) {
-				this._snackBar.open('There are no matches', 'Close', {
-					duration: 2000,
-					horizontalPosition: 'center',
-					panelClass: 'error-snack-bar',
-				});
-			}
-			this.eventsList = response;
-			// this.childConfig.itemsList = response;
-			this.isSearchActive = false;
-		});
+				if (!response[0]) {
+					this._snackBar.open('There are no matches', 'Close', {
+						duration: 2000,
+						horizontalPosition: 'center',
+						panelClass: 'error-snack-bar',
+					});
+				}
+				this.eventsList = response;
+				this.isSearchActive = false;
+			});
+	}
 
-
-
+	getLimit (limit) {
+		this.isSearchActive = true;
+		this.getStartEvents(limit);
+	}
 
 		// const obsNoCharacters = of<Event[]>([]);
 		//
@@ -145,7 +138,6 @@ export class EventsComponent implements OnInit {
 		// 	this.eventsList = response;
 		// 	this.isSearchActive = false;
 		// });
-	}
 
 	// openDialog(selectedItem: object) {
 	// 	this.dialog.open(EventsDialogComponent, {
@@ -154,8 +146,5 @@ export class EventsComponent implements OnInit {
 	// 	});
 	// }
 
-	getLimit (limit) {
-		this.isSearchActive = true;
-		this.getStartEvents(limit);
-	}
+
 }
