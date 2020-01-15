@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {catchError, debounceTime, delay, filter, switchMap} from 'rxjs/operators';
-import {of, Subject, throwError} from 'rxjs';
+import {Subject, throwError} from 'rxjs';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {tap} from 'rxjs/internal/operators/tap';
 import {CreatorsRestService} from '../services/creators-rest.service';
-import {CreatorsDialogComponent} from '../dialogs-templates/creators-dialog/creators-dialog.component';
 
 export interface Creator {
 	id: number,

@@ -101,8 +101,4 @@ export class SeriesComponent implements OnInit {
 		this.isSearchActive = true;
 		this.getStartSeries(limit);
 	}
-
-	// setConfig() {
-	// 	DataForGridComponentService.setConfigForGrid(this.seriesList, this.isSearchActive, 'series');
-	// }
 }

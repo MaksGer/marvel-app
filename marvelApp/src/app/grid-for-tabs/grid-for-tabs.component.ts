@@ -84,12 +84,4 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 
 		}
 
-
-	// With Inject
-	// openDialog(selectedItem: object) {
-	// 	this.dialog.open(EventsDialogComponent, {
-	// 		width: '50vw',
-	// 		data: selectedItem,
-	// 	});
-	// }
 }

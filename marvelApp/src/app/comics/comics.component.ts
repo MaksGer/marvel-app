@@ -3,8 +3,6 @@ import {catchError, debounceTime, delay, filter} from 'rxjs/operators';
 import {Subject, throwError} from 'rxjs';
 import {ComicsRestService} from '../services/comics-rest.service';
 import {MatSnackBar} from '@angular/material';
-import {ComicsDialogComponent} from '../dialogs-templates/comics-dialog/comics-dialog.component';
-import {of} from 'rxjs/internal/observable/of';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {tap} from 'rxjs/internal/operators/tap';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
