@@ -33,9 +33,9 @@ export class ItemCardComponent implements OnInit {
 		//
 		// this.data.openDialog(config);
 
-		this.dialog.open(EventsDialogComponent, {
-			width: '50vw',
-			data: selectedItem,
-		});
+		// this.dialog.open(EventsDialogComponent, {
+		// 	width: '50vw',
+		// 	data: selectedItem,
+		// });
 	}
 }
