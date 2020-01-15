@@ -21,7 +21,7 @@ export class ItemCardComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// console.log(this.item)
+
 	}
 
 	openDialog(selectedItem: object) {

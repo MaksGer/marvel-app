@@ -1,10 +1,10 @@
-<mat-card class="events-item hover-scale">
+<mat-card class="card-item hover-scale">
 <!--          (click)="openDialog(item)">-->
-	<div class="title marvel-font full-width">
+	<div class="card-title marvel-font full-width">
 		{{item.title || item.fullName || item.name  | truncate}}
 	</div>
 
-	<div class="events-image full-width"
+	<div class="card-image full-width"
 	     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
 	</div>
 </mat-card>
