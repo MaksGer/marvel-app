@@ -6,11 +6,12 @@ import {
 	OnInit,
 	ViewChild
 } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {Hero} from '../../heroes/heroes.component';
 import {HeroesRestService} from '../../services/heroes-rest.service';
 import {delay} from 'rxjs/operators';
 import {NguCarousel, NguCarouselConfig} from '@ngu/carousel';
+import {Item} from '../../grid-for-tabs/grid-for-tabs.component';
 
 export interface Comics {
 	title: string,
@@ -28,6 +29,7 @@ export interface Comics {
 export class HeroDialogComponent implements OnInit, AfterViewInit {
 	isLoading = true;
 	listOfComics: Comics[];
+	data: Item;
 
 	@ViewChild('myCarousel', {static: false}) myCarousel: NguCarousel<[Comics]>;
 	carouselConfig: NguCarouselConfig = {
@@ -45,8 +47,15 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 		private cdr: ChangeDetectorRef,
 	) { }
 
+	static open(dialog: MatDialog, data: Item) {
+		let dialogRef = dialog.open(HeroDialogComponent, {width: '50vw'});
+
+		dialogRef.componentInstance.data = data;
+
+		return dialogRef;
+	}
 	ngOnInit(): void {
-		this.rest.getComicsForHero(this.hero.id)
+		this.rest.getComicsForHero(this.data.id)
 			.pipe(
 				delay(1000)
 			)

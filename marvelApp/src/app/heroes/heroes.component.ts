@@ -1,10 +1,8 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeroesRestService} from '../services/heroes-rest.service';
 import {MatSnackBar} from '@angular/material';
-import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
 import {catchError, debounceTime, delay, filter, switchMap} from 'rxjs/operators';
-import {of, Subject, throwError} from 'rxjs';
+import {Subject, throwError} from 'rxjs';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {tap} from 'rxjs/internal/operators/tap';
 
@@ -28,61 +26,26 @@ export interface Hero {
 	styleUrls: ['./heroes.component.css']
 })
 
-export class HeroesComponent implements OnInit, DoCheck {
+export class HeroesComponent implements OnInit {
 	heroesList: Hero[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	breakpoint: number;
-	selectOptions = [20, 40, 60, 80, 100];
-	selected = this.selectOptions[0];
+	dialogComponent = 'hero';
 
 	private searchTerms = new Subject<string>();
 
 	constructor(private heroes: HeroesRestService,
 				private _snackBar: MatSnackBar,
-				private dialog: MatDialog,
 	) { }
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartHero(this.selected);
+		this.getStartHero(20);
 		this.getHero();
-
-	}
-
-	ngDoCheck(): void {
-		this.setBreakpoint();
-	}
-
-	setBreakpoint() {
-		switch (true) {
-			case window.innerWidth > 2000:
-				this.breakpoint = 5;
-
-				break;
-
-			case window.innerWidth > 1400:
-				this.breakpoint = 4;
-
-				break;
-
-			case window.innerWidth > 800:
-				this.breakpoint = 2;
-
-				break;
-
-			case window.innerWidth < 800:
-				this.breakpoint = 1;
-		}
 	}
 
 	search(userString: string) {
 		this.searchTerms.next(userString);
-	}
-
-	itemsPerPage() {
-		this.isSearchActive = true;
-		this.getStartHero(this.selected);
 	}
 
 	getHero() {
@@ -132,10 +95,8 @@ export class HeroesComponent implements OnInit, DoCheck {
 			});
 	}
 
-	openDialog(selectedHero: object) {
-		this.dialog.open(HeroDialogComponent, {
-			width: '70vw',
-			data: selectedHero,
-		});
+	getLimit (limit) {
+		this.isSearchActive = true;
+		this.getStartHero(limit);
 	}
 }

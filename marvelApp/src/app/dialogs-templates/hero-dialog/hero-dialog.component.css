@@ -9,8 +9,8 @@
 }
 
 .hero-item-image {
-	height: 56vh;
-	width: 42%;
+	height: 27vh;
+	width: 33%;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -114,6 +114,9 @@
 	transform: scale(1.2);
 }
 
-.spinner {
-	height: 414px;
+.spinner-modal {
+	height: 340px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

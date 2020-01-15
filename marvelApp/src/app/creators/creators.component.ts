@@ -30,6 +30,7 @@ export class CreatorsComponent implements OnInit {
 	creatorsList: Creator[];
 	isLoading: boolean;
 	isSearchActive: boolean;
+	dialogComponent = 'origin';
 
 	private searchTerms = new Subject<string>();
 

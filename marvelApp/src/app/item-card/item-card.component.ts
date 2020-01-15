@@ -16,7 +16,7 @@ export class ItemCardComponent implements OnInit {
 
 	constructor(
 		private dialog: MatDialog,
-		public data: DataForGridComponentService,
+		// public data: DataForGridComponentService,
 	) {
 	}
 

@@ -1,15 +1,14 @@
-import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {of, Subject} from 'rxjs';
-import {debounceTime, delay, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
-import {Event} from '../events/events.component';
-import {EventsDialogComponent} from '../dialogs-templates/events-dialog/events-dialog.component';
+import {Component, DoCheck, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-// import {MatDialog} from '@angular/material';
+import {SeriesDialogComponent} from '../dialogs-templates/series-dialog/series-dialog.component';
+import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
+
 
 export interface Item {
 	id: number,
 	title?: string,
 	name?: string,
+	fullName?: string,
 	description?: string,
 	thumbnail: {
 		path: string,
@@ -29,7 +28,7 @@ export interface Item {
 export class GridForTabsComponent implements OnInit, DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
-	// @Input() dialogComponent;
+	@Input() component: 'origin' | 'hero' | 'story';
 
 	constructor(
 		public dialog: MatDialog,
@@ -66,11 +65,31 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 				this.breakpoint = 1;
 		}
 	}
+	// Without @Inject
+		openDialog(selectedItem: Item) {
+			switch (true) {
+				case this.component == 'origin':
+					SeriesDialogComponent.open(this.dialog, selectedItem);
 
-	openDialog(selectedItem: object) {
-		this.dialog.open(EventsDialogComponent, {
-			width: '50vw',
-			data: selectedItem,
-		});
-	}
+					break;
+
+				case this.component == 'hero':
+					HeroDialogComponent.open(this.dialog, selectedItem);
+
+					break;
+
+				case this.component == 'story':
+					return null;
+			}
+
+		}
+
+
+	// With Inject
+	// openDialog(selectedItem: object) {
+	// 	this.dialog.open(EventsDialogComponent, {
+	// 		width: '50vw',
+	// 		data: selectedItem,
+	// 	});
+	// }
 }

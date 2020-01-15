@@ -1,13 +1,13 @@
 <mat-dialog-content>
 	<div class="hero-modal">
 		<div class="hero-item-image"
-		     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
+		     [style.background-image]="'url(' + data.thumbnail.path + '.' + data.thumbnail.extension +')'">
 		</div>
 
 		<div class="hero-info position-relative">
 			<h3 mat-dialog-title
 			    class="hero-item-title marvel-font">
-				{{hero.name}}
+				{{data.name}}
 			</h3>
 
 			<mat-dialog-actions>
@@ -18,11 +18,11 @@
 			</mat-dialog-actions>
 
 			<div class="hero-description">
-				<p [innerHTML]="hero.description"></p>
+				<p [innerHTML]="data.description"></p>
 			</div>
 
 			<div class="hero-item-links full-width">
-				<a *ngFor="let link of hero.urls"
+				<a *ngFor="let link of data.urls"
 				   href="{{link.url}}"
 				   target="_blank">
 					{{link.type}}
@@ -52,7 +52,7 @@
 </div>
 
 <ng-template #spinner>
-	<div class="spinner">
+	<div class="spinner-modal">
 		<ngx-pulse-loader class="item"
 		                  color="white">
 		</ngx-pulse-loader>

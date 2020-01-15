@@ -34,9 +34,7 @@ export class ComicsComponent implements OnInit {
 	comicsList: Comics[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	breakpoint: number;
-	selectOptions = [20, 40, 60, 80, 100];
-	selected = this.selectOptions[0];
+	dialogComponent = 'origin';
 
 	private searchTerms = new Subject<string>();
 
@@ -47,7 +45,7 @@ export class ComicsComponent implements OnInit {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartComics(this.selected);
+		this.getStartComics(20);
 		this.getComics();
 	}
 

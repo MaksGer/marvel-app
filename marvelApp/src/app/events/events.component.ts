@@ -31,6 +31,7 @@ export class EventsComponent implements OnInit {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	eventsList: Event[];
+	dialogComponent = 'origin';
 
 	private searchTerms = new Subject<string>();
 
