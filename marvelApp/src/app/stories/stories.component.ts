@@ -20,8 +20,6 @@ export class StoriesComponent implements OnInit, DoCheck {
 	isLoading: boolean;
 	isSearchActive: boolean;
 	breakpoint: number;
-	isDescrActivated = false;
-	prevValue: string;
 
 	constructor(private rest: StoriesRestService,
 				private _snackBar: MatSnackBar,
@@ -50,7 +48,7 @@ export class StoriesComponent implements OnInit, DoCheck {
 				this.storiesList = data;
 				this.isSearchActive = false;
 				this.isLoading = false;
-			})
+			});
 	}
 
 	getLimit(limit) {
@@ -83,16 +81,4 @@ export class StoriesComponent implements OnInit, DoCheck {
 				this.breakpoint = 1;
 		}
 	}
-
-	changeText(event, story?: Story,) {
-		if (story && !this.isDescrActivated) {
-			this.isDescrActivated = true;
-			this.prevValue = event.target.offsetParent.firstChild.innerText;
-			event.target.offsetParent.firstChild.innerText = story.title;
-		} else {
-			event.target.offsetParent.firstChild.innerText = this.prevValue;
-			this.isDescrActivated = false
-		}
-	}
 }
-
