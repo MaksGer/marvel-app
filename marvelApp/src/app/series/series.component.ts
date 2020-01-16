@@ -8,17 +8,17 @@ import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged
 import {switchMap} from 'rxjs/internal/operators/switchMap';
 
 export interface Series {
-	id: number,
-	title: string,
-	description?: string,
+	id: number;
+	title: string;
+	description?: string;
 	thumbnail: {
 		path: string,
 		extension: string
-	},
+	};
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 }
 
 @Component({
