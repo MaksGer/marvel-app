@@ -1,4 +1,4 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {OriginDialogComponent} from '../dialogs-templates/origin-dialog/origin-dialog.component';
 import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
@@ -24,7 +24,7 @@ export interface Item {
 	templateUrl: './grid-for-tabs.component.html',
 })
 
-export class GridForTabsComponent implements OnInit, DoCheck {
+export class GridForTabsComponent implements DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
 	@Input() component: 'origin' | 'hero' | 'story';
@@ -35,9 +35,6 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 	}
 
 	breakpoint: number;
-
-	ngOnInit(): void {
-	}
 
 	ngDoCheck(): void {
 		this.setBreakpoint();

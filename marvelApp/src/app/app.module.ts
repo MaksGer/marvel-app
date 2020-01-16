@@ -25,7 +25,7 @@ import {TruncatePipe} from './pipes/truncate.pipe';
 import {GridForTabsComponent} from './grid-for-tabs/grid-for-tabs.component';
 import {ItemCardComponent} from './item-card/item-card.component';
 import {PaginationComponent} from './pagination/pagination.component';
-import { StoryItemCardComponentComponent } from './story-item-card-component/story-item-card-component.component';
+import {StoryItemCardComponentComponent} from './story-item-card-component/story-item-card-component.component';
 
 @NgModule({
 	declarations: [
