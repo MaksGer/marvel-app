@@ -7,13 +7,7 @@
 	border: 2px solid white;
 	align-items: center;
 	padding: 0 5px;
-}
 
-.stories-image {
-	min-height: 300px;
-	height: 80%;
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .mat-card {
@@ -26,6 +20,12 @@
 	padding: 10px 10px;
 	cursor: pointer;
 }
+
+/*.stories-description {*/
+/*	height: 350px;*/
+/*	width: 50%;*/
+/*	margin: 0 auto;*/
+/*}*/
 
 .story-descr-close {
 	position: absolute;
@@ -40,6 +40,8 @@
 
 .series-image {
 	min-height: 300px;
+	/*padding-right: 1px;*/
+	/*height: 80%;*/
 	background-repeat: no-repeat;
 	background-size: cover;
 }

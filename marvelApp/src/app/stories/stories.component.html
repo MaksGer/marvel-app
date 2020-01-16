@@ -1,6 +1,6 @@
+
 <section *ngIf="!isLoading; else spinner">
-	<app-pagination (changeLimit)="getLimit($event)">
-	</app-pagination>
+
 
 	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
 	               [cols]="breakpoint"
@@ -8,24 +8,31 @@
 
 		<mat-grid-tile class="item-container"
 		               *ngFor="let story of storiesList; let i = index">
-				<mat-card class="stories-item hover-scale position-relative">
+			<mat-card class="stories-item hover-scale position-relative">
 
-					<div class="story-title marvel-font full-width"
-					     (click)="changeText($event, story)">
-						Story {{i + 1}}
-					</div>
+				<div class="story-title marvel-font full-width"
+				     (click)="changeText($event, story)">
+					Story {{i + 1}}
+				</div>
 
-					<div class="stories-image full-width"
-					     [style.background-image]="'url(../../assets/images/stories-bg.jpg)'">
-					</div>
+				<!--					<mat-card-content class="stories-description"-->
+				<!--					                  [ngClass]="{displayNone: !isDescrActivated}">-->
+				<!--&lt;!&ndash;					<p>&ndash;&gt;-->
+				<!--						{{story.title}}-->
+				<!--&lt;!&ndash;					</p>&ndash;&gt;-->
+				<!--					</mat-card-content>-->
 
-					<mat-card-actions>
-						<mat-icon class="story-descr-close"
-						          (click)="changeText($event)">
-							close
-						</mat-icon>
-					</mat-card-actions>
-				</mat-card>
+				<div class="series-image full-width"
+				     [style.background-image]="'url(../../assets/images/stories-bg.jpg)'">
+				</div>
+
+				<mat-card-actions>
+					<mat-icon class="story-descr-close"
+					          (click)="changeText($event)">
+						close
+					</mat-icon>
+				</mat-card-actions>
+			</mat-card>
 		</mat-grid-tile>
 	</mat-grid-list>
 	<ng-template #searchSpinner>
