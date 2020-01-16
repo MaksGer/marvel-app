@@ -7,25 +7,23 @@ import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged
 import {tap} from 'rxjs/internal/operators/tap';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
 
-
 export interface Comics {
-	id: number,
-	title: string,
-	description?: string,
+	id: number;
+	title: string;
+	description?: string;
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 	thumbnail: {
 		path: string,
 		extension: string,
-	},
+	};
 }
 
 @Component({
 	selector: 'app-comics',
 	templateUrl: './comics.component.html',
-	styleUrls: ['./comics.component.css'],
 })
 
 export class ComicsComponent implements OnInit {
@@ -43,16 +41,16 @@ export class ComicsComponent implements OnInit {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartComics(20);
+		this.getStartComics();
 		this.getComics();
 	}
 
-	getLimit (limit) {
+	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStartComics(limit);
 	}
 
-	getStartComics(limit) {
+	getStartComics(limit = 20) {
 		this.rest.getComics(limit)
 			.pipe(
 				delay(1000),

@@ -14,11 +14,11 @@ import {NguCarousel, NguCarouselConfig} from '@ngu/carousel';
 import {Item} from '../../grid-for-tabs/grid-for-tabs.component';
 
 export interface Comics {
-	title: string,
+	title: string;
 	thumbnail: {
 		path: string,
 		extension: string,
-	}
+	};
 }
 
 @Component({
@@ -26,6 +26,7 @@ export interface Comics {
 	templateUrl: './hero-dialog.component.html',
 	styleUrls: ['./hero-dialog.component.css'],
 })
+
 export class HeroDialogComponent implements OnInit, AfterViewInit {
 	isLoading = true;
 	listOfComics: Comics[];
@@ -37,7 +38,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 		interval: {timing: 4000, initialDelay: 1000},
 		loop: false,
 		touch: true,
-		velocity: 0.2
+		velocity: 0.2,
 	};
 
 	constructor(
@@ -48,7 +49,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 	) { }
 
 	static open(dialog: MatDialog, data: Item) {
-		let dialogRef = dialog.open(HeroDialogComponent, {width: '50vw'});
+		const dialogRef = dialog.open(HeroDialogComponent, {width: '50vw'});
 
 		dialogRef.componentInstance.data = data;
 

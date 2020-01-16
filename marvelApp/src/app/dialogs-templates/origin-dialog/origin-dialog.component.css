@@ -1,34 +1,27 @@
-.event-modal {
+.series-modal {
 	display: flex;
 }
 
-.event-item-title {
+.series-item-title {
 	text-align: center;
-	margin-top: 40px;
 }
 
-.event-item-image {
+.series-item-image {
 	height: 42vh;
 	min-width: 45%;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-.event-item-links {
+.series-item-links {
 	display: flex;
 	justify-content: center;
 	padding: 15px 0;
 }
 
-.event-item-links a {
+.series-item-links a {
 	color: white;
 	text-transform: capitalize;
 	text-decoration: none;
 	margin-right: 15px;
-}
-
-.event-dialog-close {
-	position: absolute;
-	top: 2%;
-	right: 2%;
 }

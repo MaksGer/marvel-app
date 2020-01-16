@@ -7,23 +7,22 @@ import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged
 import {tap} from 'rxjs/internal/operators/tap';
 
 export interface Hero {
-	id: number,
-	name: string,
-	description?: string,
+	id: number;
+	name: string;
+	description?: string;
 	thumbnail: {
 		path: string,
 		extension: string
-	},
+	};
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 }
 
 @Component({
 	selector: 'app-heroes',
 	templateUrl: './heroes.component.html',
-	styleUrls: ['./heroes.component.css']
 })
 
 export class HeroesComponent implements OnInit {
@@ -40,7 +39,7 @@ export class HeroesComponent implements OnInit {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartHero(20);
+		this.getStartHero();
 		this.getHero();
 	}
 
@@ -74,7 +73,7 @@ export class HeroesComponent implements OnInit {
 			});
 	}
 
-	getStartHero(limit) {
+	getStartHero(limit = 20) {
 		this.heroes.getHeroes(limit)
 			.pipe(
 				delay(1000),
@@ -95,7 +94,7 @@ export class HeroesComponent implements OnInit {
 			});
 	}
 
-	getLimit (limit) {
+	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStartHero(limit);
 	}

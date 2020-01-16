@@ -5,23 +5,21 @@ import {StoriesRestService} from '../services/stories-rest.service';
 import {MatSnackBar} from '@angular/material';
 
 export interface Story {
-	id: number,
-	title: string,
-	description?: string,
+	id: number;
+	title: string;
+	description?: string;
 }
 
 @Component({
 	selector: 'app-stories',
 	templateUrl: './stories.component.html',
-	styleUrls: ['./stories.component.css'],
 })
+
 export class StoriesComponent implements OnInit, DoCheck {
 	storiesList: Story[];
 	isLoading: boolean;
 	isSearchActive: boolean;
 	breakpoint: number;
-	selectOptions = [20, 40, 60, 80, 100];
-	selected = this.selectOptions[0];
 	isDescrActivated = false;
 	prevValue: string;
 
@@ -31,10 +29,10 @@ export class StoriesComponent implements OnInit, DoCheck {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartStories(this.selected);
+		this.getStories();
 	}
 
-	getStartStories(limit) {
+	getStories(limit = 20) {
 		this.rest.getStories(limit)
 			.pipe(
 				delay(1000),
@@ -55,9 +53,9 @@ export class StoriesComponent implements OnInit, DoCheck {
 			})
 	}
 
-	itemsPerPage() {
+	getLimit(limit) {
 		this.isSearchActive = true;
-		this.getStartStories(this.selected);
+		this.getStories(limit);
 	}
 
 	ngDoCheck(): void {

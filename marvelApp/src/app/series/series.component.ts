@@ -7,7 +7,6 @@ import {tap} from 'rxjs/internal/operators/tap';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
 import {switchMap} from 'rxjs/internal/operators/switchMap';
 
-
 export interface Series {
 	id: number,
 	title: string,
@@ -25,7 +24,6 @@ export interface Series {
 @Component({
 	selector: 'app-series',
 	templateUrl: './series.component.html',
-	styleUrls: ['./series.component.css'],
 })
 
 export class SeriesComponent implements OnInit {
@@ -43,7 +41,7 @@ export class SeriesComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartSeries(20);
+		this.getStartSeries();
 		this.getSeries();
 	}
 
@@ -76,7 +74,7 @@ export class SeriesComponent implements OnInit {
 			});
 	}
 
-	getStartSeries(limit) {
+	getStartSeries(limit = 20) {
 		this.rest.getSeries(limit)
 			.pipe(
 				delay(1000),
@@ -94,10 +92,10 @@ export class SeriesComponent implements OnInit {
 				this.seriesList = data;
 				this.isSearchActive = false;
 				this.isLoading = false;
-			})
+			});
 	}
 
-	getLimit (limit) {
+	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStartSeries(limit);
 	}

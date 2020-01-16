@@ -1,16 +1,6 @@
 <section *ngIf="!isLoading; else spinner">
-	<div class="simple-pagination full-width">
-		<mat-form-field>
-			<mat-label>Item per page</mat-label>
-			<mat-select [(value)]="selected"
-			            (selectionChange)="itemsPerPage()">
-				<mat-option *ngFor="let item of selectOptions"
-				            [value]=item>
-					{{item}}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
+	<app-pagination (changeLimit)="getLimit($event)">
+	</app-pagination>
 
 	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
 	               [cols]="breakpoint"
@@ -25,14 +15,7 @@
 						Story {{i + 1}}
 					</div>
 
-<!--					<mat-card-content class="stories-description"-->
-<!--					                  [ngClass]="{displayNone: !isDescrActivated}">-->
-<!--&lt;!&ndash;					<p>&ndash;&gt;-->
-<!--						{{story.title}}-->
-<!--&lt;!&ndash;					</p>&ndash;&gt;-->
-<!--					</mat-card-content>-->
-
-					<div class="series-image full-width"
+					<div class="stories-image full-width"
 					     [style.background-image]="'url(../../assets/images/stories-bg.jpg)'">
 					</div>
 

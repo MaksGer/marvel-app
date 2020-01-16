@@ -8,23 +8,22 @@ import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged
 import {switchMap} from 'rxjs/internal/operators/switchMap';
 
 export interface Event {
-	id: number,
-	title: string,
-	description?: string,
+	id: number;
+	title: string;
+	description?: string;
 	thumbnail: {
 		path: string,
 		extension: string
-	},
+	};
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 }
 
 @Component({
 	selector: 'app-events',
 	templateUrl: './events.component.html',
-	styleUrls: ['./events.component.css']
 })
 
 export class EventsComponent implements OnInit {
@@ -41,12 +40,12 @@ export class EventsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.getStartEvents(20);
+		this.getStartEvents();
 		this.getEvent();
 	}
 
 
-	getStartEvents(limit) {
+	getStartEvents(limit = 20) {
 		this.rest.getEvents(limit)
 			.pipe(
 				delay(1000),
@@ -64,7 +63,7 @@ export class EventsComponent implements OnInit {
 				this.eventsList = data;
 				this.isLoading = false;
 				this.isSearchActive = false;
-			})
+			});
 	}
 
 	search(userString: string) {
@@ -96,7 +95,7 @@ export class EventsComponent implements OnInit {
 			});
 	}
 
-	getLimit (limit) {
+	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStartEvents(limit);
 	}

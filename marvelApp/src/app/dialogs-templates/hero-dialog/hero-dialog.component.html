@@ -4,18 +4,16 @@
 		     [style.background-image]="'url(' + data.thumbnail.path + '.' + data.thumbnail.extension +')'">
 		</div>
 
-		<div class="hero-info position-relative">
+		<div class="hero-info">
+			<mat-icon class="dialog-close"
+			          (click)="close()">
+				close
+			</mat-icon>
+
 			<h3 mat-dialog-title
 			    class="hero-item-title marvel-font">
 				{{data.name}}
 			</h3>
-
-			<mat-dialog-actions>
-				<mat-icon class="hero-dialog-close"
-				          (click)="close()">
-					close
-				</mat-icon>
-			</mat-dialog-actions>
 
 			<div class="hero-description">
 				<p [innerHTML]="data.description"></p>
@@ -41,12 +39,15 @@
 				</div>
 				<p class="comics-title">{{item.title}}</p>
 			</div>
+
 			<mat-icon NguCarouselPrev class="leftRs">navigate_before</mat-icon>
 			<mat-icon NguCarouselNext class="rightRs">navigate_next</mat-icon>
-				<ul class="myPoint" NguCarouselPoint>
-					<li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j == myCarousel.activePoint"
-					    (click)="myCarousel.moveTo(j)"></li>
-				</ul>
+
+			<ul class="myPoint" NguCarouselPoint>
+				<li *ngFor="let j of myCarousel.pointNumbers; let j = index"
+				    [class.active]="j == myCarousel.activePoint"
+				    (click)="myCarousel.moveTo(j)"></li>
+			</ul>
 		</ngu-carousel>
 	</div>
 </div>

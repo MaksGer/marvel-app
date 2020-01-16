@@ -8,7 +8,6 @@ import {CreatorsComponent} from './creators/creators.component';
 import {EventsComponent} from './events/events.component';
 import {SeriesComponent} from './series/series.component';
 import {StoriesComponent} from './stories/stories.component';
-import {FavoritesComponent} from './favorites/favorites.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
 import {LoginPageComponent} from './layouts/login-page/login-page.component';
 
@@ -21,7 +20,6 @@ const routes: Routes = [
 			{path: 'events', component: EventsComponent},
 			{path: 'series', component: SeriesComponent},
 			{path: 'stories', component: StoriesComponent},
-			{path: 'favorites', component: FavoritesComponent},
 		]
 	},
 	{

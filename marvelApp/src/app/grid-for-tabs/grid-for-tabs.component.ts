@@ -1,30 +1,29 @@
 import {Component, DoCheck, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {SeriesDialogComponent} from '../dialogs-templates/series-dialog/series-dialog.component';
+import {OriginDialogComponent} from '../dialogs-templates/origin-dialog/origin-dialog.component';
 import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
 
-
 export interface Item {
-	id: number,
-	title?: string,
-	name?: string,
-	fullName?: string,
-	description?: string,
+	id: number;
+	title?: string;
+	name?: string;
+	fullName?: string;
+	description?: string;
 	thumbnail: {
 		path: string,
-		extension: string
-	},
+		extension: string,
+	};
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 }
 
 @Component({
 	selector: 'app-grid-for-tabs',
 	templateUrl: './grid-for-tabs.component.html',
-	styleUrls: ['./grid-for-tabs.component.css']
 })
+
 export class GridForTabsComponent implements OnInit, DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
@@ -65,21 +64,22 @@ export class GridForTabsComponent implements OnInit, DoCheck {
 				this.breakpoint = 1;
 		}
 	}
-	// Without @Inject
+
 		openDialog(selectedItem: Item) {
 			switch (true) {
-				case this.component == 'origin':
-					SeriesDialogComponent.open(this.dialog, selectedItem);
+				case this.component === 'origin':
+					OriginDialogComponent.open(this.dialog, selectedItem);
 
 					break;
 
-				case this.component == 'hero':
+				case this.component === 'hero':
 					HeroDialogComponent.open(this.dialog, selectedItem);
 
 					break;
 
-				case this.component == 'story':
-					return null;
+				default:
+
+					return;
 			}
 
 		}

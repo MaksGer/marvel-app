@@ -14,17 +14,13 @@ import {CreatorsComponent} from './creators/creators.component';
 import {EventsComponent} from './events/events.component';
 import {SeriesComponent} from './series/series.component';
 import {StoriesComponent} from './stories/stories.component';
-import {FavoritesComponent} from './favorites/favorites.component';
 import {LoginPageComponent} from './layouts/login-page/login-page.component';
 import {MainPageLayoutComponent} from './layouts/main-page-layout/main-page-layout.component';
 import {NgxSpinnersModule} from 'ngx-spinners';
 import {HttpClientModule} from '@angular/common/http';
 import {HeroDialogComponent} from './dialogs-templates/hero-dialog/hero-dialog.component';
-import {ComicsDialogComponent} from './dialogs-templates/comics-dialog/comics-dialog.component';
 import {NguCarouselModule} from '@ngu/carousel';
-import {CreatorsDialogComponent} from './dialogs-templates/creators-dialog/creators-dialog.component';
-import {EventsDialogComponent} from './dialogs-templates/events-dialog/events-dialog.component';
-import {SeriesDialogComponent} from './dialogs-templates/series-dialog/series-dialog.component';
+import {OriginDialogComponent} from './dialogs-templates/origin-dialog/origin-dialog.component';
 import {TruncatePipe} from './pipes/truncate.pipe';
 import {GridForTabsComponent} from './grid-for-tabs/grid-for-tabs.component';
 import {ItemCardComponent} from './item-card/item-card.component';
@@ -41,14 +37,10 @@ import {PaginationComponent} from './pagination/pagination.component';
 		EventsComponent,
 		SeriesComponent,
 		StoriesComponent,
-		FavoritesComponent,
 		LoginPageComponent,
 		MainPageLayoutComponent,
 		HeroDialogComponent,
-		ComicsDialogComponent,
-		CreatorsDialogComponent,
-		EventsDialogComponent,
-		SeriesDialogComponent,
+		OriginDialogComponent,
 		TruncatePipe,
 		GridForTabsComponent,
 		ItemCardComponent,
@@ -69,10 +61,7 @@ import {PaginationComponent} from './pagination/pagination.component';
 	],
 	entryComponents: [
 		HeroDialogComponent,
-		ComicsDialogComponent,
-		CreatorsDialogComponent,
-		EventsDialogComponent,
-		SeriesDialogComponent,
+		OriginDialogComponent,
 		ItemCardComponent,
 	],
 	providers: [],

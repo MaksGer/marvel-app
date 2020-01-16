@@ -5,17 +5,15 @@
 		</div>
 
 		<div class="dialog-item-info position-relative">
+			<mat-icon class="dialog-close"
+			          (click)="close()">
+				close
+			</mat-icon>
+
 			<h3 mat-dialog-title
 			    class="series-item-title marvel-font">
 				{{data.title || data.fullName}}
 			</h3>
-
-			<mat-dialog-actions>
-				<mat-icon class="series-dialog-close"
-				          (click)="close()">
-					close
-				</mat-icon>
-			</mat-dialog-actions>
 
 			<div class="series-description">
 				<p [innerHTML]="data.description"></p>
@@ -31,4 +29,3 @@
 		</div>
 	</div>
 </mat-dialog-content>
-

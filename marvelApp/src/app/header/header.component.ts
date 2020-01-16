@@ -11,7 +11,7 @@ export class HeaderComponent {
 				) {
 	}
 
-	links = ['heroes', 'comics', 'creators', 'events', 'series', 'stories', 'favorites'];
+	links = ['heroes', 'comics', 'creators', 'events', 'series', 'stories'];
 	activeLink = this.links[0];
 
 	logout() {

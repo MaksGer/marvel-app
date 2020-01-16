@@ -7,22 +7,21 @@ import {tap} from 'rxjs/internal/operators/tap';
 import {CreatorsRestService} from '../services/creators-rest.service';
 
 export interface Creator {
-	id: number,
-	fullName: string,
+	id: number;
+	fullName: string;
 	thumbnail: {
 		path: string,
-		extension: string
-	},
+		extension: string,
+	};
 	urls: [{
 		type: string,
 		url: string,
-	}],
+	}];
 }
 
 @Component({
 	selector: 'app-creators',
 	templateUrl: './creators.component.html',
-	styleUrls: ['./creators.component.css']
 })
 
 export class CreatorsComponent implements OnInit {
@@ -39,7 +38,7 @@ export class CreatorsComponent implements OnInit {
 
 	ngOnInit() {
 		this.isLoading = true;
-		this.getStartCreators(20);
+		this.getStartCreators();
 		this.getCreator();
 	}
 
@@ -47,7 +46,7 @@ export class CreatorsComponent implements OnInit {
 		this.searchTerms.next(userString);
 	}
 
-	getStartCreators(limit) {
+	getStartCreators(limit = 20) {
 		this.rest.getCreators(limit)
 			.pipe(
 				delay(1000),
@@ -93,7 +92,7 @@ export class CreatorsComponent implements OnInit {
 		});
 	}
 
-	getLimit (limit) {
+	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStartCreators(limit);
 	}

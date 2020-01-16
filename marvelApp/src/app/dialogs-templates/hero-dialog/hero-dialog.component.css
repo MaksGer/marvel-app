@@ -4,8 +4,6 @@
 
 .hero-item-title {
 	text-align: center;
-	margin-top: 40px;
-	position: relative;
 }
 
 .hero-item-image {
@@ -39,12 +37,6 @@
 
 .mat-raised-button {
 	margin: 0 auto;
-}
-
-.hero-dialog-close {
-	position: absolute;
-	top: 2%;
-	right: 2%;
 }
 
 .comics-carousel {

@@ -93,12 +93,6 @@ body {
 	text-transform: uppercase;
 }
 
-.simple-pagination {
-	display: flex;
-	justify-content: flex-end;
-	padding-right: 2%;
-}
-
 .item-container.mat-grid-tile > .mat-figure {
 	align-items: flex-start;
 	padding-top: 5px;
@@ -118,3 +112,12 @@ body {
 	flex-direction: column;
 	padding-left: 24px;
 }
+
+.dialog-close {
+	cursor: pointer;
+	margin-left: auto;
+}
+
+/*.myPoint li {*/
+/*	cursor: pointer;*/
+/*}*/

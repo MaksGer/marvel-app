@@ -3,17 +3,16 @@ import {MatDialog, MatDialogRef} from '@angular/material';
 import {Item} from '../../grid-for-tabs/grid-for-tabs.component';
 
 @Component({
-	selector: 'app-series-dialog',
-	templateUrl: './series-dialog.component.html',
-	styleUrls: ['./series-dialog.component.css'],
-	providers: [],
+	selector: 'app-origin-dialog',
+	templateUrl: './origin-dialog.component.html',
+	styleUrls: ['./origin-dialog.component.css'],
 })
 
-export class SeriesDialogComponent {
+export class OriginDialogComponent {
 	data: Item;
 
 	static open(dialog: MatDialog, data: Item) {
-		let dialogRef = dialog.open(SeriesDialogComponent, {width: '50vw'});
+		const dialogRef = dialog.open(OriginDialogComponent, {width: '50vw'});
 
 		dialogRef.componentInstance.data = data;
 
@@ -21,8 +20,7 @@ export class SeriesDialogComponent {
 	}
 
 	constructor(
-		public dialogRef: MatDialogRef<SeriesDialogComponent>,
-		public dialog: MatDialog,
+		public dialogRef: MatDialogRef<OriginDialogComponent>,
 	) {
 	}
 
