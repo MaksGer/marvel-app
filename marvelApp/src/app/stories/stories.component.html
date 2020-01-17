@@ -1,1 +1,30 @@
-<p>stories works!</p>
+<section *ngIf="!isLoading; else spinner">
+	<app-pagination (changeLimit)="getLimit($event)"></app-pagination>
+
+	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
+	               [cols]="breakpoint"
+	               rowHeight="350px">
+		<mat-grid-tile class="item-container"
+		               *ngFor="let story of storiesList; let i = index">
+			<app-story-item-card-component [data]="story"
+			                               [index]="i + 1">
+			</app-story-item-card-component>
+			</mat-grid-tile>
+	</mat-grid-list>
+
+	<ng-template #searchSpinner>
+		<div class="spinner">
+			<ngx-pulse-loader class="item"
+			                  color="white">
+			</ngx-pulse-loader>
+		</div>
+	</ng-template>
+</section>
+
+<ng-template #spinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

@@ -1,0 +1,27 @@
+.series-modal {
+	display: flex;
+}
+
+.series-item-title {
+	text-align: center;
+}
+
+.series-item-image {
+	height: 42vh;
+	min-width: 45%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.series-item-links {
+	display: flex;
+	justify-content: center;
+	padding: 15px 0;
+}
+
+.series-item-links a {
+	color: white;
+	text-transform: capitalize;
+	text-decoration: none;
+	margin-right: 15px;
+}

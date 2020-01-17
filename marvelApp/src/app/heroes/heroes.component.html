@@ -5,44 +5,12 @@
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
-	<div class="simple-pagination full-width">
-		<mat-form-field>
-			<mat-label>Item per page</mat-label>
-			<mat-select [(value)]="selected"
-			            (selectionChange)="itemsPerPage()">
-				<mat-option *ngFor="let item of selectOptions"
-				            [value]=item>
-					{{item}}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
+	<app-pagination (changeLimit)="getLimit($event)"></app-pagination>
 
-	<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
-	               [cols]="breakpoint"
-	               rowHeight="500px">
-		<mat-grid-tile *ngFor="let hero of heroesList">
-			<div>
-				<mat-card class="hero-item">
-					<div class="title marvel-font full-width">
-						{{hero.name}}
-					</div>
-
-					<div class="hero-image full-width"
-					     [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension +')'">
-					</div>
-				</mat-card>
-			</div>
-		</mat-grid-tile>
-	</mat-grid-list>
-
-	<ng-template #searchSpinner>
-		<div class="spinner">
-			<ngx-pulse-loader class="item"
-			                  color="white">
-			</ngx-pulse-loader>
-		</div>
-	</ng-template>
+	<app-grid-for-tabs [itemsList]="heroesList"
+	                   [isSearchActive]="isSearchActive"
+	                   [component]="dialogComponent">
+	</app-grid-for-tabs>
 </section>
 
 <ng-template #spinner>

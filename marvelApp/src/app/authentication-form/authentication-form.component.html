@@ -5,8 +5,8 @@
 	                 color="white">
 	</ngx-pulse-loader>
 </div>
-<ng-template #app>
 
+<ng-template #app>
 	<div class="login-page"
 	     [ngClass]="styleObject.bgClass">
 		<div class="container"
@@ -23,7 +23,6 @@
 				      class="login full-width"
 				      [formGroup]="formToLogIn"
 				      (ngSubmit)="submitLogIn()">
-
 					<mat-form-field>
 						<input matInput
 						       placeholder="Login"
@@ -56,7 +55,6 @@
 						        [disabled]="formToLogIn.invalid">
 							Log In
 						</button>
-
 					</div>
 
 					<div class="subtitle">
@@ -75,7 +73,6 @@
 				      class="login full-width"
 				      [formGroup]="formToSignUp"
 				      (ngSubmit)="submitSignUp()">
-
 					<mat-form-field>
 						<input matInput
 						       placeholder="Email address"

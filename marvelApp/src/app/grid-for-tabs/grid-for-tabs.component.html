@@ -1,0 +1,19 @@
+<mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
+               [cols]="breakpoint"
+               rowHeight="450px">
+
+	<mat-grid-tile *ngFor="let item of itemsList">
+		<app-item-card class="item-container"
+		               [item]="item"
+		               (click)="openDialog(item)">
+		</app-item-card>
+	</mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #searchSpinner>
+	<div class="spinner">
+		<ngx-pulse-loader class="item"
+		                  color="white">
+		</ngx-pulse-loader>
+	</div>
+</ng-template>

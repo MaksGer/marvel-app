@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 
 export class AuthService {
@@ -35,6 +35,6 @@ export class AuthService {
 		localStorage.setItem(email, JSON.stringify({
 			password: password,
 			name: name,
-		}))
+		}));
 	}
 }

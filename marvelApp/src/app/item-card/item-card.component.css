@@ -1,4 +1,4 @@
-.hero-item {
+.card-item {
 	display: flex;
 	flex-direction: column;
 	width: 350px;
@@ -6,13 +6,13 @@
 	background-color: #212121;
 }
 
-.title {
+.card-title {
 	text-align: center;
 	padding: 10px 10px;
 	border: 2px solid white;
 }
 
-.hero-image {
+.card-image {
 	min-height: 300px;
 	height: 80%;
 	background-repeat: no-repeat;

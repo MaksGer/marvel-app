@@ -29,6 +29,10 @@ body {
 	height: 100%;
 }
 
+.position-relative {
+	position: relative;
+}
+
 .mat-input-element.user-search {
 	display: block;
 	border: 2px solid white;
@@ -78,6 +82,10 @@ body {
 	color: white !important;
 }
 
+.mat-dialog-container {
+	background-color: #222222;
+}
+
 .marvel-font {
 	font-family: 'Marvel', sans-serif;
 	letter-spacing: 2px;
@@ -85,8 +93,27 @@ body {
 	text-transform: uppercase;
 }
 
-.simple-pagination {
+.item-container.mat-grid-tile > .mat-figure {
+	align-items: flex-start;
+	padding-top: 5px;
+}
+
+.mat-figure .hover-scale {
+	transition: 1s;
+}
+
+.hover-scale:hover {
+	transform: scale(1.1);
+}
+
+.dialog-item-info {
+	flex: 1 100px;
 	display: flex;
-	justify-content: flex-end;
-	padding-right: 2%;
+	flex-direction: column;
+	padding-left: 24px;
+}
+
+.dialog-close {
+	cursor: pointer;
+	margin-left: auto;
 }

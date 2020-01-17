@@ -1,0 +1,11 @@
+<mat-card class="story-item position-relative">
+	<mat-icon *ngIf="isDescrSet" class="story-toggle"
+	          (click)="returnTitle()">
+		close
+	</mat-icon>
+
+	<div class="story-title marvel-font"
+	     (click)="setStory()">
+		<p [innerHTML]="title"></p>
+	</div>
+</mat-card>
