@@ -11,8 +11,7 @@ export class HeroesRestService {
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
 	urlAPI = `https://gateway.marvel.com/v1/public/characters`;
 
-	constructor(private http: HttpClient) {
-	}
+	constructor(private http: HttpClient) { }
 
 	getHeroes(limit): Observable<any> {
 		let params = new HttpParams();

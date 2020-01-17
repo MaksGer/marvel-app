@@ -62,23 +62,20 @@ export class GridForTabsComponent implements DoCheck {
 		}
 	}
 
-		openDialog(selectedItem: Item) {
-			switch (true) {
-				case this.component === 'origin':
-					OriginDialogComponent.open(this.dialog, selectedItem);
+	openDialog(selectedItem: Item) {
+		switch (true) {
+			case this.component === 'origin':
+				OriginDialogComponent.open(this.dialog, selectedItem);
 
-					break;
+				break;
 
-				case this.component === 'hero':
-					HeroDialogComponent.open(this.dialog, selectedItem);
+			case this.component === 'hero':
+				HeroDialogComponent.open(this.dialog, selectedItem);
 
-					break;
+				break;
 
-				default:
-
-					return;
-			}
-
+			default:
+				return;
 		}
-
+	}
 }

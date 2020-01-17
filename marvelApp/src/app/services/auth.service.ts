@@ -35,6 +35,6 @@ export class AuthService {
 		localStorage.setItem(email, JSON.stringify({
 			password: password,
 			name: name,
-		}))
+		}));
 	}
 }

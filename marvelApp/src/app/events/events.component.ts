@@ -90,6 +90,7 @@ export class EventsComponent implements OnInit {
 						panelClass: 'error-snack-bar',
 					});
 				}
+
 				this.eventsList = response;
 				this.isSearchActive = false;
 			});

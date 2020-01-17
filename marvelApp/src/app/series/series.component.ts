@@ -36,8 +36,7 @@ export class SeriesComponent implements OnInit {
 
 	constructor(private rest: SeriesRestService,
 				private _snackBar: MatSnackBar,
-	) {
-	}
+	) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;

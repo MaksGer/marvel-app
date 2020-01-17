@@ -6,12 +6,12 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
+
 export class StoriesRestService {
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
 	urlAPI = `https://gateway.marvel.com/v1/public/stories`;
 
-	constructor(private http: HttpClient) {
-	}
+	constructor(private http: HttpClient) { }
 
 	getStories(limit): Observable<any> {
 		let params = new HttpParams();

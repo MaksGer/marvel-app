@@ -5,8 +5,7 @@
 	       #searchBox
 	       (keyup)="search(searchBox.value)">
 
-	<app-pagination (changeLimit)="getLimit($event)">
-	</app-pagination>
+	<app-pagination (changeLimit)="getLimit($event)"></app-pagination>
 
 	<app-grid-for-tabs [itemsList]="comicsList"
 	                   [isSearchActive]="isSearchActive"

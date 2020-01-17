@@ -6,13 +6,13 @@ import {map} from 'rxjs/operators';
 @Injectable({
 	providedIn: 'root',
 })
+
 export class EventsRestService {
 
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
 	urlAPI = `https://gateway.marvel.com/v1/public/events`;
 
-	constructor(private http: HttpClient) {
-	}
+	constructor(private http: HttpClient) { }
 
 	getEvents(limit): Observable<any> {
 		let params = new HttpParams();

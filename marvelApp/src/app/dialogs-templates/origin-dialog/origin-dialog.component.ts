@@ -21,8 +21,7 @@ export class OriginDialogComponent {
 
 	constructor(
 		public dialogRef: MatDialogRef<OriginDialogComponent>,
-	) {
-	}
+	) { }
 
 	close(): void {
 		this.dialogRef.close();
