@@ -55,6 +55,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 
 		return dialogRef;
 	}
+
 	ngOnInit(): void {
 		this.rest.getComicsForHero(this.data.id)
 			.pipe(

@@ -10,9 +10,7 @@ export class ComicsRestService {
 	publicKey = '261184743b3ca5f2464aa5f310961b29';
 	urlAPI = `https://gateway.marvel.com/v1/public/comics`;
 
-	constructor(
-		private http: HttpClient,
-	) {
+	constructor(private http: HttpClient,) {
 	}
 
 	getComics(limit) {

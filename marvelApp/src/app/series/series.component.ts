@@ -13,7 +13,7 @@ export interface Series {
 	description?: string;
 	thumbnail: {
 		path: string,
-		extension: string
+		extension: string,
 	};
 	urls: [{
 		type: string,

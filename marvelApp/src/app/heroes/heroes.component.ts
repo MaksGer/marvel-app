@@ -12,7 +12,7 @@ export interface Hero {
 	description?: string;
 	thumbnail: {
 		path: string,
-		extension: string
+		extension: string,
 	};
 	urls: [{
 		type: string,
