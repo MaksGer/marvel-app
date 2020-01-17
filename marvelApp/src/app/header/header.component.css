@@ -3,6 +3,9 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 40px;
+	position: fixed;
+	top: 0;
+	z-index: 10;
 }
 
 .header-logo {

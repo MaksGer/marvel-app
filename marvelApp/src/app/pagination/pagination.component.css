@@ -1,5 +1,3 @@
 .simple-pagination {
-	display: flex;
-	justify-content: flex-end;
-	padding-right: 2%;
+	margin-right: 25px;
 }
