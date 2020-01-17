@@ -117,3 +117,7 @@ body {
 	cursor: pointer;
 	margin-left: auto;
 }
+
+mat-card.card-item {
+	padding: 0;
+}

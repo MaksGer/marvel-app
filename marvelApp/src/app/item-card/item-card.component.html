@@ -1,9 +1,10 @@
-<mat-card class="card-item hover-scale">
-	<div class="card-title marvel-font full-width">
+<mat-card class="card-item card-image"
+          [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
+	<div class="card-title full-width">
 		{{item.title || item.fullName || item.name  | truncate}}
 	</div>
 
-	<div class="card-image full-width"
-	     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
-	</div>
+<!--	<div class="card-image full-width"-->
+<!--	     >-->
+<!--	</div>-->
 </mat-card>

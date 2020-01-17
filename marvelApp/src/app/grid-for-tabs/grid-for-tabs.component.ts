@@ -42,17 +42,17 @@ export class GridForTabsComponent implements DoCheck {
 
 	setBreakpoint() {
 		switch (true) {
-			case window.innerWidth > 2000:
+			case window.innerWidth > 1300:
 				this.breakpoint = 5;
 
 				break;
 
-			case window.innerWidth > 1400:
+			case window.innerWidth > 1050:
 				this.breakpoint = 4;
 
 				break;
 
-			case window.innerWidth > 800:
+			case window.innerWidth > 600:
 				this.breakpoint = 2;
 
 				break;
