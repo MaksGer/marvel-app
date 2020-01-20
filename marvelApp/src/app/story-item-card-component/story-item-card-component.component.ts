@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Story} from '../stories/stories.component';
+import {Item} from '../grid-for-tabs/grid-for-tabs.component';
 
 @Component({
 	selector: 'app-story-item-card-component',
@@ -8,7 +8,7 @@ import {Story} from '../stories/stories.component';
 })
 
 export class StoryItemCardComponentComponent implements OnInit {
-	@Input() data: Story;
+	@Input() data: Item;
 	@Input() index: number;
 	isDescrSet: boolean;
 	title: string;

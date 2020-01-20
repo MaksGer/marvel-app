@@ -1,13 +1,19 @@
 <mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
                [cols]="breakpoint"
-               rowHeight="320px"
+               rowHeight="450px"
                gutterSize="20px">
-
-	<mat-grid-tile *ngFor="let item of itemsList">
-		<app-item-card class="item-container"
+	<mat-grid-tile *ngFor="let item of itemsList, let index = index;">
+		<app-item-card *ngIf="component != 'story'; else storyCard"
+		               class="item-container"
 		               [item]="item"
 		               (click)="openDialog(item)">
 		</app-item-card>
+
+		<ng-template #storyCard>
+			<app-story-item-card-component [data]="item"
+			                               [index]="index + 1">
+			</app-story-item-card-component>
+		</ng-template>
 	</mat-grid-tile>
 </mat-grid-list>
 

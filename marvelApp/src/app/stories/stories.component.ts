@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {catchError, delay} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {StoriesRestService} from '../services/stories-rest.service';
@@ -15,11 +15,11 @@ export interface Story {
 	templateUrl: './stories.component.html',
 })
 
-export class StoriesComponent implements OnInit, DoCheck {
+export class StoriesComponent implements OnInit {
 	storiesList: Story[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	breakpoint: number;
+	dialogTemplate = 'story';
 
 	constructor(private rest: StoriesRestService,
 				private _snackBar: MatSnackBar,
@@ -54,31 +54,5 @@ export class StoriesComponent implements OnInit, DoCheck {
 	getLimit(limit) {
 		this.isSearchActive = true;
 		this.getStories(limit);
-	}
-
-	ngDoCheck(): void {
-		this.setBreakpoint();
-	}
-
-	setBreakpoint() {
-		switch (true) {
-			case window.innerWidth > 2000:
-				this.breakpoint = 5;
-
-				break;
-
-			case window.innerWidth > 1400:
-				this.breakpoint = 4;
-
-				break;
-
-			case window.innerWidth > 800:
-				this.breakpoint = 2;
-
-				break;
-
-			case window.innerWidth < 800:
-				this.breakpoint = 1;
-		}
 	}
 }

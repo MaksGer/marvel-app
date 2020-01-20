@@ -35,10 +35,11 @@ body {
 
 .mat-input-element.user-search {
 	display: block;
-	border: 2px solid white;
+	border: 1px solid white;
 	padding: 5px;
-	margin: 50px auto 0;
-	width: 30%;
+	width: 33%;
+	margin: 5px 0 0 33%;
+	height: 33px;
 	border-radius: 15px;
 	caret-color: white;
 }
@@ -120,4 +121,14 @@ body {
 
 mat-card.card-item {
 	padding: 0;
+}
+
+.user-controls {
+	margin-top: 100px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.pull-right {
+	margin-left: auto;
 }
