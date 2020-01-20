@@ -17,6 +17,12 @@
 	</mat-grid-tile>
 </mat-grid-list>
 
+<mat-icon class="scroll-to-top"
+          [ngClass]="{'show-scrollTop': isWindowScrolled}"
+          (click)="scrollToTop()">
+	arrow_upward
+</mat-icon>
+
 <ng-template #searchSpinner>
 	<div class="spinner">
 		<ngx-pulse-loader class="item"

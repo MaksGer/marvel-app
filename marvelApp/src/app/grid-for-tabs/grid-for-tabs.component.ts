@@ -1,4 +1,4 @@
-import {Component, DoCheck, Input} from '@angular/core';
+import {Component, DoCheck, HostListener, Input} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {OriginDialogComponent} from '../dialogs-templates/origin-dialog/origin-dialog.component';
 import {HeroDialogComponent} from '../dialogs-templates/hero-dialog/hero-dialog.component';
@@ -22,19 +22,30 @@ export interface Item {
 @Component({
 	selector: 'app-grid-for-tabs',
 	templateUrl: './grid-for-tabs.component.html',
+	styleUrls: ['./grid-for-tabs.component.css'],
 })
 
 export class GridForTabsComponent implements DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
 	@Input() component: 'origin' | 'hero' | 'story';
+	breakpoint: number;
+	isWindowScrolled: boolean;
 
 	constructor(
 		public dialog: MatDialog,
 	) {
 	}
 
-	breakpoint: number;
+	@HostListener('window:scroll', [])
+	onWindowScroll() {
+		if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > 300) {
+			this.isWindowScrolled = true;
+		} else if ( this.isWindowScrolled &&
+			(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < 300) {
+			this.isWindowScrolled = false;
+		}
+	}
 
 	ngDoCheck(): void {
 		this.setBreakpoint();
@@ -77,5 +88,16 @@ export class GridForTabsComponent implements DoCheck {
 			default:
 				return;
 		}
+	}
+
+	scrollToTop() {
+		(function smoothscroll()
+		{ let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+			if (currentScroll > 0)
+			{
+				window.requestAnimationFrame(smoothscroll);
+				window.scrollTo(0, currentScroll - (currentScroll / 10));
+			}
+		})();
 	}
 }
