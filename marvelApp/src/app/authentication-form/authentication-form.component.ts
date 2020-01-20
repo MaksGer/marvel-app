@@ -74,11 +74,26 @@ export class AuthenticationFormComponent implements OnInit {
 	}
 
 	submitLogIn() {
-		if (this.authService.getData(this.formToLogIn.value.login)) {
-			this.router.navigate(['/heroes']);
-			this.authService.setAuthFlag();
-		} else {
-			this._snackBar.open('Please check your Login and Password and try again', 'Close', {
+		let errorMessage: string;
+
+		switch (true) {
+			case this.authService.getData(this.formToLogIn.value.login) === this.formToLogIn.value.password:
+				this.router.navigate(['/heroes']);
+				this.authService.setAuthFlag();
+
+				break;
+
+			case !this.authService.getData(this.formToLogIn.value.login):
+				errorMessage = 'Please check your login';
+
+				break;
+
+			default:
+				errorMessage = 'Please check your password';
+		}
+
+		if (errorMessage) {
+			this._snackBar.open(errorMessage, 'Close', {
 				duration: 4000,
 				verticalPosition: 'top',
 				horizontalPosition: 'center',
