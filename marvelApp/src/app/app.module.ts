@@ -21,7 +21,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {HeroDialogComponent} from './dialogs-templates/hero-dialog/hero-dialog.component';
 import {NguCarouselModule} from '@ngu/carousel';
 import {OriginDialogComponent} from './dialogs-templates/origin-dialog/origin-dialog.component';
-import {TruncatePipe} from './pipes/truncate.pipe';
 import {GridForTabsComponent} from './grid-for-tabs/grid-for-tabs.component';
 import {ItemCardComponent} from './item-card/item-card.component';
 import {PaginationComponent} from './pagination/pagination.component';
@@ -42,7 +41,6 @@ import {StoryItemCardComponentComponent} from './story-item-card-component/story
 		MainPageLayoutComponent,
 		HeroDialogComponent,
 		OriginDialogComponent,
-		TruncatePipe,
 		GridForTabsComponent,
 		ItemCardComponent,
 		PaginationComponent,

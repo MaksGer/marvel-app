@@ -9,6 +9,10 @@
 .card-title {
 	padding: 10px 10px;
 	background-color: rgba(0,0,0, 0.45);
+	width: 250px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .card-image {

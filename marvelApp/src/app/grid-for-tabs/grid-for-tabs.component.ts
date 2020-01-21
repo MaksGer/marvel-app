@@ -39,9 +39,9 @@ export class GridForTabsComponent implements DoCheck {
 
 	@HostListener('window:scroll', [])
 	onWindowScroll() {
-		if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > 300) {
+		if ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > 300) {
 			this.isWindowScrolled = true;
-		} else if ( this.isWindowScrolled &&
+		} else if (this.isWindowScrolled &&
 			(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < 300) {
 			this.isWindowScrolled = false;
 		}
@@ -91,10 +91,10 @@ export class GridForTabsComponent implements DoCheck {
 	}
 
 	scrollToTop() {
-		(function smoothscroll()
-		{ let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-			if (currentScroll > 0)
-			{
+		(function smoothscroll() {
+			let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+
+			if (currentScroll > 0) {
 				window.requestAnimationFrame(smoothscroll);
 				window.scrollTo(0, currentScroll - (currentScroll / 10));
 			}
