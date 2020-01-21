@@ -37,6 +37,7 @@ export class StoriesComponent implements OnInit {
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
+						verticalPosition: 'top',
 						horizontalPosition: 'center',
 						panelClass: 'error-snack-bar',
 					});

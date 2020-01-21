@@ -5,7 +5,10 @@ import {Injectable} from '@angular/core';
 })
 
 export class AuthService {
-	activeUser: object;
+	activeUser: {
+		name: string,
+		password: number,
+	};
 
 	setAuthFlag() {
 		sessionStorage.setItem('activeUser', JSON.stringify(this.activeUser));
@@ -25,7 +28,7 @@ export class AuthService {
 		if (JSON.parse(localStorage.getItem(key))) {
 			this.activeUser = JSON.parse(localStorage.getItem(key));
 
-			return true;
+			return this.activeUser.password;
 		}
 
 		return null;

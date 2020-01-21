@@ -1,6 +1,7 @@
 <mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
                [cols]="breakpoint"
-               rowHeight="450px">
+               rowHeight="320px"
+               gutterSize="20px">
 	<mat-grid-tile *ngFor="let item of itemsList, let index = index;">
 		<app-item-card *ngIf="component != 'story'; else storyCard"
 		               class="item-container"
@@ -15,6 +16,12 @@
 		</ng-template>
 	</mat-grid-tile>
 </mat-grid-list>
+
+<mat-icon class="scroll-to-top"
+          [ngClass]="{'show-scrollTop': isWindowScrolled}"
+          (click)="scrollToTop()">
+	arrow_upward
+</mat-icon>
 
 <ng-template #searchSpinner>
 	<div class="spinner">

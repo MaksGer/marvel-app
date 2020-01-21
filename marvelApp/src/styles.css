@@ -119,6 +119,10 @@ body {
 	margin-left: auto;
 }
 
+mat-card.card-item {
+	padding: 0;
+}
+
 .user-controls {
 	margin-top: 100px;
 	display: flex;

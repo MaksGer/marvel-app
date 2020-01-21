@@ -53,6 +53,7 @@ export class CreatorsComponent implements OnInit {
 				catchError(error => {
 					this._snackBar.open(error.message, 'Close', {
 						duration: 4000,
+						verticalPosition: 'top',
 						horizontalPosition: 'center',
 						panelClass: 'error-snack-bar',
 					});
@@ -82,6 +83,7 @@ export class CreatorsComponent implements OnInit {
 			if (!response[0]) {
 				this._snackBar.open('There are no matches', 'Close', {
 					duration: 2000,
+					verticalPosition: 'top',
 					horizontalPosition: 'center',
 					panelClass: 'error-snack-bar',
 				});
