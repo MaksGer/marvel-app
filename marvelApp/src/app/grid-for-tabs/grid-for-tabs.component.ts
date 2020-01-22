@@ -28,7 +28,7 @@ export interface Item {
 export class GridForTabsComponent implements DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
-	@Input() component: 'series' | 'hero' | 'story' | 'event' | 'creator';
+	@Input() component: 'series' | 'hero' | 'story' | 'event' | 'creator' | 'comics';
 	breakpoint: number;
 	isWindowScrolled: boolean;
 
