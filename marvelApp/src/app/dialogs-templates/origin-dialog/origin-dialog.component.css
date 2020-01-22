@@ -7,8 +7,8 @@
 }
 
 .series-item-image {
-	height: 42vh;
-	min-width: 45%;
+	height: 320px;
+	width: 200px;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -50,4 +50,3 @@ a:hover::before {
 	from {transform: translateX(-4em) skewX(-45deg)}
 	to {transform: translateX(10em) skewX(-45deg)}
 }
-

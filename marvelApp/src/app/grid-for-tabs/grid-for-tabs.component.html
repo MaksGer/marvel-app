@@ -4,7 +4,7 @@
                gutterSize="30px">
 	<mat-grid-tile *ngFor="let item of itemsList, let index = index;"
 	               [ngSwitch]="component">
-		<app-item-card *ngSwitchCase="'creators' && 'series'"
+		<app-item-card *ngSwitchCase="'creators'"
 		               class="item-container"
 		               [item]="item">
 		</app-item-card>

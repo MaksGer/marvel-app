@@ -12,7 +12,7 @@ export class OriginDialogComponent {
 	data: Item;
 
 	static open(dialog: MatDialog, data: Item) {
-		const dialogRef = dialog.open(OriginDialogComponent, {width: '50vw'});
+		const dialogRef = dialog.open(OriginDialogComponent, {width: '33vw'});
 
 		dialogRef.componentInstance.data = data;
 
