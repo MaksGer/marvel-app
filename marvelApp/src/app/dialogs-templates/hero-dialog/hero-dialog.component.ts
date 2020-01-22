@@ -65,7 +65,6 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 				data => {
 					this.listOfComics = data;
 					this.isLoading = false;
-					console.log(this.listOfComics[0]);
 				}
 			);
 	}
