@@ -21,6 +21,7 @@
 
 			<div class="series-item-links full-width">
 				<a *ngFor="let link of data.urls"
+				   mat-stroked-button
 				   href="{{link.url}}"
 				   target="_blank">
 					{{link.type}}

@@ -27,11 +27,11 @@
 	</mat-grid-tile>
 </mat-grid-list>
 
-<mat-icon class="scroll-to-top"
-          [ngClass]="{'show-scrollTop': isWindowScrolled}"
-          (click)="scrollToTop()">
-	arrow_upward
-</mat-icon>
+<button mat-fab
+        class="scroll-to-top"
+        [ngClass]="{'show-scrollTop': isWindowScrolled}"
+        (click)="scrollToTop()">
+</button>
 
 <ng-template #searchSpinner>
 	<div class="spinner">
