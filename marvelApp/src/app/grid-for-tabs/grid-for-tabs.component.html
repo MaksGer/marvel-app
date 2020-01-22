@@ -1,7 +1,7 @@
 <mat-grid-list *ngIf="!isSearchActive; else searchSpinner"
                [cols]="breakpoint"
-               rowHeight="320px"
-               gutterSize="20px">
+               rowHeight="250px"
+               gutterSize="30px">
 	<mat-grid-tile *ngFor="let item of itemsList, let index = index;">
 		<app-item-card *ngIf="component != 'story'; else storyCard"
 		               class="item-container"

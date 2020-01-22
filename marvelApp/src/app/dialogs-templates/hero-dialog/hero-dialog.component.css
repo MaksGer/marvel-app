@@ -7,8 +7,8 @@
 }
 
 .hero-item-image {
-	height: 27vh;
-	width: 33%;
+	height: 280px;
+	width: 280px;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -34,6 +34,26 @@
 	text-transform: capitalize;
 	text-decoration: none;
 	margin-left: 15px;
+	border: 1px solid white;
+	border-radius: 8px;
+	padding: 4px;
+	overflow: hidden;
+	position: relative;
+}
+
+ a::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1.5em;
+	height: 100%;
+	background-color: rgba(255,255,255, 0.6);
+	transform: translateX(-4em) skewX(-45deg);
+}
+
+ a:hover::before {
+	animation: move-light 0.5s;
 }
 
 .mat-raised-button {
@@ -50,19 +70,18 @@
 	justify-content: flex-start;
 	align-items: center;
 	height: 280px;
+	padding: 0 10px
 }
 
 .comics-background {
 	background-repeat: no-repeat;
 	background-size: cover;
-	width: 150px;
-	height: 200px;
+	width: 120px;
+	height: 180px;
 }
 
 .comics-title {
-	display: inline-block;
-	width: 150px;
-	height: auto;
+	text-align: center;
 }
 
 .leftRs {
@@ -112,4 +131,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@keyframes move-light {
+	from {transform: translateX(-4em) skewX(-45deg)}
+	to {transform: translateX(10em) skewX(-45deg)}
 }

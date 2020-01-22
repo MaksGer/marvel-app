@@ -34,7 +34,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('myCarousel', {static: false}) myCarousel: NguCarousel<[Comics]>;
 	carouselConfig: NguCarouselConfig = {
-		grid: {xs: 3, sm: 3, md: 3, lg: 4, all: 0},
+		grid: {xs: 1, sm: 2, md: 3, lg: 3, all: 0},
 		interval: {timing: 4000, initialDelay: 1000},
 		loop: false,
 		touch: true,
@@ -49,7 +49,7 @@ export class HeroDialogComponent implements OnInit, AfterViewInit {
 	) { }
 
 	static open(dialog: MatDialog, data: Item) {
-		const dialogRef = dialog.open(HeroDialogComponent, {width: '50vw'});
+		const dialogRef = dialog.open(HeroDialogComponent, {width: '33vw'});
 
 		dialogRef.componentInstance.data = data;
 
