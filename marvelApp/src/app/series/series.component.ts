@@ -30,7 +30,7 @@ export class SeriesComponent implements OnInit {
 	seriesList: Series[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	dialogTemplate = 'origin';
+	dialogTemplate = 'series';
 
 	private searchTerms = new Subject<string>();
 

@@ -28,7 +28,7 @@ export class CreatorsComponent implements OnInit {
 	creatorsList: Creator[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	dialogComponent = 'origin';
+	dialogComponent = 'creators';
 
 	private searchTerms = new Subject<string>();
 

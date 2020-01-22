@@ -2,18 +2,28 @@
                [cols]="breakpoint"
                rowHeight="250px"
                gutterSize="30px">
-	<mat-grid-tile *ngFor="let item of itemsList, let index = index;">
-		<app-item-card *ngIf="component != 'story'; else storyCard"
+	<mat-grid-tile *ngFor="let item of itemsList, let index = index;"
+	               [ngSwitch]="component">
+		<app-item-card *ngSwitchCase="'creators' && 'series'"
+		               class="item-container"
+		               [item]="item">
+		</app-item-card>
+
+		<app-item-card *ngSwitchCase="'series'"
+		               class="item-container"
+		               [item]="item">
+		</app-item-card>
+
+		<app-story-item-card-component *ngSwitchCase="'story'"
+		                               [data]="item"
+		                               [index]="index + 1">
+		</app-story-item-card-component>
+
+		<app-item-card *ngSwitchDefault
 		               class="item-container"
 		               [item]="item"
 		               (click)="openDialog(item)">
 		</app-item-card>
-
-		<ng-template #storyCard>
-			<app-story-item-card-component [data]="item"
-			                               [index]="index + 1">
-			</app-story-item-card-component>
-		</ng-template>
 	</mat-grid-tile>
 </mat-grid-list>
 
