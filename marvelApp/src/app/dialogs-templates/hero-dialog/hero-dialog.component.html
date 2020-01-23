@@ -21,6 +21,7 @@
 
 			<div class="hero-item-links full-width">
 				<a *ngFor="let link of data.urls"
+				   mat-stroked-button
 				   href="{{link.url}}"
 				   target="_blank">
 					{{link.type}}
@@ -34,9 +35,12 @@
 	<div class="comics-carousel">
 		<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="listOfComics">
 			<div *nguCarouselDef="let item;" class="comics-item item">
-				<div class="comics-background"
-				     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
-				</div>
+				<a href="{{item.urls[0].url}}"
+				   target="_blank">
+					<div class="comics-background"
+					     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
+					</div>
+				</a>
 				<p class="comics-title">{{item.title}}</p>
 			</div>
 

@@ -22,7 +22,8 @@ export class StoryItemCardComponentComponent implements OnInit {
 		this.title = this.data.title;
 	}
 
-	returnTitle() {
+	returnTitle(event) {
+		event.stopPropagation();
 		this.isDescrSet = false;
 		this.title = 'Story ' + this.index;
 	}

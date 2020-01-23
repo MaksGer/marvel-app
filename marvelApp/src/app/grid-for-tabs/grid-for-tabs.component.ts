@@ -28,7 +28,7 @@ export interface Item {
 export class GridForTabsComponent implements DoCheck {
 	@Input() itemsList: Item[];
 	@Input() isSearchActive;
-	@Input() component: 'origin' | 'hero' | 'story';
+	@Input() component: 'series' | 'hero' | 'story' | 'event' | 'creator' | 'comics';
 	breakpoint: number;
 	isWindowScrolled: boolean;
 
@@ -53,6 +53,12 @@ export class GridForTabsComponent implements DoCheck {
 
 	setBreakpoint() {
 		switch (true) {
+			case window.innerWidth > 1800:
+				this.breakpoint = 6;
+
+				break;
+
+
 			case window.innerWidth > 1300:
 				this.breakpoint = 5;
 
@@ -75,10 +81,8 @@ export class GridForTabsComponent implements DoCheck {
 
 	openDialog(selectedItem: Item) {
 		switch (true) {
-			case this.component === 'origin':
-				OriginDialogComponent.open(this.dialog, selectedItem);
-
-				break;
+			case this.component === 'story':
+				return;
 
 			case this.component === 'hero':
 				HeroDialogComponent.open(this.dialog, selectedItem);
@@ -86,7 +90,7 @@ export class GridForTabsComponent implements DoCheck {
 				break;
 
 			default:
-				return;
+				OriginDialogComponent.open(this.dialog, selectedItem);
 		}
 	}
 

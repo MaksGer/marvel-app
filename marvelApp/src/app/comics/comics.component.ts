@@ -30,7 +30,7 @@ export class ComicsComponent implements OnInit {
 	comicsList: Comics[];
 	isLoading: boolean;
 	isSearchActive: boolean;
-	dialogComponent = 'origin';
+	dialogComponent = 'comics';
 
 	private searchTerms = new Subject<string>();
 

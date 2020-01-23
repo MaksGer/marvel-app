@@ -7,8 +7,8 @@
 }
 
 .hero-item-image {
-	height: 27vh;
-	width: 33%;
+	height: 280px;
+	width: 280px;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -20,12 +20,12 @@
 }
 
 .hero-description {
-	padding-left: 24px;
+	padding-left: 18px;
 }
 
 .hero-item-links {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	padding: 15px 0;
 }
 
@@ -50,19 +50,18 @@
 	justify-content: flex-start;
 	align-items: center;
 	height: 280px;
+	padding: 0 10px
 }
 
 .comics-background {
 	background-repeat: no-repeat;
 	background-size: cover;
-	width: 150px;
-	height: 200px;
+	width: 120px;
+	height: 180px;
 }
 
 .comics-title {
-	display: inline-block;
-	width: 150px;
-	height: auto;
+	text-align: center;
 }
 
 .leftRs {
@@ -112,4 +111,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@media  screen and (max-width: 1250px) {
+	.hero-item-image {
+		height: 180px;
+		width: 180px;
+	}
 }

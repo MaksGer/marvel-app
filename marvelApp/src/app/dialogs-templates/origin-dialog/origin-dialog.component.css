@@ -7,21 +7,19 @@
 }
 
 .series-item-image {
-	height: 42vh;
-	min-width: 45%;
+	height: 320px;
+	width: 200px;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
 .series-item-links {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	padding: 15px 0;
 }
 
 .series-item-links a {
-	color: white;
-	text-transform: capitalize;
-	text-decoration: none;
 	margin-right: 15px;
+	text-transform: capitalize;
 }
