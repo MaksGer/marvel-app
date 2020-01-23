@@ -35,7 +35,8 @@
 	<div class="comics-carousel">
 		<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="listOfComics">
 			<div *nguCarouselDef="let item;" class="comics-item item">
-				<a href="{{item.urls[0].url}}">
+				<a href="{{item.urls[0].url}}"
+				   target="_blank">
 					<div class="comics-background"
 					     [style.background-image]="'url(' + item.thumbnail.path + '.' + item.thumbnail.extension +')'">
 					</div>
